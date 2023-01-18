@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+}
+body {
+  margin: 100px 0;
+  box-sizing: border-box;
+}
+
+#header {
+  /* background-color: aqua; */
+
+  /* display: flex; */
+  justify-content: center;
+}
+.daily_discount b {
+  font-weight: 900;
+  color: #fff0b2;
+}
+.daily_discount {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #001e42 0% 0% no-repeat padding-box;
+
+  color: white;
+}
+.daily_discount a {
+  font-size: clamp(10px, 2vw, 11px);
+  color: #7dc9ff;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.daily_discount span,
+.daily_discount a,
+.daily_discount b {
+  padding-left: 5px;
+}
+#nav__business {
+  display: flex;
+  /* width: 94%; */
+  justify-content: space-between;
+  margin: 0 auto;
+  /* background-color: aqua; */
+  padding: 8px 0;
+}
+.nav__business_item_left a,
+.nav__business_item_right a {
+  color: #004387;
+  font-size: 12px;
+  text-decoration: none;
+  padding: 0px 17px;
+}
+i {
+  /* color: #004387; */
+}
+#primary_content {
+  background: #004387;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logo img {
+  width: 245px;
+}
+#searchbar {
+  display: flex;
+  color: #004387;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 0 15px;
+}
+#searchbar input {
+  border: 1px solid white;
+}
+#primary_content_right {
+  display: flex;
+}
+#user_icon {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+.fa-user {
+  margin-left: 15px;
+  color: white;
+}
+
+#signin_text {
+  display: flex;
+  flex-direction: column;
+}
+#signin_text > :nth-child(1) {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 75px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#signin_text > :nth-child(2) {
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+}
+#cart_icon {
+  margin-left: 15px;
+  color: white;
+}
+#nav_main {
+  justify-content: space-between;
+  display: flex;
+  border-top: 0.005px solid #6590bb;
+  background: #004387;
+  padding: 8px;
+}
+#nav_main a {
+  padding: 5px 15px;
+  color: white;
+  text-decoration: none;
+}
+#nav_main .nav_main_left a:hover {
+  color: #004387;
+  padding: 10px 15px;
+  border-radius: 5px 5px 0 0;
+
+  background-color: white;
+}
+.nav_main_right a:hover {
+  border-top: 3px solid white;
+}
+#slideshow_poster img {
+  width: 100%;
+}
+
+#top_deals {
+  margin-top: -2px;
+  background-color: #004387;
+}
+
+#top_deals_head {
+  padding: 20px 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+#top_deals_head h1 {
+  color: white;
+  font-weight: normal;
+  font-size: 32px;
+  display: inline-block;
+}
+#top_deals_head i {
+  margin-right: 10px;
+  font-size: 32px;
+  color: rgb(92, 196, 255);
+}
+/* #top_deal_cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.title {
+  color: #06c;
+  text-decoration: none;
+}
+.title:hover {
+  text-decoration: underline;
+}
+.top_deal_card {
+  text-align: center;
+  background-color: white;
+  width: 190.857px;
+  padding: 15px;
+  margin-right: 15px;
+  /* box-sizing: border-box; */
+  /* padding: 10px; */
+}
+.top_deal_card img {
+  width: 100%;
+}
+.top_deal_card h2 {
+  font-weight: 400;
+  padding: 4px 6px;
+  font-size: 0.875em;
+  width: 161.857px;
+  margin-right: 10px;
+}
+.rating i {
+  color: orange;
+}
+.market_price {
+  padding: 4px 0;
+  font-size: 0.8em;
+  color: hsl(0, 0%, 40%);
+  text-decoration: line-through;
+}
+.discount {
+  font-weight: 700;
+  font-size: 0.875em;
+  padding: 4px 0;
+}
+.now_price {
+  font-size: 0.875em;
+}
+
+/* 
+slider part */
+
+.slider {
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+#top_deal_cards {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+#top_deal_cards::-webkit-scrollbar {
+  background-color: transparent;
+  height: 7px;
+  cursor: pointer;
+}
+#top_deal_cards::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.r_btn {
+  right: 1px;
+}
+.l_btn,
+.r_btn {
+  height: 50px;
+  width: 50px;
+  top: 40%;
+  color: #004387;
+
+  font-size: 30px;
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: rgb(232, 218, 218);
+  border-radius: 50%;
+  border: 2px solid #004387;
+  cursor: pointer;
+}
