@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        font-family: "Lato";
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(0, 58, 117);
+      }
+      .main {
+        margin: auto;
+
+        width: 100%;
+
+        margin-top: 15px;
+      }
+      #big_box {
+        border-radius: 10px;
+        box-shadow: 5px 16px 24px #00000080;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+        margin: auto;
+      }
+      .left_box {
+        background-color: rgb(0, 40, 80);
+
+        border-radius: 10px 0 0 10px;
+        text-align: center;
+        position: relative;
+        justify-content: center;
+      }
+      .left_box img {
+        position: relative;
+        top: 40%;
+        width: 60%;
+      }
+      #new_customer {
+        color: white;
+        position: relative;
+        top: 70%;
+        line-height: 30px;
+      }
+      #new_customer h6 {
+        font-size: 25px;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .right_box {
+        border-radius: 0 10px 10px 0;
+
+        padding: 40px 0;
+        background-color: white;
+      }
+      .form_box {
+        width: 70%;
+        margin: auto;
+      }
+      input::placeholder {
+        font-size: 16px;
+        color: grey;
+      }
+      input {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 40px;
+        padding: 0 15px;
+        border-radius: 5px;
+        border: 1px solid grey;
+      }
+
+      input:hover {
+        border: 1px solid rgb(36, 33, 33);
+      }
+      input[type="submit"] {
+        background: linear-gradient(
+          180deg,
+          #fc5d37 0%,
+          #ed5132 49%,
+          #e64525 100%
+        );
+        font-weight: 800;
+        color: white;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      input[type="checkbox"] {
+        width: 10px;
+        height: 10px;
+      }
+      .right_box a {
+        color: #06c;
+        margin: auto;
+        text-align: center;
+      }
+      a + p {
+        text-align: center;
+      }
+      #google img {
+        width: 18px;
+        margin-right: 5px;
+      }
+      i {
+        font-size: 24px;
+        margin-right: 5px;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-size: 17px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.301);
+        margin-top: 15px;
+      }
+      span {
+        color: #06c;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      label {
+        font-size: 16px;
+      }
+      a + p {
+        margin-top: 15px;
+      }
+      #bottom {
+        width: 500px;
+
+        margin: auto;
+        text-align: center;
+        color: white;
+        display: flex;
+        align-items: center;
+
+        height: 100px;
+      }
+      #bottom i {
+        margin: 10px 10px;
+        font-size: 4px;
+      }
+      .name {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      div > span {
+        font-size: 14px;
+      }
+      h6 + a i {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div id="big_box">
+        <div class="left_box">
+          <img src="./images/logo.png" alt="" />
+          <div id="new_customer">
+            <h6>Have an Account ?</h6>
+            <a href=""> SIGN IN <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+        <div class="right_box">
+          <div class="form_box">
+            <h1>Create an Account</h1>
+            <form action="signin">
+              <div class="name">
+                <div class="first_name">
+                  <label for=""><p>First Name:</p></label>
+                  <input placeholder="First Name" type="text" />
+                </div>
+                <div class="last_name">
+                  <label for=""><p>Last Name:</p></label>
+                  <input placeholder="Last Name" type="text" />
+                </div>
+              </div>
+              <label><p>Your Email:</p></label>
+              <input placeholder="Email Address" type="email" />
+              <label><p>Password:</p></label>
+              <input placeholder="Password" type="password" />
+              <label><p>Confirm Password:</p></label>
+              <input placeholder="Password" type="password" />
+              <div id="rememberme">
+                <div>
+                  <input type="checkbox" name="fdsfd" id="" />
+                  <span
+                    >Yes, I would like to receive expert tips, special offers,
+                    and product news.</span
+                  >
+                </div>
+                <div>
+                  <input type="checkbox" name="fdsfd" id="" />
+                  <span> Yes, sign me up for Adorama Rewards.</span>
+                </div>
+                <div>
+                  <input type="checkbox" name="fdsfd" id="" />
+                  <span> Remember Me.</span>
+                </div>
+              </div>
+              <input type="submit" value="CREATE ACCOUNT" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom">
+      <p>
+        PRIVACY POLICY<i class="fa-solid fa-circle"></i> TERMS OF USE<i
+          class="fa-solid fa-circle"
+        ></i>
+
+        CONTACT US
+      </p>
+    </div>
+  </body>
+</html>
