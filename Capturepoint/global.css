@@ -6,6 +6,7 @@ a{
   color: #06c;
 }
 a:hover{
+  cursor: pointer;
   text-decoration: underline;
 }
 button{
