@@ -241,3 +241,7 @@ grid-template-columns: 30% 70%;
 .stock_des>:nth-child(1){
   border-right: 1px solid grey;
 }
+#new_releases h4{
+  font-weight: 400;
+  font-size: 25px;
+}
