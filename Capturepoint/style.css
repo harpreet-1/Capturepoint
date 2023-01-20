@@ -260,8 +260,9 @@ slider part */
 }
 /* new release */
 #new_releases{
-  margin-top: 50px;
+  margin-top: 70px;
   padding: 0 15px;
+  margin-bottom: 50px;
  
 }
 #new_releases section h3{
