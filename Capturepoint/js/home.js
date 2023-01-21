@@ -55,7 +55,7 @@ fetchdata()
 
 function fetchdata(){
   
-fetch("./data.json")
+fetch("./new_realses.json")
 .then((response) => (response.json()))
 .then((jsondata) =>{ 
     data=jsondata

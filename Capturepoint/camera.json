@@ -1,0 +1,82 @@
+[
+    {
+        "image": "https://www.adorama.com/images/Large/ifjxt5s.jpg ",
+        "title": " Fujifilm X-T5 Mirrorless Digital Camera Body, Silver ",
+        "price": " 1699.95 ",
+        "id": 1,
+        "des": "TOP RATED GEAR   ",
+        "cat": "camera"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/nkz9.jpg ",
+        "title": " Nikon Z 9 Mirrorless Digital Camera Body ",
+        "price": "5496.95  ",
+        "id": 2,
+        "des": "FREE GIFT   ",
+        "cat": "camera"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/zhc020124cb.jpg ",
+        "title": " Zhiyun Weebill 3 Combo 3-Axis Handheld Gimbal Stabilizer ",
+        "price": "439.00  ",
+        "id": 2,
+        "des": "  NEW ARRIVAL   ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ipczs80b.jpg ",
+        "title": " Panasonic LUMIX DC-ZS80D Digital Camera, Black",
+        "price": 397.99,
+        "id": 4,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/car10ckak.jpg ",
+        "title": "Canon EOS R10 Mirrorless Camera w/18-45mm Lens Content Creator & Accessory Kit  ",
+        "price": 1199.00,
+        "id": 5,
+        "des": "NEW ARRIVAL   ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/isozv1fbmc.jpg ",
+        "title": "Sony ZV-1F Vlogging Camera, Black Bundle with Corel Mac Software Kit, 32GB SD Card, Shoulder Bag  ",
+        "price": 519.00,
+        "id": 6,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/isozv1fwak.jpg ",
+        "title": "  Sony ZV-1F Vlogging Camera, White Bundle with 32GB SD Card, Camera Bag",
+        "price": 498.00,
+        "id": 7,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ikkaz255wh.jpg ",
+        "title": " Kodak PIXPRO Astro Zoom AZ255 16MP Full HD  LCD Screen Digital Camera, White ",
+        "price": 169.99,
+        "id": 8,
+        "des": "  NEW ARRIVAL ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ipczs80bpc.jpg",
+        "title": " Panasonic LUMIX DC-ZS80D Digital Camera, Black Bundle with 32GB SD ",
+        "price": 421.99,
+        "id": 9,
+        "des": "  NEW ARRIVAL ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ikkwpz2yl.jpg ",
+        "title": "Kodak PIXPRO WPZ2 Waterproof Rugged Digital Camera, Yellow  ",
+        "price": 147.64,
+        "id": 10,
+        "des": "  TOP RATED GEAR ",
+        "cat": "camera"
+    },
+]
