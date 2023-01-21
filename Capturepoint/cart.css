@@ -84,13 +84,14 @@ color: #06c;
     align-items: center; */
 
 }
-.item_image{
+.cart_image{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 20%;
+    border: 5px solid rgb(38, 197, 160); 
 }
-.item_image img{
+.cart_image img{
     width: 100%;
 }
 .cart_item_name{
@@ -272,3 +273,13 @@ margin-left: 20%;
     text-decoration: none;
 
 }
+.product{
+  border: 2px solid red;
+}
+.item_info{
+  border: 1px solid rgb(43, 45, 137);
+}
+/* .cart_image{
+  background-color: #035a10;
+  border: 5px solid rgb(38, 197, 160); */
+/* } */

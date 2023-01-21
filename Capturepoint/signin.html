@@ -180,7 +180,7 @@
           <img src="images/logo.png" alt="" />
           <div id="new_customer">
             <h6>New Customer?</h6>
-            <a href="">CREATE AN ACCOUNT ></a>
+            <a href="signup.html">CREATE AN ACCOUNT ></a>
           </div>
         </div>
         <div class="right_box">
@@ -188,9 +188,19 @@
             <h1>Sign In</h1>
             <form action="signin">
               <label><p>Your Email:</p></label>
-              <input placeholder="Email Address" type="email" />
+              <input
+                id="email"
+                required
+                placeholder="Email Address"
+                type="email"
+              />
               <label><p>Password:</p></label>
-              <input placeholder="Password" type="password" />
+              <input
+                id="password"
+                required
+                placeholder="Password"
+                type="password"
+              />
               <div id="rememberme">
                 <input type="checkbox" name="fdsfd" id="" />
                 <span>Remember Me</span>
@@ -223,5 +233,32 @@
         CONTACT US
       </p>
     </div>
+    <script>
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      let form = document.querySelector("form");
+      let email1 = document.getElementById("email");
+      let pass1 = document.getElementById("password");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (check(email1.value, pass1.value)) {
+          window.location.href = "index.html";
+        } else {
+          alert("wrong email or password");
+        }
+      });
+
+      function check(e, p) {
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].email == e && users[i].pass == p) {
+            localStorage.setItem("login", users[i].first_name);
+            return true;
+          }
+        }
+        return false;
+      }
+    </script>
   </body>
 </html>
