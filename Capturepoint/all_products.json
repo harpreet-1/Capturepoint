@@ -1,0 +1,218 @@
+[
+    {
+        "image": "https://www.adorama.com/images/Large/ifjxt5s.jpg ",
+        "title": " Fujifilm X-T5 Mirrorless Digital Camera Body, Silver ",
+        "price": " 1699.95 ",
+        "id": 1,
+        "des": "TOP RATED GEAR   ",
+        "cat": "camera"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/nkz9.jpg ",
+        "title": " Nikon Z 9 Mirrorless Digital Camera Body ",
+        "price": "5496.95  ",
+        "id": 2,
+        "des": "FREE GIFT   ",
+        "cat": "camera"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/zhc020124cb.jpg ",
+        "title": " Zhiyun Weebill 3 Combo 3-Axis Handheld Gimbal Stabilizer ",
+        "price": "439.00  ",
+        "id": 2,
+        "des": "  NEW ARRIVAL   ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ipczs80b.jpg ",
+        "title": " Panasonic LUMIX DC-ZS80D Digital Camera, Black",
+        "price": 397.99,
+        "id": 4,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/car10ckak.jpg ",
+        "title": "Canon EOS R10 Mirrorless Camera w/18-45mm Lens Content Creator & Accessory Kit  ",
+        "price": 1199.00,
+        "id": 5,
+        "des": "NEW ARRIVAL   ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/isozv1fbmc.jpg ",
+        "title": "Sony ZV-1F Vlogging Camera, Black Bundle with Corel Mac Software Kit, 32GB SD Card, Shoulder Bag  ",
+        "price": 519.00,
+        "id": 6,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/isozv1fwak.jpg ",
+        "title": "  Sony ZV-1F Vlogging Camera, White Bundle with 32GB SD Card, Camera Bag",
+        "price": 498.00,
+        "id": 7,
+        "des": " NEW ARRIVAL  ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ikkaz255wh.jpg ",
+        "title": " Kodak PIXPRO Astro Zoom AZ255 16MP Full HD  LCD Screen Digital Camera, White ",
+        "price": 169.99,
+        "id": 8,
+        "des": "  NEW ARRIVAL ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ipczs80bpc.jpg",
+        "title": " Panasonic LUMIX DC-ZS80D Digital Camera, Black Bundle with 32GB SD ",
+        "price": 421.99,
+        "id": 9,
+        "des": "  NEW ARRIVAL ",
+        "cat": "camera"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ikkwpz2yl.jpg ",
+        "title": "Kodak PIXPRO WPZ2 Waterproof Rugged Digital Camera, Yellow  ",
+        "price": 147.64,
+        "id": 10,
+        "des": "  TOP RATED GEAR ",
+        "cat": "camera"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/iso2070.jpg ",
+        "title": " Sony FE 20-70mm f/4 G Lens for Sony E ",
+        "price": " 1098.00 ",
+        "id": 11,
+        "des": " NEW ARRIVAL  ",
+        "cat": "lens"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ihp66b42uara.jpg  ",
+        "title": " HP ENVY 17-cr0013dx 17.3 Full HD Touchscreen Notebook Computer, ",
+        "price": 814.99,
+        "id": 12,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ihp74n46u8ab.jpg  ",
+        "title": " HP ProBook 455 G8 15.6 Full HD Notebook Computer ",
+        "price": 799.99,
+        "id": 13,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/asux582hh96t.jpg  ",
+        "title": " Asus ZenBook Pro Duo 15 OLED UX582 15.6 4K UHD Touchscreen Notebook Computer, ",
+        "price": 2799.99,
+        "id": 14,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": "  https://www.adorama.com/images/Large/asf163zads74.jpg ",
+        "title": "Asus Vivobook 16X OLED F1603 1 4K UltraHD Notebook Computer,  ",
+        "price": 1199.00,
+        "id": 15,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/mir1s00026.jpg  ",
+        "title": "Microsoft Surface Laptop 5 15 Touchscreen Notebook Computer, Intel Evo Core i7  ",
+        "price": 2199.99,
+        "id": 16,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/ass562zadb51.jpg   ",
+        "title": " Asus Vivobook S 16X S5602 16 WUXGA Notebook Compute ",
+        "price": 849.99,
+        "id": 17,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/ihp64t27utab.jpg  ",
+        "title": "HP ProBook 445 G9 1 Full HD Notebook Computer, AMD Ryzen 5 5625U 2.3GHz,  ",
+        "price": 929.00,
+        "id": 18,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/mir1s00026.jpg   ",
+        "title": "Microsoft Surface Laptop 5 15 Touchscreen Notebook Computer, Intel Evo Core   ",
+        "price": 1399.00,
+        "id": 19,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": "  https://www.adorama.com/images/Large/ihp60l06uara.jpg ",
+        "title": " HP Chromebook 14a-na0062tg 1 HD Notebook Computer, Intel Pentium Silver N ",
+        "price": 369.00,
+        "id": 20,
+        "des": " NEW ARRIVAL ",
+        "cat": "laptop"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/fofelegia.jpg ",
+        "title": " Focal Elegia Circumaural Closed-Back High-Fidelity Audiophile Headphones",
+        "price": 399.00,
+        "id": 21,
+        "des": " 55% OFF ",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/acapairpods.jpg ",
+        "title": " Apple AirPods Pro with Wireless Charging Case",
+        "price": 289.99,
+        "id": 22,
+        "des": " CLOSEOUT",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/we80v3bt.jpg ",
+        "title": " Westone W80-V3 Eight-Driver Universal-Fit In-Ear Earphones with High-Definition Silv",
+        "price": 749.95,
+        "id": 23,
+        "des": " 50% OF",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/hmhe6sev2.jpg ",
+        "title": " HiFiMan HE6se Full-Size Over Ear Planar Magnetic Audiophile Adjustable Headphones V2",
+        "price": 799.00,
+        "id": 24,
+        "des": "56% OFF  ",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/somdr7506.jpg ",
+        "title": "Sony MDR-7506 Professional Folding Headphones ",
+        "price": 80.99,
+        "id": 25,
+        "des": " 38% OFF",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/somdr7506.jpg ",
+        "title": "Sony MDR-7506 Professional Folding Headphones ",
+        "price": 80.99,
+        "id": 26,
+        "des": " 38% OFF",
+        "cat": "Headphones"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/somdr7506.jpg ",
+        "title": "Sony MDR-7506 Professional Folding Headphones ",
+        "price": 80.99,
+        "id": 27,
+        "des": " 38% OFF",
+        "cat": "Headphones"
+    }
+]
