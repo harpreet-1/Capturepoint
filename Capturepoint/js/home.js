@@ -120,11 +120,6 @@ function display_new_releases (data){
 
 
 // 
-// login check
-let login=localStorage.getItem("login")||false
-console.log(login);
 
-if(login){
-  document.getElementById("signin_text").innerHTML=""
-  document.getElementById("signin_text").innerText=login
-}
+
+//

@@ -84,38 +84,44 @@
               </div>
             </div>
           </div>
+          <!-- </form> -->
+
+          <section class="payment_box">
+            <header><h3>Payment</h3></header>
+
+            <!-- <form> -->
+            <div class="payment_form">
+              <div>
+                <label>*Card :</label>
+                <input type="number" required placeholder="Card Number" />
+              </div>
+              <div>
+                <label>*MM :</label>
+                <input required type="number" placeholder="MM" />
+              </div>
+              <div>
+                <label>*YY :</label>
+                <input required type="number" placeholder="YY" />
+              </div>
+              <div>
+                <label>*CVV :</label>
+                <input required type="number" placeholder="CVV" />
+              </div>
+
+              <input type="submit" value="Place Order" />
+              <!-- </form> -->
+            </div>
+          </section>
         </form>
-
-        <section class="payment_box">
-          <header><h3>Payment</h3></header>
-
-          <form action="">
-            <div>
-              <label>*Card :</label>
-              <input type="number" placeholder="Card Number" />
-            </div>
-            <div>
-              <label>*MM :</label> <input type="number" placeholder="MM" />
-            </div>
-            <div>
-              <label>*YY :</label> <input type="number" placeholder="YY" />
-            </div>
-            <div>
-              <label>*CVV :</label> <input type="number" placeholder="CVV" />
-            </div>
-          </form>
-
-          <a id="form_submit" href="./index.html">
-            <input type="submit" value="Place Order"
-          /></a>
-        </section>
       </div>
       <div class="right">
         <header><h2>Cart Summary</h2></header>
         <div class="total_details">
           <div class="subtotal">
             <div><p>Subtotal</p></div>
-            <div class="subtotal_element"><span>$</span> 6554</div>
+            <div class="subtotal_element">
+              <span>$</span> <span id="sub_total">6554</span>
+            </div>
           </div>
           <p>Sipping</p>
           <div class="charge">
@@ -135,5 +141,24 @@
         </div>
       </div>
     </section>
+    <script>
+      let total_order_element = document.getElementById("total_order_element");
+      let sub_total = document.getElementById("sub_total");
+
+      let total = JSON.parse(localStorage.getItem("total"));
+      sub_total.innerText = (total - 64).toFixed(2);
+      total_order_element.innerText = total;
+      let form = document.querySelector("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cart_items");
+        localStorage.removeItem("total");
+        alert("Payment suscessful");
+        window.location.href = "index.html";
+      });
+    </script>
   </body>
 </html>

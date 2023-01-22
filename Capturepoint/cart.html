@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="single.css" />
     <link rel="stylesheet" href="cart.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -55,25 +56,26 @@
           <img src="./images/logo.png" alt="" />
         </div>
         <div id="primary_content_right">
+          <input class="serchbar" type="search" placeholder="Search" />
           <div id="searchbar">
-            <input type="text" placeholder="Searc" />
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
           <div id="user_icon">
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <!-- <div id="signin_text">
-              
-              <span> Sign in</span>
-  
-            
-            <span>
-                My account
-                <i class="fa-sharp fa-solid fa-angle-down"></i>
-              <span>
-            </div> -->
-          <div id="cart_icon"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div id="signin_text">
+            <span id="status">Sign in</span>
+            <span id="username"
+              >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
+            ></span>
+          </div>
+
+          <a href="cart.html">
+            <div id="cart_icon">
+              <span id="cart_quantity">0</span>
+              <i class="fa-solid fa-cart-shopping"></i></div
+          ></a>
         </div>
       </div>
       <div id="nav_main">
@@ -100,10 +102,10 @@
         <span>Need Help?Call <a href=""> 800-811-4002</a></span>
       </div>
     </section>
-    <header>
-      <h2>Ship - Worldwide Express</h2>
+    <header class="exprss_heading">
+      <h2 id="cart_status">Ship - Worldwide Express</h2>
       <h3>Total Items :</h3>
-      <span class="total_item">1</span>
+      <span class="total_item">0</span>
     </header>
     <section class="main">
       <div class="cart_products">
@@ -169,7 +171,7 @@
                 <span>In Stock & Ready to Ship</span>
               </div>
             </div>
-            <div id="quantity">
+            <div class="quantity1">
               <div>1</div>
 
               <div>
@@ -198,7 +200,9 @@
         <div class="total_details">
           <div class="subtotal">
             <div><p>Subtotal</p></div>
-            <div class="subtotal_element"><span>$</span> 6554</div>
+            <div class="subtotal_element">
+              <span>$</span> <span id="sub_total">0</span>
+            </div>
           </div>
           <p>Sipping</p>
           <div class="charge">
@@ -215,21 +219,31 @@
               <h3 class="total_order_element">767</h3>
             </div>
           </div>
-          <a id="checkoutlink" href="">
-            <div class="checkout_btn">Proceed to Checkout</div>
-          </a>
+
+          <div class="checkout_btn">Proceed to Checkout</div>
         </div>
       </div>
     </section>
 
     <script>
+      checkout_btn = document.querySelector(".checkout_btn");
       let cart_products = document.querySelector(".cart_products");
+      let total_amount_el = document.querySelector("#sub_total");
+      let total_order_element = document.querySelector(".total_order_element");
+      let total_item = document.querySelector(".total_item");
+      let login = localStorage.getItem("login") || false;
+      console.log(login);
 
       let cart_data = JSON.parse(localStorage.getItem("cart")) || [];
 
+      let total_amount = 0;
+
       display(cart_data);
       function display(data) {
-        data.forEach((element) => {
+        let count = 0;
+        cart_products.innerHTML = "";
+        data.forEach((element, index) => {
+          count += element.quantity;
           let product = document.createElement("div");
           product.setAttribute("class", "product");
 
@@ -244,7 +258,7 @@
           item_image.append(img);
 
           let cart_item_name = document.createElement("div");
-          item_image.setAttribute("class", "cart_item_name");
+          cart_item_name.setAttribute("class", "cart_item_name");
 
           let title = document.createElement("h3");
           title.innerText = element.title;
@@ -274,15 +288,16 @@
           let inc = document.createElement("i");
           inc.setAttribute("class", "fa-solid fa-caret-up");
           let dec = document.createElement("i");
-          inc.setAttribute("class", "fa-solid fa-caret-down");
+          dec.setAttribute("class", "fa-solid fa-caret-down");
           buttons.append(inc, dec);
 
           quantity.append(quantity_number, buttons);
 
           let item_price = document.createElement("div");
-          inc.setAttribute("class", "item_price");
+          item_price.setAttribute("class", "item_price");
           let line = document.createElement("p");
           let dollor = document.createElement("span");
+          dollor.innerText = "$";
           let price_element = document.createElement("span");
           price_element.innerText = element.price;
           line.append(dollor, price_element);
@@ -295,10 +310,142 @@
           cart_image.append(imae);
 
           item_info.append(cart_image, cart_item_name, quantity, item_price);
-          product.append(item_info);
+
+          let buttons_item = document.createElement("div");
+          buttons_item.setAttribute("class", "buttons_item");
+          let savefor_later = document.createElement("div");
+          savefor_later.setAttribute("class", "savefor_later");
+
+          let save = document.createElement("div");
+          let wish = document.createElement("div");
+
+          let a1 = document.createElement("a");
+          a1.innerText = "Save For Later";
+          save.append(a1);
+          let a2 = document.createElement("a");
+          wish.append(a2);
+          a2.innerText = "Move to Wishlist";
+
+          savefor_later.append(save, wish);
+
+          let remove_button = document.createElement("div");
+          let div1 = document.createElement("div");
+          remove_button.setAttribute("class", "remove_button");
+          div1.innerText = "Remove";
+          remove_button.append(div1);
+          buttons_item.append(savefor_later, remove_button);
+          product.append(item_info, buttons_item);
           cart_products.append(product);
+
+          let q = element.quantity;
+
+          inc.addEventListener("click", () => {
+            q++;
+            count++;
+            total_item.innerText = count;
+
+            quantity_number.innerText = q;
+            element.quantity = q;
+            total_amount = +total_amount + +element.price;
+            total_amount_el.innerText = total_amount.toFixed(2);
+            total_order_element.innerText = (total_amount + 64).toFixed(2);
+            localStorage.setItem(
+              "total",
+              JSON.stringify(total_amount.toFixed(2) + 64)
+            );
+            localStorage.setItem("cart_items", JSON.stringify(count));
+            document.getElementById("cart_quantity").innerText = count;
+
+            localStorage.setItem("cart", JSON.stringify(data));
+          });
+          dec.addEventListener("click", () => {
+            if (q > 1) {
+              q--;
+              count--;
+              total_item.innerText = count;
+
+              quantity_number.innerText = q;
+              element.quantity = q;
+              total_amount = +total_amount - +element.price;
+              total_amount_el.innerText = total_amount.toFixed(2);
+              total_order_element.innerText = (total_amount + 64).toFixed(2);
+              localStorage.setItem("cart", JSON.stringify(data));
+              localStorage.setItem("cart_items", JSON.stringify(count));
+              document.getElementById("cart_quantity").innerText = count;
+
+              localStorage.setItem("total", JSON.stringify(total_amount + 64));
+            }
+          });
+          div1.addEventListener("click", () => {
+            data.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(data));
+            total_amount = 0;
+            alert("removed");
+            display(data);
+          });
+
+          total_amount = total_amount + element.price * element.quantity;
+        });
+        total_amount_el.innerText = total_amount.toFixed(2);
+
+        total_order_element.innerText = (total_amount + 64).toFixed(2);
+        if (data.length == 0) {
+          count = 0;
+          document.querySelector(".cart_total_box").innerHTML = "";
+          total_order_element.innerText = 0;
+          document.getElementById("cart_status").innerText =
+            "Shopping Cart is Empty";
+
+          let box = document.createElement("div");
+          box.setAttribute("class", "continue_shoping");
+          cart_products.append(box);
+
+          box.innerText = "Continue Shoping";
+          box.addEventListener("click", () => {
+            window.location.href = "index.html";
+          });
+        }
+        // localStorage.setItem(
+        //   "total",
+        //   JSON.stringify(total_amount.toFixed(2) + 64)
+        // );
+        total_item.innerText = count;
+        localStorage.setItem("cart_items", JSON.stringify(count));
+        document.getElementById("cart_quantity").innerText = 0;
+      }
+
+      if (login) {
+        let log_out = document.createElement("span");
+        log_out.innerText = "Log Out";
+        log_out.style.fontSize = "12px";
+        log_out.style.textDecoration = "underline";
+        log_out.style.cursor = "pointer";
+        log_out.addEventListener("click", () => {
+          localStorage.removeItem("login");
+          window.location.href = "index.html";
+        });
+        document.getElementById("signin_text").innerHTML = "";
+        document.getElementById("signin_text").innerText = login;
+        document.getElementById("signin_text").append(log_out);
+      } else {
+        document.getElementById("signin_text").addEventListener("click", () => {
+          window.location.href = "signin.html";
         });
       }
+      document.getElementById("logo").addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      checkout_btn.addEventListener("click", () => {
+        localStorage.setItem(
+          "total",
+          JSON.stringify(Math.floor(total_amount + 64))
+        );
+        window.location.href = "checkout.html";
+      });
     </script>
+
+    <script src="cart.js"></script>
+    <script src="./js/userid.js"></script>
   </body>
 </html>

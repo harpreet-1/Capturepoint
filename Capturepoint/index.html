@@ -57,7 +57,7 @@
       </div>
       <div id="primary_content">
         <div id="logo">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" />
         </div>
         <div id="primary_content_right">
           <input class="serchbar" type="search" placeholder="Search" />
@@ -68,18 +68,18 @@
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <a href="./signin.html"
-            ><div id="signin_text">
-              <span id="status">Sign in</span>
-              <span id="username"
-                >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
-              ></span></div
-          ></a>
-
-          <div id="cart_icon">
-            <span id="cart_quantity">0</span>
-            <i class="fa-solid fa-cart-shopping"></i>
+          <div id="signin_text">
+            <span id="status">Sign in</span>
+            <span id="username"
+              >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
+            ></span>
           </div>
+
+          <a href="cart.html">
+            <div id="cart_icon">
+              <span id="cart_quantity">0</span>
+              <i class="fa-solid fa-cart-shopping"></i></div
+          ></a>
         </div>
       </div>
       <div id="nav_main">
@@ -636,6 +636,13 @@
       </div>
     </footer>
   </body>
-  <script></script>
+  <script>
+    let cart_item = document.getElementById("cart_quantity");
+    let cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
+    cart_item.innerText = cart_value;
+  </script>
+
   <script src="./js/home.js"></script>
+  <script src="cart.js"></script>
+  <script src="./js/userid.js"></script>
 </html>

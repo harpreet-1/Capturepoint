@@ -111,7 +111,7 @@ i {
   
   color: white;
   display: flex;
-  
+  cursor: pointer;
   
   
   flex-direction: column;

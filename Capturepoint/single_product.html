@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="single.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -54,25 +55,26 @@
           <img src="./images/logo.png" alt="" />
         </div>
         <div id="primary_content_right">
+          <input class="serchbar" type="search" placeholder="Search" />
           <div id="searchbar">
-            <input type="text" placeholder="Searc" />
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
           <div id="user_icon">
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <!-- <div id="signin_text">
-              
-              <span> Sign in</span>
-  
-            
-            <span>
-                My account
-                <i class="fa-sharp fa-solid fa-angle-down"></i>
-              <span>
-            </div> -->
-          <div id="cart_icon"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div id="signin_text">
+            <span id="status">Sign in</span>
+            <span id="username"
+              >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
+            ></span>
+          </div>
+
+          <a href="cart.html">
+            <div id="cart_icon">
+              <span id="cart_quantity">0</span>
+              <i class="fa-solid fa-cart-shopping"></i></div
+          ></a>
         </div>
       </div>
       <div id="nav_main">
@@ -456,6 +458,8 @@
 
     <!-- script for change  small image with big image -->
     <script>
+      let login = localStorage.getItem("login") || false;
+      console.log(login);
       let price = document.getElementById("now_price");
       let title = document.getElementById("title");
       let quantity = document.getElementById("quantity");
@@ -499,15 +503,33 @@
 
       let cart_data = JSON.parse(localStorage.getItem("cart")) || [];
       console.log(cart_data);
+      // add to cart
+
       addtocart.addEventListener("click", () => {
         product.quantity = +quantity_number;
-        if (check(product.id)) {
-          cart_data.push(product);
-          localStorage.setItem("cart", JSON.stringify(cart_data));
-          window.location.href = "cart.html";
+        if (login) {
+          if (check(product.id)) {
+            let cart_item = document.getElementById("cart_quantity");
+
+            let cart_value =
+              JSON.parse(localStorage.getItem("cart_items")) || 0;
+            cart_item.innerText = cart_value;
+            cart_value++;
+
+            localStorage.setItem("cart_items", JSON.stringify(cart_value));
+            cart_data.push(product);
+            alert("product Added to cart");
+            document.getElementById("cart_quantity").innerText++;
+
+            localStorage.setItem("cart", JSON.stringify(cart_data));
+            // window.location.href = "cart.html";
+          } else {
+            alert("product already in cart");
+            // window.location.href = "cart.html";
+          }
         } else {
-          alert("product already in cart");
-          window.location.href = "cart.html";
+          alert("Please login in to continue");
+          window.location.href = "signin.html";
         }
       });
 
@@ -519,6 +541,37 @@
         }
         return true;
       }
+      // login check
+
+      if (login) {
+        let log_out = document.createElement("span");
+        log_out.innerText = "Log Out";
+        log_out.style.fontSize = "12px";
+        log_out.style.textDecoration = "underline";
+        log_out.style.cursor = "pointer";
+        log_out.addEventListener("click", () => {
+          localStorage.removeItem("login");
+          window.location.href = "index.html";
+
+          localStorage.removeItem("cart");
+          localStorage.removeItem("cart_items");
+          localStorage.removeItem("total");
+        });
+        document.getElementById("signin_text").innerHTML = "";
+        document.getElementById("signin_text").innerText = login;
+        document.getElementById("signin_text").append(log_out);
+      } else {
+        // alert("sdl")
+
+        document.getElementById("signin_text").addEventListener("click", () => {
+          window.location.href = "signin.html";
+          localStorage.setItem("cartpage", true);
+        });
+      }
+      document.getElementById("logo").addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
     </script>
+    <script src="cart.js"></script>
   </body>
 </html>
