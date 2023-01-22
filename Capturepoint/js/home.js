@@ -28,7 +28,7 @@ slider1()
 function slider1(){
   const left_btn = document.querySelector('.l_btn')
 const right_btn = document.querySelector('.r_btn')
-console.log(right_btn)
+
 right_btn.addEventListener('click', function (event) {
   // alert('ke')
   event.preventDefault()
@@ -107,9 +107,24 @@ function display_new_releases (data){
     card.append(image,rating,title,price,des)
     new_release_section.append(card)
 
-   
+    card.addEventListener("click",()=>{
+      
+      localStorage.setItem("product",JSON.stringify(element))
+      window.location.href="single_product.html"
+    })
   });
 //   rating
 // new_release_price
 
+}
+
+
+// 
+// login check
+let login=localStorage.getItem("login")||false
+console.log(login);
+
+if(login){
+  document.getElementById("signin_text").innerHTML=""
+  document.getElementById("signin_text").innerText=login
 }

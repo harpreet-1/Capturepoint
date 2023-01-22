@@ -146,7 +146,7 @@
           <span>Share:</span><i class="fa-solid fa-share-from-square"></i>
         </div>
         <p class="model">SPECIAL</p>
-        <h1>GoPro HERO10 Black Action Camera with Holiday Bundle</h1>
+        <h1 id="title">GoPro HERO10 Black Action Camera with Holiday Bundle</h1>
         <p class="model">
           <span>SKU: GPHERO10HB</span><span> MFR: CHDRB-101-TH</span>
         </p>
@@ -161,7 +161,7 @@
         <div class="price_box">
           <div class="price">
             <h1>$</h1>
-            <h1>428.00</h1>
+            <h1 id="now_price">428.00</h1>
           </div>
           <div class="save">
             <p>You Save:</p>
@@ -182,14 +182,14 @@
 
         <div class="button_box">
           <div class="quantity">
-            <div>1</div>
+            <div id="quantity">1</div>
 
             <div>
-              <i class="fa-solid fa-caret-up"></i
-              ><i class="fa-solid fa-caret-down"></i>
+              <i id="inrement" class="fa-solid fa-caret-up"></i
+              ><i id="decrement" class="fa-solid fa-caret-down"></i>
             </div>
           </div>
-          <div>
+          <div id="addtocart">
             <span>Add to Cart</span>
           </div>
         </div>
@@ -456,15 +456,15 @@
 
     <!-- script for change  small image with big image -->
     <script>
+      let price = document.getElementById("now_price");
+      let title = document.getElementById("title");
+      let quantity = document.getElementById("quantity");
+      let inrement = document.getElementById("inrement");
+      let decrement = document.getElementById("decrement");
+      let addtocart = document.getElementById("addtocart");
+
       let main_img = document.querySelector(".big_img");
       let small_img = document.getElementsByClassName("small_img");
-
-      // small_img.forEach((element) => {
-      //   element.addEventListener("click", () => {
-      //     console.log(index);
-      //     main_img.setAttribute("src", element.src);
-      //   });
-      // });
 
       for (let i = 0; i < 5; i++) {
         small_img[i].addEventListener("click", (e) => {
@@ -472,6 +472,52 @@
 
           main_img.setAttribute("src", small_img[i].src);
         });
+      }
+      // product details
+
+      let product = JSON.parse(localStorage.getItem("product"));
+      main_img.src = product.image;
+      price.innerText = product.price;
+      title.innerText = product.title;
+
+      let quantity_number = +quantity.innerText;
+
+      inrement.addEventListener("click", () => {
+        quantity_number++;
+        quantity.innerText = quantity_number;
+        product.quantity = quantity_number;
+        localStorage.setItem("product", JSON.stringify(product));
+      });
+      decrement.addEventListener("click", () => {
+        if (quantity_number > 1) {
+          quantity_number--;
+          quantity.innerText = quantity_number;
+          product.quantity = quantity_number;
+          localStorage.setItem("product", JSON.stringify(product));
+        }
+      });
+
+      let cart_data = JSON.parse(localStorage.getItem("cart")) || [];
+      console.log(cart_data);
+      addtocart.addEventListener("click", () => {
+        product.quantity = +quantity_number;
+        if (check(product.id)) {
+          cart_data.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart_data));
+          window.location.href = "cart.html";
+        } else {
+          alert("product already in cart");
+          window.location.href = "cart.html";
+        }
+      });
+
+      function check(n) {
+        for (let i = 0; i < cart_data.length; i++) {
+          if (cart_data[i].id == n) {
+            return false;
+          }
+        }
+        return true;
       }
     </script>
   </body>
