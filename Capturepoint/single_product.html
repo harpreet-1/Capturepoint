@@ -456,6 +456,7 @@
 
     <!-- script for change  small image with big image -->
     <script>
+      let login = localStorage.getItem("login") || false;
       let cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
       let cart_item = document.getElementById("cart_quantity");
       let price = document.getElementById("now_price");
@@ -503,20 +504,25 @@
       console.log(cart_data);
       addtocart.addEventListener("click", () => {
         product.quantity = +quantity_number;
+        if (login) {
+          if (check(product.id)) {
+            cart_data.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart_data));
+            alert("Product added to cart");
 
-        if (check(product.id)) {
-          cart_data.push(product);
-          localStorage.setItem("cart", JSON.stringify(cart_data));
-          alert("Product added to cart");
+            cart_value += product.quantity;
+            localStorage.setItem("cart_items", JSON.stringify(cart_value));
 
-          cart_value += product.quantity;
-          localStorage.setItem("cart_items", JSON.stringify(cart_value));
-
-          cart_item.innerText = cart_value;
-          // window.location.href = "cart.html"
+            cart_item.innerText = cart_value;
+            // window.location.href = "cart.html"
+          } else {
+            alert("product already in cart");
+            // window.location.href = "cart.html";
+          }
         } else {
-          alert("product already in cart");
-          // window.location.href = "cart.html";
+          alert("Please login to continue!");
+          window.location.href = "sign.html";
+          localStorage.setItem("login_1", true);
         }
       });
 
@@ -535,6 +541,30 @@
       cart_item = document.getElementById("cart_quantity");
 
       cart_item.innerText = cart_value;
+
+      if (login) {
+        let log_out = document.createElement("span");
+        log_out.innerText = "Log Out";
+        log_out.style.fontSize = "12px";
+        log_out.style.textDecoration = "underline";
+        log_out.style.cursor = "pointer";
+        log_out.addEventListener("click", () => {
+          localStorage.removeItem("login");
+          localStorage.removeItem("cart");
+          localStorage.removeItem("cart_items");
+          localStorage.removeItem("total");
+
+          window.location.href = "index.html";
+          localStorage.setItem("login", false);
+        });
+        document.getElementById("signin_text").innerHTML = "";
+        document.getElementById("signin_text").innerText = login;
+        document.getElementById("signin_text").append(log_out);
+      } else {
+        document.getElementById("signin_text").addEventListener("click", () => {
+          window.location.href = "signin.html";
+        });
+      }
     </script>
     <script src="./js/home.js"></script>
     <script src="cart.js"></script>

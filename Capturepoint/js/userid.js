@@ -9,12 +9,14 @@ if(login){
     log_out.style.textDecoration="underline"
     log_out.style.cursor="pointer"
     log_out.addEventListener("click",()=>{
+      
       localStorage.removeItem("login")
       localStorage.removeItem("cart")
       localStorage.removeItem("cart_items")
       localStorage.removeItem("total")
 
       window.location.href="index.html"
+      localStorage.setItem("login",false)
     })
   document.getElementById("signin_text").innerHTML=""
   document.getElementById("signin_text").innerText=login
