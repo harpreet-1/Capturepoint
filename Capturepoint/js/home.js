@@ -119,7 +119,17 @@ function display_new_releases (data){
 }
 
 
-// 
 
+
+// searching
+
+let input_el=document.querySelector("#search_icon")
+
+input_el.addEventListener("click",()=>{
+  // alert(document.querySelector(".serchbar").value)
+  let input=document.querySelector(".serchbar").value
+  localStorage.setItem("search",JSON.stringify(input))
+  window.location.href="search.html"
+})
 
 //

@@ -2,8 +2,8 @@
 let body=document.querySelector(".card_box")
 
 
-// let input=JSON.parse(localStorage.getItem("search"))
-let input="hp"
+let input=JSON.parse(localStorage.getItem("search"))
+
 search(input.toUpperCase());
 
 function search(input) {
@@ -11,11 +11,13 @@ function search(input) {
     .then((response) => response.json())
     .then((jsondata) => {
       data = jsondata;
-    // console.log(data)
+    
     let searched=data.filter((el,i)=>{
         return(el.title.toUpperCase().includes(input))
     })
-    console.log()
+
+    localStorage.setItem("searched",JSON.stringify(searched))
+    // console.log(searched)
     display_searched(searched)
     });
 }
@@ -55,6 +57,7 @@ function display_searched(data){
 
         let price_a=document.createElement("h4")
         price_a.innerText="$ "+element.price
+        price.append(price_a)
 
         let text1=document.createElement("p")
         let finace=document.createElement("span")
@@ -85,4 +88,52 @@ function display_searched(data){
 }
 
 
+// 
+// sorting
+
+
+let sort_by_price=document.querySelector("#sort_by_price_el")
+let filter_form=document.querySelector("form")
+let min=document.getElementById("min")
+let max=document.getElementById("max")
+
+
+
+let currendata=JSON.parse(localStorage.getItem('searched'))
+
+filter_form.addEventListener("submit",(e)=>{
+  e.preventDefault()
+  let min1=min.value 
+  let max1=max.value
+  currendata=JSON.parse(localStorage.getItem('searched'))
+  currendata=currendata.filter((el)=>{
+    return(el.price>=min1 &&el.price<=max1)
+  })
+
+  
+  display_searched(currendata)
+})
+
+sort_by_price.addEventListener("change",()=>{
+  // alert("sdsad")
+  let sort_data=[...currendata]
+  if(sort_by_price.value==""){
+   
+    display_searched(sort_data)
+
+  }
+  else{
+    
+    if(sort_by_price.value=="asc"){
+     
+      sort_data.sort(function(a,b){return a.price-b.price})
+      
+    }
+    else{
+      sort_data.sort(function(a,b){return b.price-a.price})
+    }
+    display_searched(sort_data)
+ 
+  }
+})
 

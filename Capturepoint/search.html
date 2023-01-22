@@ -111,15 +111,17 @@
           <div class="sort_by_price">
             <select name="" id="sort_by_price_el">
               <option value="">Sort by Price</option>
-              <option value="ace">Ascending</option>
-              <option value="ace">Descending</option>
+              <option value="asc">Ascending</option>
+              <option value="des">Descending</option>
             </select>
           </div>
 
           <div>
-            <label>Filter by Price Range :</label>
-            <input type="number" placeholder="Min" />
-            <input type="number" placeholder="max" />
+            <form>
+              <input type="submit" value="Filter by price >" />
+              <input id="min" required type="number" placeholder="*Min" />
+              <input id="max" required type="number" placeholder="*Max" />
+            </form>
           </div>
         </div>
       </section>

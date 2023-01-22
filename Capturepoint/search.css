@@ -58,6 +58,14 @@
  .sort_box input:hover {
     border: 1px solid #004387;
   }
+  input[type="submit"]{
+    background-color: #e64525;
+    font-size: 15px;
+    font-weight: 600;
+    width: 150px;
+    color: white;
+    
+  }
   .card_box{
    
     padding: 10px;

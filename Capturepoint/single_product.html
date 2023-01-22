@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="single.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -52,12 +51,12 @@
       </div>
       <div id="primary_content">
         <div id="logo">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" />
         </div>
         <div id="primary_content_right">
-          <input class="serchbar" type="search" placeholder="Search" />
+          <input class="serchbar" type="text" placeholder="Search" />
           <div id="searchbar">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i id="search_icon" class="fa-solid fa-magnifying-glass"></i>
           </div>
           <div id="user_icon">
             <i class="fa-solid fa-user"></i>
@@ -92,7 +91,6 @@
         </div>
       </div>
     </section>
-
     <section class="main">
       <div class="left">
         <div class="wish_list"><i class="fa-regular fa-heart"></i></div>
@@ -458,8 +456,8 @@
 
     <!-- script for change  small image with big image -->
     <script>
-      let login = localStorage.getItem("login") || false;
-      console.log(login);
+      let cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
+      let cart_item = document.getElementById("cart_quantity");
       let price = document.getElementById("now_price");
       let title = document.getElementById("title");
       let quantity = document.getElementById("quantity");
@@ -503,33 +501,22 @@
 
       let cart_data = JSON.parse(localStorage.getItem("cart")) || [];
       console.log(cart_data);
-      // add to cart
-
       addtocart.addEventListener("click", () => {
         product.quantity = +quantity_number;
-        if (login) {
-          if (check(product.id)) {
-            let cart_item = document.getElementById("cart_quantity");
 
-            let cart_value =
-              JSON.parse(localStorage.getItem("cart_items")) || 0;
-            cart_item.innerText = cart_value;
-            cart_value++;
+        if (check(product.id)) {
+          cart_data.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart_data));
+          alert("Product added to cart");
 
-            localStorage.setItem("cart_items", JSON.stringify(cart_value));
-            cart_data.push(product);
-            alert("product Added to cart");
-            document.getElementById("cart_quantity").innerText++;
+          cart_value += product.quantity;
+          localStorage.setItem("cart_items", JSON.stringify(cart_value));
 
-            localStorage.setItem("cart", JSON.stringify(cart_data));
-            // window.location.href = "cart.html";
-          } else {
-            alert("product already in cart");
-            // window.location.href = "cart.html";
-          }
+          cart_item.innerText = cart_value;
+          // window.location.href = "cart.html"
         } else {
-          alert("Please login in to continue");
-          window.location.href = "signin.html";
+          alert("product already in cart");
+          // window.location.href = "cart.html";
         }
       });
 
@@ -541,37 +528,16 @@
         }
         return true;
       }
-      // login check
 
-      if (login) {
-        let log_out = document.createElement("span");
-        log_out.innerText = "Log Out";
-        log_out.style.fontSize = "12px";
-        log_out.style.textDecoration = "underline";
-        log_out.style.cursor = "pointer";
-        log_out.addEventListener("click", () => {
-          localStorage.removeItem("login");
-          window.location.href = "index.html";
+      // cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
+      // cart_value++;
+      localStorage.setItem("cart_items", JSON.stringify(cart_value));
+      cart_item = document.getElementById("cart_quantity");
 
-          localStorage.removeItem("cart");
-          localStorage.removeItem("cart_items");
-          localStorage.removeItem("total");
-        });
-        document.getElementById("signin_text").innerHTML = "";
-        document.getElementById("signin_text").innerText = login;
-        document.getElementById("signin_text").append(log_out);
-      } else {
-        // alert("sdl")
-
-        document.getElementById("signin_text").addEventListener("click", () => {
-          window.location.href = "signin.html";
-          localStorage.setItem("cartpage", true);
-        });
-      }
-      document.getElementById("logo").addEventListener("click", () => {
-        window.location.href = "index.html";
-      });
+      cart_item.innerText = cart_value;
     </script>
+    <script src="./js/home.js"></script>
     <script src="cart.js"></script>
+    <script src="./js/userid.js"></script>
   </body>
 </html>
