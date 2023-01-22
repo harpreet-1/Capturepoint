@@ -244,6 +244,12 @@
         e.preventDefault();
 
         if (check(email1.value, pass1.value)) {
+          // if (localStorage.getItem("login_1")) {
+          //   localStorage.setItem("login_1", false);
+          //   window.location.href = "single_product.html";
+          // } else {
+
+          // }
           window.location.href = "index.html";
         } else {
           alert("wrong email or password");

@@ -294,6 +294,9 @@
       if (check(userdata.email)) {
         users.push(userdata);
         localStorage.setItem("users", JSON.stringify(users));
+        alert(
+          "Congratulations, your created account has been successfully created "
+        );
         window.location.href = "signin.html";
       } else {
         alert("user already exists please login !");

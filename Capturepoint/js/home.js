@@ -66,6 +66,7 @@ display_new_releases(data)
 });
 
 }   
+
 function display_new_releases (data){
 
   localStorage.setItem("new_release",JSON.stringify(data))
@@ -113,18 +114,87 @@ function display_new_releases (data){
       window.location.href="single_product.html"
     })
   });
-//   rating
-// new_release_price
+
 
 }
 
 
+
+let topdeals=document.getElementById("top_deal_cards")
 // 
-// login check
-let login=localStorage.getItem("login")||false
-console.log(login);
+// let new_release_data=JSON.parse(localStorage.getItem("new_release"))
 
-if(login){
-  document.getElementById("signin_text").innerHTML=""
-  document.getElementById("signin_text").innerText=login
+
+fetchdata1()
+
+function fetchdata1(){
+  
+fetch("./all_products.json")
+.then((response) => (response.json()))
+.then((jsondata1) =>{ 
+    data1=jsondata1
+
+display_top(data1)
+
+
+});
+
+}   
+
+function display_top(data){
+
+  localStorage.setItem("new_release",JSON.stringify(data))
+  
+  topdeals.innerHTML=""
+  for(let i=0;i<=35;i+=2) {
+    let card=document.createElement("div")
+    card.setAttribute("class","top_deal_card")
+    let image=document.createElement("img")
+    image.setAttribute("src",data[i].image)
+    
+    
+
+    let title=document.createElement("h2")
+    let title_a=document.createElement("a")
+    title_a.innerText=data[i].title
+    title.append(title_a)
+
+    let rating=document.createElement("div")
+    rating.setAttribute("class","rating")
+    let star1=document.createElement("i")
+    star1.setAttribute("class","fa-solid fa-star")
+    let star2=document.createElement("i")
+    star2.setAttribute("class","fa-solid fa-star")
+    let star3=document.createElement("i")
+    star3.setAttribute("class","fa-solid fa-star")
+    let star4=document.createElement("i")
+    star4.setAttribute("class","fa-solid fa-star")
+    let star5=document.createElement("i")
+    star5.setAttribute("class","fa-solid fa-star")
+
+
+    rating.append(star1,star2,star3,star4,star5)
+    let price=document.createElement("p")
+    price.setAttribute("class","now_price")
+    price.innerText="Instant Rebate: $70.00"
+    let des=document.createElement("p")
+    let des1=document.createElement("p")
+    des.setAttribute("class","discount")
+    des.innerText=data[i].price
+
+
+    card.append(image,title,rating,des1,des,price)
+    topdeals.append(card)
+
+    card.addEventListener("click",()=>{
+      
+      localStorage.setItem("product",JSON.stringify(data[i]))
+      window.location.href="single_product.html"
+    })
+  }
+
+
 }
+
+
+

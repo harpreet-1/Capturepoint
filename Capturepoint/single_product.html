@@ -51,28 +51,29 @@
       </div>
       <div id="primary_content">
         <div id="logo">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" />
         </div>
         <div id="primary_content_right">
+          <input class="serchbar" type="text" placeholder="Search" />
           <div id="searchbar">
-            <input type="text" placeholder="Searc" />
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i id="search_icon" class="fa-solid fa-magnifying-glass"></i>
           </div>
           <div id="user_icon">
             <i class="fa-solid fa-user"></i>
           </div>
 
-          <!-- <div id="signin_text">
-              
-              <span> Sign in</span>
-  
-            
-            <span>
-                My account
-                <i class="fa-sharp fa-solid fa-angle-down"></i>
-              <span>
-            </div> -->
-          <div id="cart_icon"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div id="signin_text">
+            <span id="status">Sign in</span>
+            <span id="username"
+              >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
+            ></span>
+          </div>
+
+          <a href="cart.html">
+            <div id="cart_icon">
+              <span id="cart_quantity">0</span>
+              <i class="fa-solid fa-cart-shopping"></i></div
+          ></a>
         </div>
       </div>
       <div id="nav_main">
@@ -90,7 +91,6 @@
         </div>
       </div>
     </section>
-
     <section class="main">
       <div class="left">
         <div class="wish_list"><i class="fa-regular fa-heart"></i></div>
@@ -456,6 +456,9 @@
 
     <!-- script for change  small image with big image -->
     <script>
+      let login = localStorage.getItem("login") || false;
+      let cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
+      let cart_item = document.getElementById("cart_quantity");
       let price = document.getElementById("now_price");
       let title = document.getElementById("title");
       let quantity = document.getElementById("quantity");
@@ -501,13 +504,25 @@
       console.log(cart_data);
       addtocart.addEventListener("click", () => {
         product.quantity = +quantity_number;
-        if (check(product.id)) {
-          cart_data.push(product);
-          localStorage.setItem("cart", JSON.stringify(cart_data));
-          window.location.href = "cart.html";
+        if (login) {
+          if (check(product.id)) {
+            cart_data.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart_data));
+            alert("Product added to cart");
+
+            cart_value += product.quantity;
+            localStorage.setItem("cart_items", JSON.stringify(cart_value));
+
+            cart_item.innerText = cart_value;
+            // window.location.href = "cart.html"
+          } else {
+            alert("product already in cart");
+            // window.location.href = "cart.html";
+          }
         } else {
-          alert("product already in cart");
-          window.location.href = "cart.html";
+          alert("Please login to continue!");
+          window.location.href = "signin.html";
+          localStorage.setItem("login_1", true);
         }
       });
 
@@ -519,6 +534,49 @@
         }
         return true;
       }
+
+      // cart_value = JSON.parse(localStorage.getItem("cart_items")) || 0;
+      // cart_value++;
+      localStorage.setItem("cart_items", JSON.stringify(cart_value));
+      cart_item = document.getElementById("cart_quantity");
+
+      cart_item.innerText = cart_value;
+
+      if (login) {
+        let log_out = document.createElement("span");
+        log_out.innerText = "Log Out";
+        log_out.style.fontSize = "12px";
+        log_out.style.textDecoration = "underline";
+        log_out.style.cursor = "pointer";
+        log_out.addEventListener("click", () => {
+          localStorage.removeItem("login");
+          localStorage.removeItem("cart");
+          localStorage.removeItem("cart_items");
+          localStorage.removeItem("total");
+
+          window.location.href = "index.html";
+          // localStorage.setItem("login", false);
+        });
+        document.getElementById("signin_text").innerHTML = "";
+        document.getElementById("signin_text").innerText = login;
+        document.getElementById("signin_text").append(log_out);
+      } else {
+        document.getElementById("signin_text").addEventListener("click", () => {
+          window.location.href = "signin.html";
+        });
+      }
+
+      let input_el = document.querySelector("#search_icon");
+
+      input_el.addEventListener("click", () => {
+        // alert(document.querySelector(".serchbar").value)
+        let input = document.querySelector(".serchbar").value;
+        localStorage.setItem("search", JSON.stringify(input));
+        window.location.href = "search.html";
+      });
     </script>
+    <script src="./js/home.js"></script>
+    <script src="cart.js"></script>
+    <script src="./js/userid.js"></script>
   </body>
 </html>
