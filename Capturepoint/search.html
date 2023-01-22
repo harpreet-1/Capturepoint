@@ -25,7 +25,7 @@
   </head>
   <body>
     <div id="body">
-      <section id="header">
+      <!-- <section id="header">
         <div class="daily_discount">
           <span> Enjoy </span>
           <b>5% OFF†</b>
@@ -102,10 +102,87 @@
             <a href="#">Gift Card</a>
           </div>
         </div>
-      </section>
+      </section> -->
+      <section id="header">
+        <div class="daily_discount">
+          <span> Enjoy </span>
+          <b>5% OFF†</b>
+          <span> purchases every day with the Adorama Edge Credit Card. </span>
+          <a href="#">LEARN MORE ></a>
+        </div>
 
+        <div id="nav__business">
+          <div class="nav__business_item_left uppercase">
+            <a href="#">adorama business</a>
+            <a href="#">adorama rentals</a>
+            <a href="#">printque</a>
+            <a href="#">our blog</a>
+          </div>
+          <div class="nav__business_item_right">
+            <a href="#">
+              <i class="fa-solid fa-phone"></i>
+              800.223.2500
+            </a>
+
+            <a href="#">
+              <i class="fa-sharp fa-solid fa-comment"></i>
+              Live Chat
+            </a>
+            <a href="#">
+              <i class="fa-solid fa-circle-info"></i>
+              Help
+              <i class="fa-sharp fa-solid fa-angle-down"></i>
+            </a>
+          </div>
+        </div>
+        <div id="primary_content">
+          <div id="logo">
+            <img src="./images/logo.png" />
+          </div>
+          <div id="primary_content_right">
+            <input class="serchbar" type="text" placeholder="Search" />
+            <div id="searchbar">
+              <i id="search_icon" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div id="user_icon">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div id="signin_text">
+              <span id="status">Sign in</span>
+              <span id="username"
+                >MY Account <i class="fa-sharp fa-solid fa-angle-down"></i
+              ></span>
+            </div>
+
+            <a href="cart.html">
+              <div id="cart_icon">
+                <span id="cart_quantity">0</span>
+                <i class="fa-solid fa-cart-shopping"></i></div
+            ></a>
+          </div>
+        </div>
+        <div id="nav_main">
+          <div class="nav_main_left">
+            <a href="#"
+              >Product<i class="fa-sharp fa-solid fa-angle-down"></i
+            ></a>
+            <a href="#"
+              >Brands<i class="fa-sharp fa-solid fa-angle-down"></i
+            ></a>
+            <a href="#">Used<i class="fa-sharp fa-solid fa-angle-down"></i></a>
+            <a href="#">deals<i class="fa-sharp fa-solid fa-angle-down"></i></a>
+          </div>
+          <div class="nav_main_right">
+            <a href="#">Deal of the Day</a>
+            <a href="#">CapturePoint Credit Card</a>
+            <a href="#">Vip rewards</a>
+            <a href="#">Gift Card</a>
+          </div>
+        </div>
+      </section>
       <section class="main">
-        <h1 class="search_heading">Cameras & Digital Cameras</h1>
+        <h1 class="search_heading">Shop HP Products</h1>
 
         <div class="sort_box">
           <div class="sort_by_price">
@@ -263,37 +340,6 @@
 
         <section id="new_release_cards"></section>
       </section>
-      <!-- 
-        
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     -->
     </div>
     <footer id="footer">
       <section id="footer_promo">
@@ -484,8 +530,58 @@
     document.getElementById("logo").addEventListener("click", () => {
       window.location.href = "index.html";
     });
-  </script>
+    let input_el = document.querySelector("#search_icon");
 
+    input_el.addEventListener("click", () => {
+      // alert(document.querySelector(".serchbar").value)
+      let input = document.querySelector(".serchbar").value;
+
+      if (input !== "") {
+        localStorage.setItem("search", JSON.stringify(input));
+        window.location.href = "search.html";
+      }
+    });
+  </script>
+  <script src="./js/home.js"></script>
   <script src="cart.js"></script>
-  <script src="./js/userid.js"></script>
+  <script>
+    // login check
+    let login = localStorage.getItem("login") || false;
+    console.log(login);
+
+    if (login) {
+      let log_out = document.createElement("span");
+      log_out.innerText = "Log Out";
+      log_out.style.fontSize = "12px";
+      log_out.style.textDecoration = "underline";
+      log_out.style.cursor = "pointer";
+      log_out.addEventListener("click", () => {
+        localStorage.removeItem("login");
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cart_items");
+        localStorage.removeItem("total");
+
+        window.location.href = "index.html";
+        // localStorage.setItem("login",false)
+      });
+      document.getElementById("signin_text").innerHTML = "";
+      document.getElementById("signin_text").innerText = login;
+      document.getElementById("signin_text").append(log_out);
+    } else {
+      document.getElementById("signin_text").addEventListener("click", () => {
+        window.location.href = "signin.html";
+      });
+    }
+    // let input_el = document.querySelector("#search_icon");
+
+    input_el.addEventListener("click", () => {
+      // alert(document.querySelector(".serchbar").value)
+      let input = document.querySelector(".serchbar").value;
+
+      if (input !== "") {
+        localStorage.setItem("search", JSON.stringify(input));
+        window.location.href = "search.html";
+      }
+    });
+  </script>
 </html>

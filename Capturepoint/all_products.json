@@ -16,7 +16,7 @@
         "cat": "camera"
     },
     {
-        "image": "https://www.adorama.com/images/Large/zhc020124cb.jpg ",
+        "image": "https://www.adorama.com/images/Large/gphero10hb.jpg ",
         "title": " Zhiyun Weebill 3 Combo 3-Axis Handheld Gimbal Stabilizer ",
         "price": "439.00  ",
         "id": 2,
@@ -208,11 +208,75 @@
         "cat": "Headphones"
     },
     {
-        "image": " https://www.adorama.com/images/Large/somdr7506.jpg ",
-        "title": "Sony MDR-7506 Professional Folding Headphones ",
-        "price": 80.99,
+        "image": " https://www.adorama.com/images/Large/asrsz690f.jpg",
+        "title": "Asus ROG Strix Z690-F Gaming Wi-Fi DDR5 LGA1700 ATX Motherboard ",
+        "price": 329.99,
         "id": 27,
-        "des": " 38% OFF",
-        "cat": "Headphones"
+        "des": "  TOP RATED GEAR ",
+        "cat": "motherboard"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/msiz590godlk.jpg ",
+        "title": "  MSI MEG Z590 GODLIKE EATX Gaming Motherboard ",
+        "price": 699.99,
+        "id": 28,
+        "des": "  TOP RATED GEAR ",
+        "cat": "motherboard"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/msiprz79pw.jpg ",
+        "title": "  MSI PRO Z790-P Wi-Fi DDR5 LGA 1700 SATA 6Gb/s ATX Motherboard ",
+        "price": 239.00,
+        "id": 29,
+        "des": "  TOP RATED GEAR ",
+        "cat": "motherboard"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/aspz690a.jpg  ",
+        "title": "Asus Prime Z690-A LGA1700 ATX Motherboard   ",
+        "price": 239,
+        "id": 30,
+        "des": "  TOP RATED GEAR ",
+        "cat": "motherboard"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/msiproz690aw.jpg ",
+        "title": "  MSI PRO Z690-A WIFI LGA 1700 SATA 6Gb/s ATX Motherboard ",
+        "price": 229.99,
+        "id": 32,
+        "des": "  TOP RATED GEAR ",
+        "cat": "motherboard"
+    },
+    {
+        "image": " https://www.adorama.com/images/Large/as90mb1760.jpg ",
+        "title": "Asus ROG Crosshair VIII Dark Hero AMD X570 ATX Gaming Motherboard   ",
+        "price": 412.99,
+        "id": 33,
+        "des": " 17% OFF ",
+        "cat": "motherboard"
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/djim3prorc.jpg ",
+        "title": "DJI Mini 3 Pro Drone with RC Remote Controller   ",
+        "price": 909.00,
+        "id": 34,
+        "des": " CLOSEOUT ",
+        "cat": "Drone "
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/djig2pvcombo.jpg ",
+        "title": "  DJI Avata Drone Pro-View Combo with Goggles 2 ",
+        "price": 1388.00,
+        "id": 35,
+        "des": "  TOP RATED GEAR ",
+        "cat": "Drone "
+    },
+    {
+        "image": "https://www.adorama.com/images/Large/djimvmnc2.jpg ",
+        "title": "  DJI Mini 2 Drone Fly More Combo ",
+        "price": 599.00,
+        "id": 36,
+        "des": "  TOP RATED GEAR ",
+        "cat": "Drone "
     }
 ]

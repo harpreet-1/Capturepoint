@@ -13,7 +13,7 @@ function search(input) {
       data = jsondata;
     
     let searched=data.filter((el,i)=>{
-        return(el.title.toUpperCase().includes(input))
+        return(el.title.toUpperCase().includes(input) ||el.cat.toUpperCase().includes(input))
     })
 
     localStorage.setItem("searched",JSON.stringify(searched))
@@ -76,10 +76,10 @@ function display_searched(data){
         
     
     
-        card.append(image,rating,title,model,price,text1,btn,Stock)
+        card.append(image,rating,title,model,price,text1,Stock)
         body.append(card)
     
-        card.addEventListener("click",()=>{
+        title.addEventListener("click",()=>{
           
           localStorage.setItem("product",JSON.stringify(element))
           window.location.href="single_product.html"

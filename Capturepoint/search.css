@@ -122,7 +122,7 @@
     margin-top: 4px;
     line-height: 1.4;
   }
-  .card_box>div>:nth-child(7){
+  /* .card_box>div>:nth-child(7){
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,14 +140,14 @@
    
     border-radius: 4px;
     background: linear-gradient(180deg,#fc5d37 0%,#ed5132 49%,#e64525 100%);
-  }
-  .card_box>div>:nth-child(7):hover{
+  } */
+  /* .card_box>div>:nth-child(7):hover{
     border: 1px solid #f1310a;
     cursor: pointer;
     font-size: 18px;
 
-  }
-  .card_box>div>:nth-child(8){
+  } */
+  .card_box>div>:nth-child(7){
     font-size: 12px;
     color: #094801;
   }

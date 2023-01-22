@@ -521,7 +521,7 @@
           }
         } else {
           alert("Please login to continue!");
-          window.location.href = "sign.html";
+          window.location.href = "signin.html";
           localStorage.setItem("login_1", true);
         }
       });
@@ -555,7 +555,7 @@
           localStorage.removeItem("total");
 
           window.location.href = "index.html";
-          localStorage.setItem("login", false);
+          // localStorage.setItem("login", false);
         });
         document.getElementById("signin_text").innerHTML = "";
         document.getElementById("signin_text").innerText = login;
@@ -565,6 +565,15 @@
           window.location.href = "signin.html";
         });
       }
+
+      let input_el = document.querySelector("#search_icon");
+
+      input_el.addEventListener("click", () => {
+        // alert(document.querySelector(".serchbar").value)
+        let input = document.querySelector(".serchbar").value;
+        localStorage.setItem("search", JSON.stringify(input));
+        window.location.href = "search.html";
+      });
     </script>
     <script src="./js/home.js"></script>
     <script src="cart.js"></script>

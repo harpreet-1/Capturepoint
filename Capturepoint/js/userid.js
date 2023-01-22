@@ -16,7 +16,7 @@ if(login){
       localStorage.removeItem("total")
 
       window.location.href="index.html"
-      localStorage.setItem("login",false)
+      // localStorage.setItem("login",false)
     })
   document.getElementById("signin_text").innerHTML=""
   document.getElementById("signin_text").innerText=login
@@ -31,4 +31,14 @@ else{
 
     })
 }
+let input_el = document.querySelector("#search_icon");
 
+    input_el.addEventListener("click", () => {
+      // alert(document.querySelector(".serchbar").value)
+      let input = document.querySelector(".serchbar").value;
+      
+      if (input !== "") {
+        localStorage.setItem("search", JSON.stringify(input));
+        window.location.href = "search.html";
+      }
+    });
