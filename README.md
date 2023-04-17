@@ -51,7 +51,8 @@ ON top if you click any category or you search anything you will redirect to pro
  
 
 IF you want to know about product more particularly press on that product you redirect to the product detail page.
-![Screenshot (388)](https://user-images.githubusercontent.com/114987574/221414172-f627b83e-42a8-47ae-ac14-ce2b06a789cc.png)
+![Screenshot (1250)](https://user-images.githubusercontent.com/119473352/232509919-2553d1c0-56a5-47bc-8150-946688bcfd4c.png)
+
 
 
 After click on the ADD TO CART button the product will added to your CART page.
