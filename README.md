@@ -1,25 +1,20 @@
 # Capturepoint 
 Hello Everyone ,
 
-WELCOME in our Brand ACE FASHION
+WELCOME in our Brand CapturePoint
+![logo (1)](https://user-images.githubusercontent.com/119473352/232507589-2eb09168-8fb8-4aba-b65b-78761750de83.png)
 
-![e-removebg-preview](https://user-images.githubusercontent.com/114987574/221412258-04330f72-050a-448e-91af-98ab3ec736ea.png)
 
 This is the website which we created with HTML,CSS,JAVASCRIPT.
-AND the collaborator's are-
 
-1) Harpreet Singh
-2) Suraj Rathod
-3) Bhabani Sankar Behera
-4) Yash Jain.
 
-Netlify Link-https://guileless-pastelito-b0fbc7.netlify.app/
+
+Netlify Link- https://capturepoint.netlify.app/index.html
 
 This is ecommerce brand specially for women where you can find products related to 
-"SKIN CARE",
-"BEAUTY",
-"HOME DECORE",
-"FASHION CLOTHES",
+"digital",
+"electronic",
+
 and many more
 
 
@@ -27,31 +22,33 @@ This is the first glance of our website where you see the landing page.
 Here you can see the NAVIGATION BAR on the top which will help you to acces all pages of website.
 NAVIGATION BAR contain SEARCH BAR option where you can search all the item whatever you want to buy.
 
-![Screenshot (374)](https://user-images.githubusercontent.com/114987574/221412578-dfda30a8-8412-43ac-8d4f-0fecf11f8328.png)
+![Screenshot (1245)](https://user-images.githubusercontent.com/119473352/232508197-fc87759b-667c-47f4-8d8d-90d782811623.png)
+
 
 
 
 After moving to LOGIN & SIGNUP page you can see a beautiful and amazing animation of slide .
 If you are register already you can directly signin whith your ID and PASSWORD.
-![Screenshot (378)](https://user-images.githubusercontent.com/114987574/221412803-1a4dfe22-c0e8-4281-a739-2c5ccaaa79b0.png)
+![Screenshot (1252)](https://user-images.githubusercontent.com/119473352/232508600-f6e95f04-e97a-44e2-acd7-1e48842763c2.png)
+
+
 
 IF you are a new user you can register youself aswell.
-![Screenshot (379)](https://user-images.githubusercontent.com/114987574/221412925-4f779ae0-a1c0-4be8-8831-7c8a173bf56a.png)
+![Screenshot (1253)](https://user-images.githubusercontent.com/119473352/232508433-89ddede5-654b-48c2-a973-fa1dc8ae6425.png)
 
-HERE are bsome hovering effects on LANDING page 
 
-![Screenshot (380)](https://user-images.githubusercontent.com/114987574/221413664-3f9302ee-54d4-4e9c-a0e3-b1b68305afa8.png)
+
 
 AND lastly on landing page a little a beautiful footer where all the details about BRAND.
 
-![Screenshot (381)](https://user-images.githubusercontent.com/114987574/221413753-c34f8fc2-e83a-451a-8273-fe310c586cd9.png)
+![Screenshot (1249)](https://user-images.githubusercontent.com/119473352/232509118-6c02b4c0-a7d5-430c-96a6-44a64c3ab647.png)
+
 
 ON top if you click any category or you search anything you will redirect to products page.
 
-![Screenshot (383)](https://user-images.githubusercontent.com/114987574/221413955-84ec33d6-b0f7-47a8-85ee-d672e722d3e4.png)
+![Screenshot (1254)](https://user-images.githubusercontent.com/119473352/232509736-acc6f277-8b8e-4d1c-8bc4-b1cf48b13b20.png)
+
  
-And you can sort or filter the products according to you.
-![Screenshot (386)](https://user-images.githubusercontent.com/114987574/221414059-690992e5-cbd8-4e7f-a012-730b73b94fd3.png)
 
 IF you want to know about product more particularly press on that product you redirect to the product detail page.
 ![Screenshot (388)](https://user-images.githubusercontent.com/114987574/221414172-f627b83e-42a8-47ae-ac14-ce2b06a789cc.png)
