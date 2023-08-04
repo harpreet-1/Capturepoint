@@ -1,0 +1,27 @@
+.uppercase {
+  text-transform: uppercase;
+}
+Link {
+  text-decoration: none;
+  color: #06c;
+}
+Link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+li {
+  /* font-size: px; */
+  /* text-align: center; */
+  list-style: none;
+  line-height: 25px;
+}
+img {
+  cursor: pointer;
+}

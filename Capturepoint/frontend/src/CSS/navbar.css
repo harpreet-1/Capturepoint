@@ -1,0 +1,140 @@
+#header {
+  /* background-color: aqua; */
+
+  /* display: flex; */
+  justify-content: center;
+}
+.daily_discount b {
+  font-weight: 900;
+  color: #fff0b2;
+}
+.daily_discount {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #001e42 0% 0% no-repeat padding-box;
+
+  color: white;
+}
+.daily_discount a {
+  font-size: clamp(10px, 2vw, 11px);
+  color: #7dc9ff;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.daily_discount span,
+.daily_discount a,
+.daily_discount b {
+  padding-left: 5px;
+}
+#nav__business {
+  display: flex;
+  /* width: 94%; */
+  justify-content: space-between;
+  margin: 0 auto;
+  /* background-color: aqua; */
+  padding: 8px 0;
+}
+.nav__business_item_left a,
+.nav__business_item_right a {
+  color: #004387;
+  font-size: 12px;
+  text-decoration: none;
+  padding: 0px 17px;
+}
+
+#primary_content {
+  background: #004387;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#logo img {
+  width: 245px;
+}
+#searchbar {
+  display: flex;
+  color: #004387;
+  align-items: center;
+  background: white;
+  border-radius: 0 7px 7px 0;
+  padding: 0 15px;
+}
+.serchbar {
+  padding: 8px;
+  border-radius: 7px 0 0 7px;
+
+  border: 1px solid rgb(255, 255, 255);
+
+  width: 300px;
+}
+.serchbar::placeholder {
+  padding-left: 15px;
+}
+
+#primary_content_right {
+  display: flex;
+  /* align-items: baseline; */
+}
+#user_icon {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.fa-user {
+  margin-left: 15px;
+  color: white;
+}
+
+#signin_text {
+  color: white;
+  display: flex;
+  cursor: pointer;
+
+  flex-direction: column;
+}
+#signin_text a > :nth-child(1) {
+  font-size: 11px;
+  font-weight: 400;
+  color: white;
+}
+#signin_text a > :nth-child(2) {
+  font-size: 12px;
+  font-weight: bold;
+
+  color: white;
+}
+#cart_icon {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+
+  color: white;
+}
+#nav_main {
+  justify-content: space-between;
+  display: flex;
+  border-top: 0.005px solid #6590bb;
+  background: #004387;
+  padding: 8px;
+}
+#nav_main a {
+  padding: 5px 15px;
+  color: white;
+  text-decoration: none;
+}
+#nav_main .nav_main_left a:hover {
+  color: #004387;
+  padding: 10px 15px;
+  border-radius: 5px 5px 0 0;
+
+  background-color: white;
+}
+.nav_main_right a:hover {
+  border-top: 3px solid white;
+}
