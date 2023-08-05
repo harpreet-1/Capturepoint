@@ -1,50 +1,51 @@
 [
-    {
-        "image": "https://www.adorama.com/images/Large/ifjxt5s.jpg ",
-        "title": " Fujifilm X-T5 Mirrorless Digital Camera Body, Silver ",
-        "price": " 1699.95 ",
-        "id": 1,
-        "des": "TOP RATED GEAR   ",
-        "cat": "camera"
-    },
-    {
-        "image": "https://www.adorama.com/images/Large/nkz9.jpg ",
-        "title": " Nikon Z 9 Mirrorless Digital Camera Body ",
-        "price": "5496.95  ",
-        "id": "2   ",
-        "des": "FREE GIFT   ",
-        "cat": "camera"
-    },
-    {
-        "image": "https://www.adorama.com/images/Large/gvmpr150r.jpg ",
-        "title": " GVM GVM-PR150R 150W High Power LED Spotlight Bi-color & RGB Studio Lighting Kit ",
-        "price": " 328.00 ",
-        "id": "  3 ",
-        "des": "  TOP RATED GEAR   ",
-        "cat": "LED"
-    },
-    {
-        "image": "https://www.adorama.com/images/Large/iso2070.jpg ",
-        "title": " Sony FE 20-70mm f/4 G Lens for Sony E ",
-        "price": " 1098.00 ",
-        "id": "  4 ",
-        "des": " NEW ARRIVAL  ",
-        "cat": "lens"
-    },
-    {
-        "image": "https://www.adorama.com/images/Large/zhc020124cb.jpg ",
-        "title": " Zhiyun Weebill 3 Combo 3-Axis Handheld Gimbal Stabilizer ",
-        "price": "439.00  ",
-        "id": "  5 ",
-        "des": "  NEW ARRIVAL   ",
-        "cat": "camera"
-    },
-    {
-        "image": " https://www.adorama.com/images/Large/gosl200iii.jpg",
-        "title": "  Godox SL200III 215W LED Video Light",
-        "price": "439.00",
-        "id": "6",
-        "des": "NEW ARRIVAL",
-        "cat": "led"
-    }
+  {
+    "image": "https://www.adorama.com/images/Large/ifjxt5s.jpg ",
+    "title": " Fujifilm X-T5 Mirrorless Digital Camera Body, Silver ",
+    "price": " 1699.95 ",
+    "id": 1,
+    "des": "TOP RATED GEAR   ",
+    "cat": "camera"
+  },
+  {
+    "image": "https://www.adorama.com/images/Large/nkz9.jpg ",
+    "title": " Nikon Z 9 Mirrorless Digital Camera Body ",
+    "price": "5496.95  ",
+    "id": "2   ",
+    "des": "FREE GIFT   ",
+    "cat": "camera"
+  },
+  {
+    "image": "https://www.adorama.com/images/Large/gvmpr150r.jpg ",
+    "title": " GVM GVM-PR150R 150W High Power LED Spotlight Bi-color & RGB Studio Lighting Kit ",
+    "price": " 328.00 ",
+    "id": "  3 ",
+    "des": "  TOP RATED GEAR   ",
+    "cat": "LED",
+    "rating": 4
+  },
+  {
+    "image": "https://www.adorama.com/images/Large/iso2070.jpg ",
+    "title": " Sony FE 20-70mm f/4 G Lens for Sony E ",
+    "price": " 1098.00 ",
+    "id": "  4 ",
+    "des": " NEW ARRIVAL  ",
+    "cat": "lens"
+  },
+  {
+    "image": "https://www.adorama.com/images/Large/zhc020124cb.jpg ",
+    "title": " Zhiyun Weebill 3 Combo 3-Axis Handheld Gimbal Stabilizer ",
+    "price": "439.00  ",
+    "id": "  5 ",
+    "des": "  NEW ARRIVAL   ",
+    "cat": "camera"
+  },
+  {
+    "image": " https://www.adorama.com/images/Large/gosl200iii.jpg",
+    "title": "  Godox SL200III 215W LED Video Light",
+    "price": "439.00",
+    "id": "6",
+    "des": "NEW ARRIVAL",
+    "cat": "led"
+  }
 ]
