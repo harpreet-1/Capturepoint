@@ -5,6 +5,8 @@ import Home from "./Pages/Home";
 import Navbar from "./Components/home/Navbar";
 import SearchedPr from "./Components/productsPage/SearchedPr";
 import PrDeatail from "./Pages/Pr_deatail";
+import Cart from "./Pages/Cart";
+import Checkout from "./Pages/Checkout";
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Products" element={<SearchedPr />} />
+            <Route path="/products" element={<SearchedPr />} />
             <Route path="/details" element={<PrDeatail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
