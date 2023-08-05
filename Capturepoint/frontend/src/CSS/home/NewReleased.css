@@ -1,0 +1,46 @@
+#new_releases {
+  margin-top: 70px;
+  padding: 0 15px;
+  margin-bottom: 50px;
+}
+#new_release_cards {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+#new_releases section h3 {
+  font-weight: 400;
+}
+
+.pr_card {
+  overflow: hidden;
+  background-color: white;
+
+  padding: 15px;
+}
+.pr_card img {
+  width: 100%;
+  margin: auto;
+}
+
+.new_release_price {
+  margin: 10px 0;
+}
+.new_release_des {
+  color: gray;
+  font-size: 12px;
+}
+.new_pr_title {
+  font-weight: 400;
+  font-size: 14px;
+  width: 191.857px;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  color: #004387;
+  text-decoration: none;
+}
+.new_pr_title:hover {
+  text-decoration: underline;
+}

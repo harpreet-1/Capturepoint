@@ -25,3 +25,7 @@ li {
 img {
   cursor: pointer;
 }
+
+h3 {
+  line-height: 0.8;
+}

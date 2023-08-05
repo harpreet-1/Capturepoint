@@ -1,0 +1,131 @@
+#footer_promo {
+  padding: 40px;
+  background-color: #004387;
+  color: white;
+  text-align: center;
+}
+#footer_promo a {
+  color: white;
+  text-decoration: underline;
+}
+#footer_help nav {
+  padding: 40px 0;
+  background-color: rgb(239, 227, 227);
+
+  font-size: 24px;
+  display: flex;
+  justify-content: space-around;
+}
+#footer_help nav p:hover {
+  cursor: pointer;
+  color: #004387;
+}
+#connect {
+  background-color: white;
+  padding: 50px 0;
+  width: 100%;
+  margin: auto;
+  gap: 2%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+#connect p {
+  line-height: 25px;
+  font-size: 17px;
+}
+#connect h4 {
+  font-size: 21px;
+  /* font-weight: 400; */
+  margin: 18px 0;
+  line-height: 35px;
+}
+.feedback > :nth-child(1) ~ h4 {
+  padding: 15px 0;
+}
+#more_stories {
+  line-height: 40px;
+}
+.input {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input input {
+  padding: 12px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid rgba(0, 0, 0, 0.495);
+}
+.input button {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  font-weight: 500;
+  color: white;
+  background-color: #004387;
+  font-size: 17px;
+  margin-left: -4px;
+}
+
+.social_icon {
+  font-size: 30px;
+  display: flex;
+  width: 70%;
+  margin: auto;
+  justify-content: space-evenly;
+}
+.social_icon i {
+  cursor: pointer;
+}
+.social_icon i:hover {
+  font-size: 40px;
+}
+
+#footer_visit {
+  padding: 50px 0;
+  display: flex;
+  background-color: #f2f2f2;
+  /* justify-content: space-around; */
+}
+#footer_links {
+  /* text-align: center; */
+  padding-left: 50px;
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  width: 100%;
+}
+#footer_visit h4 {
+  font-size: 21px;
+  padding: 20px 0;
+}
+#location {
+  text-align: center;
+
+  width: 40%;
+}
+#trusted {
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+#trusted img {
+  width: 100%;
+  cursor: pointer;
+}
+.footer_copyright {
+  font-size: 17px;
+  line-height: 25px;
+  text-align: center;
+  padding: 50px 0;
+  color: white;
+  background-color: #004387;
+}
+.footer_copyright a {
+  color: white;
+  text-decoration: underline;
+}

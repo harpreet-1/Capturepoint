@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "../CSS/SpeacialProduct.css";
-import React, { useRef, useState } from "react";
+import "../../CSS/home/SpeacialProduct.css";
+import React, { useRef } from "react";
 
 function SpeacialProduct() {
   const topDeals = [
