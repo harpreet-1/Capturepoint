@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Navbar from "./Components/home/Navbar";
 import SearchedPr from "./Components/productsPage/SearchedPr";
+import PrDeatail from "./Pages/Pr_deatail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Products" element={<SearchedPr />} />
+            <Route path="/details" element={<PrDeatail />} />
 
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>

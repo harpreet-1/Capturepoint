@@ -2,54 +2,50 @@ import React from "react";
 import "../../CSS/productsPage/SearchedPr.css";
 import { Link } from "react-router-dom";
 import Footer from "../home/Footer";
-// const data = [
-//   {
-//     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-//     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-//     price: "1699.95",
-//     id: "1",
-//     des: "TOP RATED GEAR",
-//     rating: 5,
-//   },
-//   {
-//     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-//     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-//     price: "1699.95",
-//     id: "1",
-//     des: "TOP RATED GEAR",
-//     rating: 5,
-//   },
-//   {
-//     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-//     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-//     price: "1699.95",
-//     id: "1",
-//     des: "TOP RATED GEAR",
-//     rating: 5,
-//   },
-//   {
-//     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-//     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-//     price: "1699.95",
-//     id: "1",
-//     des: "TOP RATED GEAR",
-//     rating: 5,
-//   },
-//   {
-//     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-//     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-//     price: "1699.95",
-//     id: "1",
-//     des: "TOP RATED GEAR",
-//     rating: 5,
-//   },
-//   // Add more data objects as needed
-// ],
+const data = [
+  {
+    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
+    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
+    price: "1699.95",
+    id: "1",
+    des: "TOP RATED GEAR",
+    rating: 5,
+  },
+  {
+    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
+    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
+    price: "1699.95",
+    id: "1",
+    des: "TOP RATED GEAR",
+    rating: 5,
+  },
+  {
+    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
+    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
+    price: "1699.95",
+    id: "1",
+    des: "TOP RATED GEAR",
+    rating: 5,
+  },
+  {
+    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
+    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
+    price: "1699.95",
+    id: "1",
+    des: "TOP RATED GEAR",
+    rating: 5,
+  },
+  {
+    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
+    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
+    price: "1699.95",
+    id: "1",
+    des: "TOP RATED GEAR",
+    rating: 5,
+  },
+  // Add more data objects as needed
+];
 const SearchedPr = () => {
-  const handleTitleClick = () => {
-    alert("cliked");
-  };
-
   return (
     <>
       <section class="main">
@@ -63,7 +59,6 @@ const SearchedPr = () => {
               <option value="des">Descending</option>
             </select>
           </div>
-
           <div>
             <form>
               <input type="submit" value="Filter by price >" />
