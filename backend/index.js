@@ -12,7 +12,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.json({ message: "hello from server" });
 });
-// app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 
 app.listen(8080, () => {
   connection();
