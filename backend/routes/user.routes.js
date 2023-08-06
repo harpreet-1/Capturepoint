@@ -45,7 +45,11 @@ const registerUser = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 5);
 
-    const newUser = await UserModel.create({ email, password: hashedPassword });
+    const newUser = await UserModel.create({
+      email,
+      username,
+      password: hashedPassword,
+    });
     const token = jwt.sign(
       { user: { id: newUser._id, username, email } },
       process.env.JWT_SECRET_KEY,
