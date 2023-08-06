@@ -8,7 +8,7 @@ import Footer from "../Components/home/Footer";
 function PrDeatail() {
   return (
     <>
-      <section className="main">
+      <section className="details_main">
         <Left />
         <Right />
       </section>{" "}

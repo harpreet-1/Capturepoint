@@ -5,7 +5,7 @@ import CheckoutLeft from "../Components/checkout/CheckoutLeft";
 import CheckoutRight from "../Components/checkout/CheckoutRight";
 function Checkout() {
   return (
-    <section class="main">
+    <section class="checkout_main">
       <CheckoutLeft />
       <CheckoutRight />
     </section>

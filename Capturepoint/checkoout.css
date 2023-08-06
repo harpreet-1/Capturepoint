@@ -1,8 +1,8 @@
-.header{
+/* .header{
     display: flex;
     align-items: center;
     width: 100%;
-    /* justify-content: center; */
+   
     height: 100px;
     padding: 15px 150px;
     color: white;
@@ -25,20 +25,17 @@
     width: 80%;
     margin: auto;
     height: 300px;
-    /* border: 1px solid grey; */
+   
 }
 .main h3{
     margin-top: 20px;
     font-weight: 400;
     font-size: 35px;
-    /* margin-left: 20px; */
+  
 
 }
 .left{
   margin-bottom: 100px;
-   
-    /* border: 1px solid grey; */
-    /* padding: 15px */
 }
 .addrex_form{
  
@@ -56,10 +53,7 @@ display: grid;
 grid-template-columns: repeat(2,1fr);
 gap: 10px;
 }
-.name_surname >div{
-    
-    /* border: 1px solid grey; */
-}
+
 input::placeholder {
     font-size: 16px;
     color: grey;
@@ -92,7 +86,7 @@ input::placeholder {
     display: grid;
     gap: 10px;
     grid-template-columns:repeat(2,1fr);
-     /* grid-template-columns:  */
+
   } 
   .email_number{
     gap: 10px;
@@ -125,14 +119,14 @@ input::placeholder {
   }
   
 
-  /* payment */
+
   .payment_box{
-    /* border: 2px solid red; */
+
     margin-top: 50px;
   }
 
   .payment_form{
-    /* border: 5px solid rebeccapurple; */
+
     margin-top: 20px;
     background-color: white;
     padding: 15px;
@@ -159,4 +153,4 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */

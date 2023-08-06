@@ -1,42 +1,18 @@
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  /* justify-content: center; */
-  height: 100px;
-  padding: 15px 150px;
-  color: white;
-  background: transparent linear-gradient(180deg, #00295e 0%, #004387 100%) 0%
-    0% no-repeat padding-box;
-}
-.logo > img {
-  width: 250px;
-}
-.logo ~ div h2 {
-  font-weight: 400;
-  font-size: 30px;
-  margin-left: 20px;
-}
-.main {
+.checkout_main {
   display: grid;
   grid-template-columns: 55% 45%;
 
   width: 80%;
   margin: auto;
   height: 300px;
-  /* border: 1px solid grey; */
 }
-.main h3 {
+.checkout_main h3 {
   margin-top: 20px;
   font-weight: 400;
   font-size: 35px;
-  /* margin-left: 20px; */
 }
 .left {
   margin-bottom: 100px;
-
-  /* border: 1px solid grey; */
-  /* padding: 15px */
 }
 .addrex_form {
   margin-top: 15px;
@@ -51,17 +27,15 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
-.name_surname > div {
-  /* border: 1px solid grey; */
-}
-input::placeholder {
+
+.checkout_main input::placeholder {
   font-size: 16px;
   color: grey;
 }
-label {
+.checkout_main label {
   font-size: 16px;
 }
-input {
+.checkout_main input {
   margin-top: 5px;
   margin-bottom: 10px;
   width: 100%;
@@ -71,7 +45,7 @@ input {
   border: 1px solid grey;
 }
 
-input:hover {
+.checkout_main input:hover {
   border: 1px solid rgb(36, 33, 33);
 }
 .city {
@@ -83,7 +57,6 @@ input:hover {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);
-  /* grid-template-columns:  */
 }
 .email_number {
   gap: 10px;
@@ -91,35 +64,32 @@ input:hover {
   grid-template-columns: 68% 30%;
 }
 
-.right {
+.checkout_main .right {
   padding: 30px;
 }
 
-#order_total h3 {
+.checkout_main #order_total h3 {
   font-size: 20px;
 }
 #total_order_element,
 #dollor {
   font-size: 16px;
 }
-footer {
+.checkout_main footer {
   width: 100%;
 }
-footer img {
+.checkout_main footer img {
   width: 100%;
 }
 #form_submit:hover {
   text-decoration: none;
 }
 
-/* payment */
 .payment_box {
-  /* border: 2px solid red; */
   margin-top: 50px;
 }
 
 .payment_form {
-  /* border: 5px solid rebeccapurple; */
   margin-top: 20px;
   background-color: white;
   padding: 15px;
@@ -128,7 +98,7 @@ footer img {
   grid-template-columns: 3fr 1fr 1fr 1fr;
   gap: 10px;
 }
-input[type="submit"] {
+.checkout_main input[type="submit"] {
   height: 50px;
   position: relative;
   top: 35px;

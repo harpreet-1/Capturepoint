@@ -48,7 +48,7 @@ const data = [
 const SearchedPr = () => {
   return (
     <>
-      <section class="main">
+      <section class="searched_main">
         <h1 class="search_heading">Shop HP Products</h1>
 
         <div class="sort_box">
