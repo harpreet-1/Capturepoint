@@ -28,22 +28,22 @@ function Footer() {
           </nav>
         </section>
         <section id="connect">
-          <div class="feedback">
+          <div className="feedback">
             <h4>How Are We Doing?</h4>
             <p>Your opinions and comments are valuable to us.</p>
             <Link className="a_link" to="#">
               We'd love to get your feedback!
             </Link>
             <h4>Connect with Us</h4>
-            <div class="social_icon">
-              <i class="fa-brands fa-square-facebook"></i>
-              <i class="fa-brands fa-twitter"></i>
-              <i class="fa-brands fa-youtube"></i>
-              <i class="fa-brands fa-instagram"></i>
+            <div className="social_icon">
+              <i className="fa-brands fa-square-facebook"></i>
+              <i className="fa-brands fa-twitter"></i>
+              <i className="fa-brands fa-youtube"></i>
+              <i className="fa-brands fa-instagram"></i>
             </div>
           </div>
 
-          <div class="first_shoping">
+          <div className="first_shoping">
             <h4>Get Free Shipping On Your First Purchase*</h4>
             <p>
               When you sign up for Adorama News and Special Offers. Plus,
@@ -57,13 +57,13 @@ function Footer() {
               View more Stories...
             </Link>
           </div>
-          <div class="footer_signup">
+          <div className="footer_signup">
             <h4>Stay in the Know</h4>
             <p>
               Get exclusive access to expert tips and special offers. Plus, VIP
               Rewards members earn 25 Points!
             </p>
-            <div class="input">
+            <div className="input">
               <input type="email" placeholder="Email Address" />
               <button>Sign Up</button>
             </div>
@@ -244,17 +244,15 @@ function Footer() {
           <img src="./images/promo_image/footer/Screenshot (884).png" alt="" />
         </section>
 
-        <div class="footer_copyright">
+        <div className="footer_copyright">
           <p>
             Copyright Adorama Camera, Inc. All rights reserved.
             <span>•</span>
             <Link className="a_link" to="#">
               Privacy Policy
             </Link>
-            <span class="ftr-bul">•</span>
-            <Link className="a_link" d>
-              Terms of Use
-            </Link>
+            <span className="ftr-bul">•</span>
+            <Link className="a_link">Terms of Use</Link>
             <br />
             42 West 18th Street New York, NY 10011 (
             <Link className="a_link" to="#">

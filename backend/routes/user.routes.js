@@ -68,9 +68,9 @@ const registerUser = async (req, res) => {
       "*******************error from user register**********************",
       error
     );
-    return res.status(400).json({
+    return res.status(500).json({
       status: "error",
-      message: "user alredy exists please login",
+      message: "server error",
     });
   }
 };

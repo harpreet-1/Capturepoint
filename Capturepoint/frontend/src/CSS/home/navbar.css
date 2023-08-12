@@ -138,3 +138,14 @@
 .nav_main_right a:hover {
   border-top: 3px solid white;
 }
+#dropdown-basic {
+  background-color: transparent;
+  color: white;
+  font-size: 17px;
+}
+@media screen and (max-width: 480px) {
+  .daily_discount,
+  #nav__business {
+    display: none;
+  }
+}

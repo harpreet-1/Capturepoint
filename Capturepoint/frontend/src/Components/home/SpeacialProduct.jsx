@@ -114,6 +114,7 @@ function SpeacialProduct() {
   const sliderRef = useRef(null);
 
   const handleSlideRight = () => {
+    console.log(sliderRef.current.scrollLeft);
     sliderRef.current.scrollLeft += sliderRef.current.clientWidth * 0.5;
   };
 
@@ -138,7 +139,7 @@ function SpeacialProduct() {
           <section id="top_deal_cards" ref={sliderRef}>
             {topDeals.map((deal, index) => (
               <div className="top_deal_card" key={index}>
-                <img src={deal.imgSrc} alt="" />
+                <img src={deal.imgSrc} alt="aaaa" />
                 <h2>
                   <Link to="" className="Pr_title">
                     {deal.title}

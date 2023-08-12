@@ -1,10 +1,66 @@
 [
-    {
-        "image": "https://www.adorama.com/images/Large/iso2070.jpg ",
-        "title": " Sony FE 20-70mm f/4 G Lens for Sony E ",
-        "price": " 1098.00 ",
-        "id": "  4 ",
-        "des": " NEW ARRIVAL  ",
-        "cat": "lens"
-    }
+  {
+    "name": "Sony WH-1000XM4 Wireless Noise-Canceling Over-Ear Headphones",
+    "description": "Experience exceptional sound quality with these wireless headphones.",
+    "price": 278.0,
+    "images": ["https://www.adorama.com/images/Large/sonwh1000xm4b.jpg"],
+    "category": "headphonesCategoryId",
+    "stockQuantity": 10
+  },
+  {
+    "name": "Sennheiser HD 660 S Open-Back Dynamic Headphones",
+    "description": "Enjoy audio precision and clarity with these high-quality open-back headphones.",
+    "price": 449.95,
+    "images": ["https://www.adorama.com/images/Large/sehd660s.jpg"],
+    "category": "headphonesCategoryId",
+    "stockQuantity": 15
+  },
+  {
+    "name": "Bose QuietComfort Earbuds True Wireless Noise-Canceling In-Ear Headphones",
+    "description": "Immerse yourself in your music without distractions using these wireless earbuds.",
+    "price": 279.0,
+    "images": ["https://www.adorama.com/images/Large/bosecqceb.jpg"],
+    "category": "headphonesCategoryId",
+    "stockQuantity": 20
+  },
+  {
+    "name": "Sony WF-1000XM4 True Wireless Noise-Canceling In-Ear Headphones",
+    "description": "Enjoy premium sound quality and noise cancellation with these compact earbuds.",
+    "price": 278.0,
+    "images": ["https://www.adorama.com/images/Large/sonywf1000xm4b.jpg"],
+    "category": "headphonesCategoryId",
+    "stockQuantity": 18
+  },
+  {
+    "name": "Audio-Technica ATH-M50x Professional Monitor Headphones",
+    "description": "Experience studio-quality sound reproduction with these professional headphones.",
+    "price": 149.0,
+    "images": ["https://www.adorama.com/images/Large/autathm50xb.jpg"],
+    "category": "headphonesCategoryId",
+    "stockQuantity": 25
+  },
+  {
+    "name": "Corsair Crystal 570X RGB Tempered Glass ATX Mid-Tower Case",
+    "description": "Showcase your components in style with this RGB-illuminated tempered glass case.",
+    "price": 169.99,
+    "images": ["https://www.adorama.com/images/Large/co570xcrgb.jpg"],
+    "category": "casesCategoryId",
+    "stockQuantity": 7
+  },
+  {
+    "name": "NZXT H510i Compact ATX Mid-Tower Case",
+    "description": "A compact and stylish case that offers excellent cable management and airflow.",
+    "price": 109.99,
+    "images": ["https://www.adorama.com/images/Large/nzh510iwb.jpg"],
+    "category": "casesCategoryId",
+    "stockQuantity": 12
+  },
+  {
+    "name": "Fractal Design Meshify C ATX Mid-Tower Case",
+    "description": "Achieve optimal cooling and aesthetics with this mesh-fronted ATX case.",
+    "price": 89.99,
+    "images": ["https://www.adorama.com/images/Large/fdcmecc.jpg"],
+    "category": "casesCategoryId",
+    "stockQuantity": 15
+  }
 ]

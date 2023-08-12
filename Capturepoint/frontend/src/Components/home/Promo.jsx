@@ -21,7 +21,7 @@ function Promo() {
             src="https://www.adorama.com/images/cms/36471Spotlight-Slidgo-X10-Desktop_72166.jpg"
             alt=""
           />
-          <span class="promo-txt">
+          <span className="promo-txt">
             <h4>Ride into the New Year with Style!</h4>
             <p>
               <strong>NEW </strong>X10 Electric Scooter with Dual-drive motors -
@@ -39,7 +39,7 @@ function Promo() {
             src="https://www.adorama.com/images/cms/36471Leica_Promo-Spotlight-Desktop_12056.jpg"
             alt=""
           />
-          <span class="promo-txt">
+          <span className="promo-txt">
             <h4>Bundle. Upgrade. Reward.</h4>
             <p>
               Save up to $2300 on SL Camera Prime Lenses with the Leica SL
@@ -64,7 +64,7 @@ function Promo() {
           <img src={image4} alt="" />
         </div>
       </section>
-      <div class="company_des">
+      <div className="company_des">
         <h1>Photography Equipment, Video Gear, and Electronics</h1>
         <p>
           We are the world's only full-service destination for

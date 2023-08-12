@@ -1,118 +1,182 @@
-const { productModel } = require("../../Models/productModel");
-const { adminAuthorization } = require("../middleware/adminAuthorization");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const express = require("express");
-const { authorization } = require("../middleware/authorization");
+const validateProduct = require("../middleware/productDetailsValidation");
+const ProductModel = require("../Models/ProductsModel");
 const productRouter = express.Router();
 
 //(^_^)=======================    Add new  Product       =========================
 
-const createProduct = async (req, res) => {
+productRouter.post("/add", validateProduct, async (req, res) => {
   try {
-    const product = await productModel.create(req.body);
+    const product = await ProductModel.create(req.body);
     res.json({ message: "product added successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log("error from adding new product ********************\n", error);
+    res.status(500).json({ message: "error in adding new product" });
   }
-};
+});
 
 //(^_^)=======================  get products with filter    =========================
+productRouter.get("/all", async (req, res) => {
+  try {
+    const products = await ProductModel.find();
+    res.json({ products });
+  } catch (error) {
+    console.log("error from geting all products ********************\n", error);
+    res.status(500).json({ message: "error in geting all product" });
+  }
+});
 
-const getProducts = async (req, res) => {
-  // return res.send("hello world");
+productRouter.get("/search", async (req, res) => {
+  const searchText = req.query.search;
+  const minPrice = parseFloat(req.query.minPrice);
+  const maxPrice = parseFloat(req.query.maxPrice);
+  const minRating = parseFloat(req.query.minRating);
+  const category = req.query.category;
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 10;
+  const sortField = req.query.sortField; // Added sort field
+  const sortOrder = req.query.sortOrder || "asc"; // Added sort order, default to "asc"
 
   try {
-    let page = 1;
-    let limit = Infinity;
-    let skip = 0;
-    if (req.query.page) {
-      page = req.query.page;
-      limit = 10;
-    }
-    if (req.query.limit) {
-      limit = req.query.limit;
-    }
-    skip = limit * (page - 1);
+    let pipeline = [
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          description: 1,
+          price: 1,
+          images: 1,
+          category: 1,
+          brand: 1,
+          stockQuantity: 1,
+          createdAt: 1,
+          avgRating: { $avg: "$ratings.value" },
+        },
+      },
+    ];
 
-    let movies = productModel
-      .find({
-        $and: [
-          { rating: { $lte: req.query.maxrating || 100 } },
-          { rating: { $gte: req.query.minrating || 0 } },
-          { price: { $lte: req.query.maxprice || Infinity } },
-          { price: { $gte: req.query.minprice || 0 } },
-        ],
-        $or: [
-          { title: { $regex: req.query.search || "" } },
-          { description: { $regex: req.query.search || "" } },
-          { category: { $regex: req.query.search || "" } },
-        ],
-      })
-
-      .skip(skip)
-      .limit(limit);
-
-    if (req.query.sort) {
-      let sort = req.query.sort;
-      movies = movies.sort(sort);
+    if (searchText) {
+      const regexSearch = new RegExp(searchText, "i");
+      pipeline.unshift({
+        $match: {
+          $or: [
+            { name: regexSearch },
+            { description: regexSearch },
+            { brand: regexSearch },
+          ],
+        },
+      });
     }
-    let output = await movies;
-    // console.log(output);
-    res.json(output);
+
+    if (!isNaN(minPrice) || !isNaN(maxPrice)) {
+      const priceFilter = {};
+      if (!isNaN(minPrice)) {
+        priceFilter.$gte = minPrice;
+      }
+      if (!isNaN(maxPrice)) {
+        priceFilter.$lte = maxPrice;
+      }
+      pipeline.push({
+        $match: { price: priceFilter },
+      });
+    }
+
+    if (!isNaN(minRating)) {
+      pipeline.push({
+        $match: { avgRating: { $gte: minRating } },
+      });
+    }
+
+    if (category) {
+      pipeline.push({
+        $match: { category: category },
+      });
+    }
+
+    // Sort the results
+    if (sortField) {
+      const sortOrderValue = sortOrder === "desc" ? -1 : 1;
+      const sortStage = {
+        $sort: {
+          [sortField]: sortOrderValue,
+        },
+      };
+      pipeline.push(sortStage);
+    }
+
+    // Calculate total count of products
+    const totalCountPipeline = [...pipeline];
+    totalCountPipeline.push({
+      $group: {
+        _id: null,
+        totalCount: { $sum: 1 },
+      },
+    });
+
+    // Execute pipeline to get products
+    const productsWithAvgRating = await ProductModel.aggregate(pipeline)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+
+    // Execute pipeline to get total count
+    const totalCount = await ProductModel.aggregate(totalCountPipeline);
+
+    res.json({
+      products: productsWithAvgRating,
+      totalCount: totalCount.length > 0 ? totalCount[0].totalCount : 0,
+    });
   } catch (error) {
-    res.json({ message: error.message });
+    console.error("Error fetching product data:", error);
+    res.status(500).json({ message: "Error fetching product data" });
   }
-};
+});
 
 //(^_^)=======================    Get Product with id      =========================
 
-const getProduct = async (req, res) => {
+productRouter.get("/byid/:id", async (req, res) => {
   try {
-    const products = await productModel.findById(req.params.id);
+    const products = await ProductModel.findById(req.params.id);
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
-
+});
 //(^_^)=======================    Update Products       =========================
 
-const updateProduct = async (req, res) => {
-  try {
-    const product = await productModel.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
-    res.json({ message: "product updated successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+// const updateProduct = async (req, res) => {
+//   try {
+//     const product = await productModel.findByIdAndUpdate(
+//       req.params.id,
+//       req.body
+//     );
+//     res.json({ message: "product updated successfully" });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 //(^_^)=======================    Delete Products       =========================
 
-const deleteProduct = async (req, res) => {
-  try {
-    const product = await productModel.findByIdAndDelete(req.params.id);
-    res.json({ message: "product deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+// const deleteProduct = async (req, res) => {
+//   try {
+//     const product = await productModel.findByIdAndDelete(req.params.id);
+//     res.json({ message: "product deleted successfully" });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
-productRouter.get("/", getProducts);
-productRouter.get("/:id", getProduct);
+// productRouter.get("/", getProducts);
+// productRouter.get("/:id", getProduct);
 
 //(^_^)======================= Admin   Authorization       =========================
 
-productRouter.use(adminAuthorization);
+// productRouter.use(adminAuthorization);
 
 //(^_^)=======================    Routes handling    =========================
 
-productRouter.route("/").post(createProduct);
-productRouter.route("/:id").patch(updateProduct).delete(deleteProduct);
+// productRouter.route("/:id").patch(updateProduct).delete(deleteProduct);
 
 //(^_^)=======================    Routes handling    =========================
 
-module.exports = { productRouter };
+module.exports = productRouter;

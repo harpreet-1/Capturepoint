@@ -2,43 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../CSS/home/navbar.css";
 import logo from "../../images/logo.png";
+import Dropdown from "react-bootstrap/Dropdown";
+
+import { useAuthContext } from "../../Context/LoginSignupContext"; // Replace with actual path
 
 function Navbar() {
+  const {
+    setLoginFalse,
+    handleLoginClick,
+    handleSignupClick,
+    isLogin,
+    loginUsername,
+    setUsername,
+  } = useAuthContext();
+
   return (
     <div>
-      <Link></Link>
       <section id="header">
         <div className="daily_discount">
           <span> Enjoy </span>
           <b>5% OFF†</b>
-          <span> purchases every day with the Adorama Edge Credit Card. </span>
-          <Link to="/">LEARN MORE </Link>
+          <span>
+            {" "}
+            purchases every day with the CapturePoint Edge Credit Card.{" "}
+          </span>
         </div>
 
-        <div id="nav__business">
-          <div className="nav__business_item_left uppercase">
-            <Link to="/">adorama business</Link>
-            <Link to="/">adorama rentals</Link>
-            <Link to="/">printque</Link>
-            <Link to="/">our blog</Link>
-          </div>
-          <div className="nav__business_item_right">
-            <Link to="/">
-              <i className="fa-solid fa-phone"></i>
-              800.223.2500
-            </Link>
-
-            <Link to="/">
-              <i className="fa-sharp fa-solid fa-comment"></i>
-              Live Chat
-            </Link>
-            <Link to="/">
-              <i className="fa-solid fa-circle-info"></i>
-              Help
-              <i className="fa-sharp fa-solid fa-angle-down"></i>
-            </Link>
-          </div>
-        </div>
         <div id="primary_content">
           <div id="logo">
             <img src={logo} alt="CapturePoint" />
@@ -53,10 +42,44 @@ function Navbar() {
             </div>
 
             <div id="signin_text">
-              <span id="status">Sign in</span>
+              {/* <span id="status">Sign in</span>
               <span id="username">
                 MY Account <i className="fa-sharp fa-solid fa-angle-down"></i>
-              </span>
+              </span> */}
+
+              <Dropdown>
+                <Dropdown.Toggle variant="" id="dropdown-basic">
+                  {loginUsername}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  {!isLogin && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        handleLoginClick();
+                      }}
+                    >
+                      Login
+                    </Dropdown.Item>
+                  )}
+                  {!isLogin && (
+                    <Dropdown.Item onClick={handleSignupClick}>
+                      Signup
+                    </Dropdown.Item>
+                  )}
+                  {isLogin && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        setUsername("Guest");
+                        localStorage.clear();
+                        setLoginFalse();
+                      }}
+                    >
+                      Logout
+                    </Dropdown.Item>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
 
             <Link to="/cart.html">

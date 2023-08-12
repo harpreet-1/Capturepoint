@@ -12,10 +12,7 @@ Link:hover {
 button {
   cursor: pointer;
 }
-button:hover {
-  border: 2px solid black;
-  border-radius: 5px;
-}
+
 li {
   /* font-size: px; */
   /* text-align: center; */

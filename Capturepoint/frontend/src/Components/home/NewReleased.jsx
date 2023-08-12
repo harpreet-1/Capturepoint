@@ -14,7 +14,7 @@ const newReleasedData = [
     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
     price: "1699.95",
-    id: "1",
+    id: "2",
     des: "TOP RATED GEAR",
     rating: 5,
   },
@@ -22,7 +22,7 @@ const newReleasedData = [
     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
     price: "1699.95",
-    id: "1",
+    id: "3",
     des: "TOP RATED GEAR",
     rating: 5,
   },
@@ -30,7 +30,7 @@ const newReleasedData = [
     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
     price: "1699.95",
-    id: "1",
+    id: "4",
     des: "TOP RATED GEAR",
     rating: 5,
   },
@@ -38,7 +38,7 @@ const newReleasedData = [
     image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
     title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
     price: "1699.95",
-    id: "1",
+    id: "6",
     des: "TOP RATED GEAR",
     rating: 5,
   },
@@ -55,7 +55,7 @@ function NewReleased() {
         <section id="new_release_cards">
           {newReleasedData.map((item) => (
             <div key={item.id} className="pr_card">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image} alt={"item.title"} />
               <div className="rating">
                 {[...Array(item.rating)].map((_, index) => (
                   <i key={index} className="fa-solid fa-star"></i>

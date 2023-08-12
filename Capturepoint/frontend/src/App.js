@@ -7,8 +7,8 @@ import SearchedPr from "./Components/productsPage/SearchedPr";
 import PrDeatail from "./Pages/Pr_deatail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
-
 function App() {
+  console.log("app render");
   return (
     <>
       <div className="App">
@@ -22,7 +22,6 @@ function App() {
             <Route path="/details" element={<PrDeatail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </BrowserRouter>
