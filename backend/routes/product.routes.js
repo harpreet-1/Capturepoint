@@ -33,7 +33,7 @@ productRouter.get("/search", async (req, res) => {
   const minRating = parseFloat(req.query.minRating);
   const category = req.query.category;
   const page = parseInt(req.query.page) || 1;
-  const pageSize = parseInt(req.query.pageSize) || 10;
+  const limit = parseInt(req.query.limit) || 10;
   const sortField = req.query.sortField; // Added sort field
   const sortOrder = req.query.sortOrder || "asc"; // Added sort order, default to "asc"
 
@@ -115,8 +115,8 @@ productRouter.get("/search", async (req, res) => {
 
     // Execute pipeline to get products
     const productsWithAvgRating = await ProductModel.aggregate(pipeline)
-      .skip((page - 1) * pageSize)
-      .limit(pageSize);
+      .skip((page - 1) * limit)
+      .limit(limit);
 
     // Execute pipeline to get total count
     const totalCount = await ProductModel.aggregate(totalCountPipeline);
@@ -141,6 +141,7 @@ productRouter.get("/byid/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 //(^_^)=======================    Update Products       =========================
 
 // const updateProduct = async (req, res) => {
