@@ -19,7 +19,7 @@ const session = require("express-session");
 
 app.get("/", (req, res) => {
   console.log(req.profile, req.user);
-  res.json({ message: "hello from server" });
+  res.json({ message: "hello from new server" });
 });
 
 app.get("/login", (req, res) => {
