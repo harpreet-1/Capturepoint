@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function Left() {
+function Left({ data }) {
   // Image URLs
+  useEffect(() => {
+    setMainImg(data.images[0]);
+  }, [data]);
 
-  const [mainImg, setMainImg] = useState(
-    "https://www.adorama.com/images/Large/gphero10hb.jpg"
-  );
+  const [mainImg, setMainImg] = useState(data?.images[0]);
   const handleImageClick = (imageUrl) => {
     setMainImg(imageUrl);
   };
+  // mainImg !== smallImages[0] ? setMainImg[smallImages[0]] : "";
+
   const smallImages = [
-    "https://www.adorama.com/images/Large/gphero10hb.jpg",
+    data.images[0],
     "https://www.adorama.com/images/Large/gphero10hb_1.jpg",
     "https://www.adorama.com/images/Large/gphero10hb_2.jpg",
     "https://www.adorama.com/images/Large/gphero10hb_3.jpg",

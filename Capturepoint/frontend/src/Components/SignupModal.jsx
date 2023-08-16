@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import { useRef } from "react";
 import { useAuthContext } from "../Context/LoginSignupContext"; // Replace with actual path
+import { Link } from "react-router-dom";
 
 function SignUpModal() {
   const loginForm = useRef();
@@ -108,14 +109,18 @@ function SignUpModal() {
                     </form>
 
                     <p>OR</p>
-
-                    <button id="google">
-                      <img
-                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                        alt=""
-                      />
-                      Sign in with Google
-                    </button>
+                    <Link
+                      id="googleAuth"
+                      to={"http://localhost:8080/auth/google"}
+                    >
+                      <button id="google">
+                        <img
+                          src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                          alt=""
+                        />
+                        Sign in with Google
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

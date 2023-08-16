@@ -1,24 +1,20 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
-
 const cors = require("cors");
 const app = express();
-app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors());
 const { connection } = require("./server");
 var morgan = require("morgan");
 require("dotenv").config();
-
 const { usersRouter } = require("./routes/user.routes");
 const productRouter = require("./routes/product.routes");
 const categoryRouter = require("./routes/cateory.routes");
 const passport = require("./googleAuth.js/auth");
 const googleRouter = require("./googleAuth.js/google.routes");
-const session = require("express-session");
+const checkLogin = require("./middleware/checkLogin");
+const cartRouter = require("./routes/cart.routes");
 
 app.get("/", (req, res) => {
-  console.log(req.profile, req.user);
   res.json({ message: "hello from new server" });
 });
 
@@ -26,14 +22,14 @@ app.get("/login", (req, res) => {
   res.json({ message: "something went wrong" });
 });
 
-app.get("/islogin", (req, res) => {
-  console.log(req.cookies.authToken);
-  res.send("ok");
+app.get("/islogin", checkLogin, (req, res) => {
+  res.json(req.user);
 });
 
 app.use("/users", usersRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
+app.use("/cart", cartRouter);
 app.use("/auth/google", googleRouter);
 
 app.listen(8080, () => {

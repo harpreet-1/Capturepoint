@@ -2,115 +2,7 @@ import { Link } from "react-router-dom";
 import "../../CSS/home/SpeacialProduct.css";
 import React, { useRef } from "react";
 
-function SpeacialProduct() {
-  const topDeals = [
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    {
-      imgSrc: "https://www.adorama.com/images/product/ifjxt4s.jpg",
-      title: "Fujifilm X-T4 Mirrorless Digital Camera Body, Silver",
-      rating: 5,
-      marketPrice: "$1699.00",
-      discount: "Instant Rebate: $150.00",
-      nowPrice: "Price : $1549.00",
-    },
-    // Add other product objects here...
-  ];
-
+function SpeacialProduct({ data }) {
   const sliderRef = useRef(null);
 
   const handleSlideRight = () => {
@@ -137,22 +29,25 @@ function SpeacialProduct() {
             <i className="fa-solid fa-arrow-right"></i>
           </div>
           <section id="top_deal_cards" ref={sliderRef}>
-            {topDeals.map((deal, index) => (
+            {data.map((deal, index) => (
               <div className="top_deal_card" key={index}>
-                <img src={deal.imgSrc} alt="aaaa" />
+                <img
+                  src={"https://www.adorama.com/images/product/ifjxt4s.jpg"}
+                  alt={deal.name}
+                />
                 <h2>
-                  <Link to="" className="Pr_title">
-                    {deal.title}
+                  <Link to={`/details/${deal._id}`} className="Pr_title">
+                    {deal.name}
                   </Link>
                 </h2>
                 <div className="rating">
-                  {Array.from({ length: deal.rating }, (_, idx) => (
+                  {Array.from({ length: deal.rating || 5 }, (_, idx) => (
                     <i key={idx} className="fa-solid fa-star"></i>
                   ))}
                 </div>
-                <p className="market_price">{deal.marketPrice}</p>
-                <p className="discount">{deal.discount}</p>
-                <p className="now_price">{deal.nowPrice}</p>
+                <p className="market_price">{`$${deal.price}`}</p>
+                <p className="discount">{`Instant Rebate: $150.00`}</p>
+                <p className="now_price">{`Price : $${deal.price}`}</p>
               </div>
             ))}
           </section>

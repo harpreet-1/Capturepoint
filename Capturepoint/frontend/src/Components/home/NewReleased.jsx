@@ -1,75 +1,53 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../../CSS/home/NewReleased.css";
 import { Link } from "react-router-dom";
-const newReleasedData = [
-  {
-    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-    price: "1699.95",
-    id: "1",
-    des: "TOP RATED GEAR",
-    rating: 5,
-  },
-  {
-    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-    price: "1699.95",
-    id: "2",
-    des: "TOP RATED GEAR",
-    rating: 5,
-  },
-  {
-    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-    price: "1699.95",
-    id: "3",
-    des: "TOP RATED GEAR",
-    rating: 5,
-  },
-  {
-    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-    price: "1699.95",
-    id: "4",
-    des: "TOP RATED GEAR",
-    rating: 5,
-  },
-  {
-    image: "https://www.adorama.com/images/Large/ifjxt5s.jpg",
-    title: "Fujifilm X-T5 Mirrorless Digital Camera Body, Silver",
-    price: "1699.95",
-    id: "6",
-    des: "TOP RATED GEAR",
-    rating: 5,
-  },
-  // Add more data objects as needed
-];
 
-function NewReleased() {
+function NewReleased({ data }) {
+  const sliderRef = useRef(null);
+
+  const handleSlideRight = () => {
+    console.log(sliderRef.current.scrollLeft);
+    sliderRef.current.scrollLeft += sliderRef.current.clientWidth * 0.5;
+  };
+  const handleSlideLeft = () => {
+    sliderRef.current.scrollLeft -= sliderRef.current.clientWidth * 0.5;
+  };
   return (
     <>
       <section id="new_releases">
         <section>
           <h3>NEW RELEASES</h3>
         </section>
-        <section id="new_release_cards">
-          {newReleasedData.map((item) => (
-            <div key={item.id} className="pr_card">
-              <img src={item.image} alt={"item.title"} />
-              <div className="rating">
-                {[...Array(item.rating)].map((_, index) => (
-                  <i key={index} className="fa-solid fa-star"></i>
-                ))}
+        <section className="pr_slider">
+          <div className="l_btn" onClick={handleSlideLeft}>
+            <i className="fa-solid fa-arrow-left"></i>
+          </div>
+          <div className="r_btn" onClick={handleSlideRight}>
+            <i className="fa-solid fa-arrow-right"></i>
+          </div>
+          <section id="new_release_cards" ref={sliderRef}>
+            {data?.map((item) => (
+              <div key={item._id} className="pr_card">
+                <div className="card_image">
+                  <img src={item.images[0]} alt={"item.title"} />
+                </div>
+                <div className="rating">
+                  {[...Array(item.rating || 5)].map((_, index) => (
+                    <i key={index} className="fa-solid fa-star"></i>
+                  ))}
+                </div>
+                <h3>
+                  <Link className="new_pr_title" to={`/details/${item._id}`}>
+                    {item.name}
+                  </Link>
+                </h3>
+                <p className="new_release_price">{`$${item.price}`}</p>
+                <p className="new_release_des">
+                  {`${item.description.slice(0, 38)}...`}
+                </p>
               </div>
-              <h3>
-                <Link className="new_pr_title" to={item.title}>
-                  {item.title}
-                </Link>
-              </h3>
-              <p className="new_release_price">{item.price}</p>
-              <p className="new_release_des">{item.des}</p>
-            </div>
-          ))}
+            ))}
+          </section>
         </section>
       </section>
     </>

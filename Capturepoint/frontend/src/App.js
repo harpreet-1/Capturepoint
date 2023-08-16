@@ -7,8 +7,13 @@ import SearchedPr from "./Components/productsPage/SearchedPr";
 import PrDeatail from "./Pages/Pr_deatail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
+import Islogin from "./helper/Islogin";
+import LoginModal from "./Components/LoginModal";
+import SignUpModal from "./Components/SignupModal";
+
 function App() {
-  console.log("app render");
+  Islogin();
+  console.log("appp render*************");
   return (
     <>
       <div className="App">
@@ -16,10 +21,12 @@ function App() {
 
         <BrowserRouter>
           <Navbar />
+          <LoginModal />
+          <SignUpModal />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<SearchedPr />} />
-            <Route path="/details" element={<PrDeatail />} />
+            <Route path="/details/:prId" element={<PrDeatail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<h1>Not Found</h1>} />

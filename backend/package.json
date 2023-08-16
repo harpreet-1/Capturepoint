@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,6 @@
     "passport-google-oauth20": "^2.0.0"
   },
   "engines": {
-    "node": ">=14.20.1" 
+    "node": ">=14.20.1"
   }
 }

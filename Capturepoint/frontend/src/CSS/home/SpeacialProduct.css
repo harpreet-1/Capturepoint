@@ -18,13 +18,8 @@
 #top_deals_head i {
   margin-right: 10px;
   font-size: 32px;
-  color: rgb(92, 196, 255);
+  color: rgb(158, 186, 202);
 }
-/* #top_deal_cards {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
 .Pr_title {
   color: #06c;
   text-decoration: none;
@@ -32,14 +27,17 @@
 .Pr_title:hover {
   text-decoration: underline;
 }
+#top_deal_cards {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
 .top_deal_card {
+  border-radius: 7px;
   text-align: center;
   background-color: white;
-  width: 190.857px;
   padding: 15px;
-  margin-right: 15px;
-  /* box-sizing: border-box; */
-  /* padding: 10px; */
+  margin: 0 10px;
 }
 .top_deal_card img {
   width: 100%;
@@ -48,8 +46,7 @@
   font-weight: 400;
   padding: 4px 6px;
   font-size: 0.875em;
-  width: 161.857px;
-  margin-right: 10px;
+  width: 200px;
 }
 .rating i {
   color: orange;
@@ -76,11 +73,7 @@
   overflow-x: hidden;
   position: relative;
 }
-#top_deal_cards {
-  display: flex;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
+
 #top_deal_cards::-webkit-scrollbar {
   background-color: transparent;
   height: 7px;
@@ -100,14 +93,20 @@
   width: 50px;
   top: 40%;
   color: #004387;
-
   font-size: 30px;
   position: absolute;
   justify-content: center;
   display: flex;
   align-items: center;
-  background-color: rgb(232, 218, 218);
+  background-color: rgba(232, 218, 218, 0.635);
   border-radius: 50%;
-  border: 2px solid #004387;
+
   cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+.l_btn:hover,
+.r_btn:hover {
+  height: 55px;
+  width: 55px;
+  background-color: rgb(232, 218, 218);
 }

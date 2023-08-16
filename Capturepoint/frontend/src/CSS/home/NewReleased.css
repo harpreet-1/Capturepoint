@@ -4,24 +4,49 @@
   margin-bottom: 50px;
 }
 #new_release_cards {
-  display: grid;
+  background-color: white;
+  overflow-x: scroll;
+  display: flex;
   gap: 10px;
-  grid-template-columns: repeat(6, 1fr);
+  scroll-behavior: smooth;
 }
-
+#new_release_cards::-webkit-scrollbar {
+  display: none;
+}
 #new_releases section h3 {
   font-weight: 400;
+  width: 220px;
 }
 
 .pr_card {
-  overflow: hidden;
-  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  width: 300px;
 
   padding: 15px;
+  background-color: white;
+  margin: 15px;
+  border-radius: 4px;
+}
+.card_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  height: 220px;
 }
 .pr_card img {
+  transition: ease-out 0.5s;
   width: 100%;
-  margin: auto;
+}
+
+.pr_card img:hover {
+  width: 120%;
+}
+.pr_card i {
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 .new_release_price {

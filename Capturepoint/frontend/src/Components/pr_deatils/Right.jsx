@@ -1,34 +1,109 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useAuthContext } from "../../Context/LoginSignupContext";
 
-function Right() {
+function Right({ data }) {
+  let navigate = useNavigate();
+  let { prId } = useParams();
+
+  const [productInCart, setproductInCart] = useState(null);
+  const [addToCartBtnText, setaddToCartBtnText] = useState("Add To Cart");
+
+  const [quantity, setQuantity] = useState(1);
+  const token = localStorage.getItem("token");
+  const { isLogin } = useAuthContext();
+
   const productDetails = {
-    model: "SPECIAL",
-    title: "GoPro HERO10 Black Action Camera with Holiday Bundle",
-    sku: "GPHERO10HB",
-    mfr: "CHDRB-101-TH",
-    rating: 4,
-    price: "428.00",
     savings: "70.00",
     discount: "14%",
-    financingText:
-      "$72 /mo suggested payments with 6‑month special financing. Learn how.",
-    stockMessage: "In Stock & Ready to Ship",
-    shippingOptionsLink: "#",
     discountMessage:
       "Regular Price: $498.00 - Instant Rebate: $70.00 = $428.00 Sale price ends on 01/21/23",
   };
-  const [quantity, setQuantity] = useState(1);
 
-  const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const handleAddToCart = () => {
+    if (addToCartBtnText === "Added To Cart") return navigate("/cart");
+    try {
+      fetch(`${process.env.REACT_APP_BASE_URL}/cart/add-to-cart/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/Json",
+          "auth-token": token,
+        },
+        body: JSON.stringify({
+          quantity,
+          productId: prId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert(data.message);
+          setaddToCartBtnText("Added To Cart");
+          if (data.message === "Product added to cart.") {
+            setproductInCart(data.newCartItem);
+          }
+          if (data.message === "Product quantity updated.") {
+            setproductInCart(data.existingCartItem);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDecrement = () => {
+    if (
+      quantity > 1 &&
+      productInCart &&
+      quantity - 1 !== productInCart.quantity
+    ) {
+      setaddToCartBtnText("Update Quantity");
+    } else if (productInCart && quantity > 1) {
+      setaddToCartBtnText("Added To Cart");
+    }
+
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
+  const handleIncrement = () => {
+    if (productInCart && quantity + 1 !== productInCart.quantity) {
+      setaddToCartBtnText("Update Quantity");
+    } else if (productInCart) {
+      setaddToCartBtnText("Added To Cart");
+    }
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+  function checkIsCartAdded(url) {
+    try {
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "auth-token": token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.message === "Product is already in the cart.") {
+            setproductInCart(data.existingCartItem);
+            setQuantity(data.existingCartItem.quantity);
+            setaddToCartBtnText("Added To Cart");
+          } else {
+            alert("not in cart");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    const isAddedInCartApi = `${process.env.REACT_APP_BASE_URL}/cart/check-in-cart/${prId}`;
+    if (isLogin) checkIsCartAdded(isAddedInCartApi);
+
+    window.scrollTo({ top: 0 });
+  }, [prId]);
+
   return (
     <div className="right">
       <div className="share">
@@ -36,23 +111,21 @@ function Right() {
         <i className="fa-solid fa-share-from-square"></i>
       </div>
       <p className="model">SPECIAL</p>
-      <h1 className="pr_details_title">
-        GoPro HERO10 Black Action Camera with Holiday Bundle
-      </h1>
+      <h1 className="pr_details_title">{data.name}</h1>
       <p className="model">
         <span>SKU: GPHERO10HB</span>
         <span> MFR: CHDRB-101-TH</span>
       </p>
       <div className="rating">
         {<i className="fa-solid fa-star"></i>}
-        {[...Array(5)].map((_, starIndex) => (
+        {[...Array(data.rating || 4)].map((_, starIndex) => (
           <i key={starIndex} className="fa-solid fa-star"></i>
         ))}
       </div>
       <div className="price_box">
         <div className="price">
           <h1>$</h1>
-          <h1 id="now_price">{productDetails.price}</h1>
+          <h1 id="now_price">{data.price}</h1>
         </div>
         <div className="save">
           <p>You Save:</p>
@@ -89,8 +162,8 @@ function Right() {
             ></i>
           </div>
         </div>
-        <div id="addtocart">
-          <span>Add to Cart</span>
+        <div onClick={handleAddToCart} id="addtocart">
+          <span>{addToCartBtnText}</span>
         </div>
       </div>
 

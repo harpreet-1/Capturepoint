@@ -54,9 +54,6 @@
   border-bottom: 1px solid grey;
 }
 
-#login_body input:hover {
-  border-bottom: 1px solid rgb(36, 33, 33);
-}
 #login_body input[type="submit"] {
   background: linear-gradient(180deg, #fc5d37 0%, #ed5132 49%, #e64525 100%);
   font-weight: 800;
@@ -67,11 +64,6 @@
   align-items: center;
 }
 
-#login_body .right_box a {
-  color: #06c;
-  margin: auto;
-  text-align: center;
-}
 #login_body a + p {
   text-align: center;
 }
@@ -104,4 +96,7 @@
 }
 #login_body a + p {
   margin-top: 15px;
+}
+#login_body a:hover {
+  text-decoration: none;
 }

@@ -1,7 +1,9 @@
 const express = require("express");
 const passport = require("../googleAuth.js/auth");
 const jwt = require("jsonwebtoken");
-
+const UserModel = require("../Models/userModel");
+require("dotenv").config();
+const bcrypt = require("bcrypt");
 const googleRouter = express.Router();
 googleRouter.get(
   "/",
@@ -14,46 +16,44 @@ googleRouter.get(
     failureRedirect: "/login",
     session: false,
   }),
-  (req, res) => {
+
+  async (req, res) => {
     console.log("Google callback triggered");
+    let { email, name: username } = req.user._json;
+    console.log(email);
+    let existUser = await UserModel.findOne({ email });
+    let user = {};
+    if (existUser) {
+      user = {
+        username: existUser.username,
+        email,
+        id: existUser._id,
+      };
+    } else {
+      let password = `${Math.floor(Math.random() * 19999)}`;
+      const hashedPassword = await bcrypt.hash(password, 5);
+      console.log(hashedPassword);
+      let newUser = await UserModel.create({
+        email,
+        password: hashedPassword,
+        username,
+      });
 
-    const secretKey = "your-secret-key"; // Replace with your secret key
-    const user = {
-      id: "user123",
-      name: "John Doe",
-    };
+      user = {
+        username,
+        email,
+        id: newUser._id,
+      };
+    }
+    console.log("google se aaya---->", user);
     // Create a JWT with user data
-    const token = jwt.sign(user, "secretKey", { expiresIn: "1h" });
-
-    // Set the token as an HTTP-only cookie
-    res.cookie("authToken", token, {
-      httpOnly: true,
-      secure: false,
-      maxAge: 3600000,
-    }); // 1 hour expiration
+    const token = jwt.sign({ user }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     // Redirect the user to your frontend URL
-    res.redirect("http://localhost:3000");
+    res.redirect(`http://localhost:3000?token=${token}`);
   }
 );
-
-// Serialize user into the session
-passport.serializeUser((user, done) => {
-  // Save the user's unique identifier (e.g., Google profile ID) in the session
-  console.log("*****************from serializer*************", user);
-  done(null, user.id);
-});
-
-// Deserialize user from the session
-passport.deserializeUser(async (id, done) => {
-  console.log("*****************from deserializer*************", id);
-  // Fetch the user's data based on the saved identifier and return it
-  try {
-    const user = await getUserById(id); // Replace with your database logic
-    done(null, user);
-  } catch (error) {
-    done(error, null);
-  }
-});
 
 module.exports = googleRouter;
