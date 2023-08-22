@@ -100,3 +100,8 @@
 #login_body a:hover {
   text-decoration: none;
 }
+.messagetouser {
+  text-align: center;
+
+  margin-top: 150px;
+}

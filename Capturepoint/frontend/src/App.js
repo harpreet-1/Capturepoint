@@ -10,6 +10,7 @@ import Checkout from "./Pages/Checkout";
 import Islogin from "./helper/Islogin";
 import LoginModal from "./Components/LoginModal";
 import SignUpModal from "./Components/SignupModal";
+import Orders from "./Pages/Orders";
 
 function App() {
   Islogin();
@@ -29,7 +30,8 @@ function App() {
             <Route path="/details/:prId" element={<PrDeatail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="*" element={<h1>Not Found</h1>} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>

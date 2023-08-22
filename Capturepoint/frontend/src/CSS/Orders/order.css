@@ -1,0 +1,91 @@
+.ordersHeading {
+  margin: 30px 100px;
+}
+
+.ordersCards {
+  width: 90%;
+  margin: auto;
+}
+.ordercard {
+  border-radius: 5px;
+  border: 2px solid rgba(128, 128, 128, 0.486);
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.ordercard > div {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.217);
+}
+.orderCardHeader h4 {
+  width: fit-content;
+  padding: 12px 20px;
+  background-color: rgb(63, 64, 65);
+  border-radius: 5px 0 0 0;
+  font-size: 17px;
+  color: white;
+  margin-bottom: 0;
+}
+.orderCardBody,
+.orderPrCardRight,
+.orderPrCardLeft,
+.orderCardFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.orderPrCardimg img {
+  width: 120px;
+  border-radius: 10px;
+}
+.orderPrCardNdetails {
+  margin-left: 15px;
+}
+.orderPrCardQuantity {
+  font-size: 14px;
+  color: grey;
+}
+.orderPrCardQuantity span {
+  color: rgb(68, 65, 65);
+}
+.orderPrCardName {
+  max-width: 300px;
+  font-size: 14px;
+}
+.orderPrCardRight {
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  border-left: 1px solid rgba(128, 128, 128, 0.447);
+  min-width: 40%;
+  padding: 15px;
+}
+.cancleOrderbtn {
+  border: transparent;
+  background-color: rgb(228, 8, 15);
+  padding: 6px 15px;
+  border-radius: 5px;
+  border: 2px solid rgb(228, 8, 15);
+  color: white;
+  font-weight: 600;
+}
+.cancleOrderbtn:hover {
+  background-color: white;
+  border: 2px solid rgba(228, 8, 15, 0.676);
+  color: rgba(228, 8, 15, 0.756);
+}
+
+.orderTotalamount {
+  color: grey;
+  text-align: right;
+}
+.orderTotalamount span {
+  color: rgb(70, 66, 66);
+  padding: 0 10px;
+}
+.orderCardFooter {
+  justify-content: space-around;
+  gap: 20px;
+}
+.orderCardFooter span {
+  font-size: 16px;
+}

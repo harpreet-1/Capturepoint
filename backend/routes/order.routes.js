@@ -8,6 +8,7 @@ const orderRouter = express.Router();
 const checkLogin = require("../middleware/checkLogin");
 const OrderModel = require("../Models/OrderModel");
 const CartModel = require("../Models/CartModel");
+const ProductModel = require("../Models/ProductsModel");
 
 // confirm order *********
 
@@ -72,46 +73,28 @@ orderRouter.get("/my-products", checkLogin, async (req, res) => {
   }
 });
 
-// Get all orders for a specific user with product details
-orderRouter.get("/my-order", checkLogin, async (req, res) => {
+// Route to get order details for a specific user
+orderRouter.get("/my", checkLogin, async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const orders = await OrderModel.aggregate([
-      { $match: { user: mongoose.Types.ObjectId(userId) } },
-      {
-        $lookup: {
-          from: "products", // Name of the products collection
-          localField: "products.product",
-          foreignField: "_id",
-          as: "productsInfo",
-        },
-      },
-      {
-        $project: {
-          user: 1,
-          products: 1,
-          orderStatus: 1,
-          orderTotal: 1,
-          createdAt: 1,
-          shippingAddress: 1,
-          productsInfo: {
-            name: 1,
-            price: 1,
-            description: 1,
-            images: 1,
-            category: 1,
-            brand: 1,
-            stockQuantity: 1,
-          },
-        },
-      },
-    ]);
+    // Fetch orders for the specific user from the database
+    const orders = await OrderModel.find({ user: userId })
+      .populate({
+        path: "products.product",
+        model: ProductModel,
+        select: "name price images description category brand stockQuantity",
+      })
+      .exec();
 
-    res.json(orders);
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({ message: "No Orders Yet.", orders });
+    }
+
+    return res.status(200).json({ success: true, orders });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
