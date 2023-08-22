@@ -13,6 +13,7 @@ const passport = require("./googleAuth.js/auth");
 const googleRouter = require("./googleAuth.js/google.routes");
 const checkLogin = require("./middleware/checkLogin");
 const cartRouter = require("./routes/cart.routes");
+const orderRouter = require("./routes/order.routes");
 
 app.get("/", (req, res) => {
   res.json({ message: "hello from new server" });
@@ -30,6 +31,7 @@ app.use("/users", usersRouter);
 app.use("/products", productRouter);
 app.use("/category", categoryRouter);
 app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 app.use("/auth/google", googleRouter);
 
 app.listen(8080, () => {

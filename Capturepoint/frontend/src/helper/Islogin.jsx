@@ -1,7 +1,7 @@
 import { useAuthContext } from "../Context/LoginSignupContext";
 
 const Islogin = () => {
-  const { setLoginTrue, setUsername } = useAuthContext();
+  const { setLoginTrue, setLoginFalse, setUsername } = useAuthContext();
   try {
     let params = window.location.search.split("token=")[1];
     let token = params || localStorage.getItem("token") || null;
@@ -19,11 +19,15 @@ const Islogin = () => {
           if (data.username) {
             setUsername(data.username);
             setLoginTrue();
+          } else {
+            setLoginFalse();
           }
         })
         .catch((err) => {
           console.log("not login", err);
         });
+    } else {
+      setLoginFalse();
     }
     if (params) {
       localStorage.setItem("token", params);

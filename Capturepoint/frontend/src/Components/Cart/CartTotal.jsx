@@ -1,47 +1,62 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCartContext } from "../../Context/CartContext";
 
 function CartTotal() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { myCartTotal } = useCartContext();
   return (
-    <div class="cart_total_box">
-      <header>
-        <h2>Cart Summary</h2>
-      </header>
-      <div class="total_details">
-        <div class="subtotal">
-          <div>
-            <p>Subtotal</p>
+    myCartTotal && (
+      <div className="cart_total_box">
+        <header>
+          <h2>Cart Summary</h2>
+        </header>
+        <div className="total_details">
+          <div className="subtotal">
+            <div>
+              <p>Subtotal</p>
+            </div>
+            <div className="subtotal_element">
+              <span>$</span> <span id="sub_total">{myCartTotal}</span>
+            </div>
           </div>
-          <div class="subtotal_element">
-            <span>$</span> <span id="sub_total">0</span>
+          <p>Sipping</p>
+          <div className="charge">
+            <Link className="a_link" to="">
+              UPS Worldwide Express
+            </Link>{" "}
+            <span>{myCartTotal && "$64"}</span>
           </div>
-        </div>
-        <p>Sipping</p>
-        <div class="charge">
-          <Link className="a_link" to="">
-            UPS Worldwide Express
-          </Link>{" "}
-          <span>$64</span>
-        </div>
-        <div class="taxes">
-          <div>Taxes</div>
-          <div>$0</div>
-        </div>
-        <div class="order_total">
-          <div>
-            <h3>Order Total</h3>
+          <div className="taxes">
+            <div>Taxes</div>
+            <div>$0</div>
           </div>
-          <div>
-            <span>
-              <h3 class="dollor">$</h3>
-            </span>
-            <h3 class="total_order_element">767</h3>
+          <div className="order_total">
+            <div>
+              <h3>Order Total</h3>
+            </div>
+            <div>
+              <span>
+                <h3 className="dollor">$</h3>
+              </span>
+              <h3 className="total_order_element">{myCartTotal + 64}</h3>
+            </div>
           </div>
-        </div>
 
-        <div class="checkout_btn">Proceed to Checkout</div>
+          <div
+            className="checkout_btn"
+            onClick={() => {
+              navigate("/checkout", {
+                state: { from: location.pathname, total: myCartTotal },
+              });
+            }}
+          >
+            Proceed to Checkout
+          </div>
+        </div>
       </div>
-    </div>
+    )
   );
 }
 

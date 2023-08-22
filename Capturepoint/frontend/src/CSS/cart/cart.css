@@ -168,22 +168,24 @@
   padding-left: 10px;
 }
 .remove_button {
+  transition: 0.4s;
   font-size: 18px;
   font-weight: 600;
-  background: linear-gradient(180deg, #fc5d37 0%, #ed5132 49%, #e64525 100%);
+  background: linear-gradient(180deg, #fc5d37 0%, #811b07 49%, #e64525 100%);
   display: flex;
   padding: 12px;
   width: 150px;
+  height: 50px;
   border-radius: 5px;
   justify-content: center;
   color: white;
   align-items: center;
-  margin-left: 15%;
+  margin-left: 5%;
   cursor: pointer;
   /* border: 1px solid rebeccapurple; */
 }
 .remove_button:hover {
-  color: black;
+  font-size: 17px;
 }
 
 .cart_total_box header {
@@ -259,4 +261,10 @@
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+.continueShoppingbtn {
+  width: fit-content;
+  padding: 10px 50px;
+  margin: 100px auto;
 }

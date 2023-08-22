@@ -7,7 +7,7 @@ export const useAuthContext = () => useContext(AuthContext);
 export function AuthProvider({ children }) {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [isLogin, setisLogin] = useState(false);
+  const [isLogin, setisLogin] = useState(true);
   const [loginUsername, setloginUsername] = useState("Guest");
 
   const setUsername = (name) => {

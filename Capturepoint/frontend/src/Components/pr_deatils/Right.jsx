@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../Context/LoginSignupContext";
+import Islogin from "../../helper/Islogin";
 
 function Right({ data }) {
   let navigate = useNavigate();
@@ -11,7 +12,7 @@ function Right({ data }) {
 
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
-  const { isLogin } = useAuthContext();
+  const { isLogin, handleLoginClick } = useAuthContext();
 
   const productDetails = {
     savings: "70.00",
@@ -162,7 +163,15 @@ function Right({ data }) {
             ></i>
           </div>
         </div>
-        <div onClick={handleAddToCart} id="addtocart">
+        <div
+          onClick={() => {
+            if (isLogin) {
+              return handleAddToCart();
+            }
+            handleLoginClick();
+          }}
+          id="addtocart"
+        >
           <span>{addToCartBtnText}</span>
         </div>
       </div>

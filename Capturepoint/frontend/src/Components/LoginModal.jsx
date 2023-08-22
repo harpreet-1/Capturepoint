@@ -93,14 +93,18 @@ function LoginModal() {
                       <p>Forget Password ?</p>
                     </Link>
                     <p>OR</p>
-
-                    <button id="google">
-                      <img
-                        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                        alt=""
-                      />
-                      Sign in with Google
-                    </button>
+                    <Link
+                      id="googleAuth"
+                      to={"http://localhost:8080/auth/google"}
+                    >
+                      <button id="google">
+                        <img
+                          src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                          alt=""
+                        />
+                        Sign in with Google
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

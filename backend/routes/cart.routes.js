@@ -1,5 +1,5 @@
 const { authorization } = require("../middleware/authorization");
-
+const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
@@ -7,26 +7,60 @@ const cartRouter = express.Router();
 const CartModel = require("../Models/CartModel");
 const checkLogin = require("../middleware/checkLogin");
 
-// const deletecart = async (req, res) => {
-//   try {
-//     const cart = await CartModel.findByIdAndDelete(req.params.id);
-//     res.json({ message: "cart deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-const getcart = async (req, res) => {
+// GET /cart/:userId
+cartRouter.get("/my-cart", checkLogin, async (req, res) => {
   try {
-    const carts = await CartModel.find({ user: req.user.id }).populate(
-      "productId"
-    );
-    res.json(carts);
+    const userId = req.user.id;
+    console.log(userId);
+
+    const pipeline = [
+      {
+        $match: { userId: new mongoose.Types.ObjectId(userId) },
+      },
+      {
+        $lookup: {
+          from: "products", // Collection name for products
+          localField: "productId",
+          foreignField: "_id",
+          as: "product",
+        },
+      },
+      {
+        $unwind: "$product",
+      },
+      {
+        $project: {
+          _id: 1,
+          productId: "$product._id",
+          name: "$product.name",
+          price: "$product.price",
+          quantity: 1,
+          description: "$product.description",
+          category: "$product.category",
+          images: "$product.images",
+          brand: "$product.brand",
+          brastockQuantitynd: "$product.brastockQuantitynd",
+
+          itemTotal: { $multiply: ["$quantity", "$product.price"] },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          cartItems: { $push: "$$ROOT" },
+          totalAmount: { $sum: "$itemTotal" },
+        },
+      },
+    ];
+
+    const result = await CartModel.aggregate(pipeline);
+
+    res.status(200).json(result);
   } catch (error) {
-    console.log("*********error from  geting cart products************", error);
-    res.status(500).json({ message: "internal server error" });
+    console.log("*********error from/my-cart************", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-};
+});
 
 // Route to add a product to the cart
 cartRouter.get("/check-in-cart/:productId", checkLogin, async (req, res) => {
@@ -59,6 +93,7 @@ cartRouter.get("/check-in-cart/:productId", checkLogin, async (req, res) => {
     res.status(500).json({ error: "internal server error." });
   }
 });
+
 cartRouter.post("/add-to-cart/", checkLogin, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -96,11 +131,42 @@ cartRouter.post("/add-to-cart/", checkLogin, async (req, res) => {
   }
 });
 
-cartRouter.use(authorization);
+cartRouter.post("/update-cart-quantity/:id", checkLogin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantity } = req.body;
+    // Check if the product is already in the cart for the user
 
-cartRouter.get("/", checkLogin, getcart);
-// cartRouter.post("/create", createcart);
-// cartRouter.patch("/update", updatecart);
-// cartRouter.delete("/delete", deletecart);
+    const updatedProduct = await CartModel.findByIdAndUpdate(id, {
+      quantity,
+    });
+
+    return res.json({
+      message: "Product Quantity updated.",
+      updatedProduct,
+    });
+  } catch (error) {
+    console.log(
+      "*********error from/cart/update/:productId************",
+      error
+    );
+    res.status(500).json({ error: "internal server error." });
+  }
+});
+cartRouter.delete("/delete/:id", checkLogin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Check if the product is already in the cart for the user
+
+    const updatedProduct = await CartModel.findByIdAndDelete(id);
+
+    return res.json({
+      message: "Product  deleted.",
+    });
+  } catch (error) {
+    console.log("*********error from/cart/delete/:id************", error);
+    res.status(500).json({ error: "internal server error." });
+  }
+});
 
 module.exports = cartRouter;
