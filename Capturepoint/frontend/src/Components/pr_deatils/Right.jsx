@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../../Context/LoginSignupContext";
-import Islogin from "../../helper/Islogin";
+import { useAlertContext } from "../../Context/AlertContext";
 
-function Right({ data }) {
-  let navigate = useNavigate();
+function Right({ data, prUpdated, setPrUpdated }) {
+  const { showAlert } = useAlertContext();
+  console.log(data);
+  console.log("right");
+
   let { prId } = useParams();
 
   const [productInCart, setproductInCart] = useState(null);
+  const [isReachmax, setIsReachmax] = useState(false);
   const [addToCartBtnText, setaddToCartBtnText] = useState("Add To Cart");
+  const [isOutOfStock, setIsOutOfStock] = useState(
+    data.stockQuantity ? false : true
+  );
 
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
@@ -22,28 +29,40 @@ function Right({ data }) {
   };
 
   const handleAddToCart = () => {
-    if (addToCartBtnText === "Added To Cart") return navigate("/cart");
+    if (addToCartBtnText === "Added To Cart") {
+      return;
+    }
+    let url = `${process.env.REACT_APP_BASE_URL}/cart/add-to-cart/`;
+    let payload = {
+      quantity,
+      productId: prId,
+    };
+    if (productInCart) {
+      url = `${process.env.REACT_APP_BASE_URL}/cart/update-cart-quantity/${productInCart._id}`;
+      payload.oldQuantity = productInCart.quantity;
+    }
+    console.log(url);
     try {
-      fetch(`${process.env.REACT_APP_BASE_URL}/cart/add-to-cart/`, {
+      fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "Application/Json",
           "auth-token": token,
         },
-        body: JSON.stringify({
-          quantity,
-          productId: prId,
-        }),
+        body: JSON.stringify(payload),
       })
         .then((res) => res.json())
-        .then((data) => {
-          alert(data.message);
-          setaddToCartBtnText("Added To Cart");
-          if (data.message === "Product added to cart.") {
-            setproductInCart(data.newCartItem);
+        .then((res) => {
+          showAlert(res.message, "success", 1000);
+
+          if (res.maxQuantity) {
+            setPrUpdated((prev) => !prev);
+            setQuantity(res.maxQuantity);
           }
-          if (data.message === "Product quantity updated.") {
-            setproductInCart(data.existingCartItem);
+
+          if (res.newQuantity || res.success) {
+            setaddToCartBtnText("Added To Cart");
+            setPrUpdated((prev) => !prev);
           }
         });
     } catch (error) {
@@ -65,8 +84,40 @@ function Right({ data }) {
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
+    if (isOutOfStock && quantity > 1) {
+      setIsOutOfStock(false);
+    }
   };
   const handleIncrement = () => {
+    if (
+      productInCart &&
+      productInCart.quantity === quantity + 1 &&
+      productInCart.stockQuantity === 0
+    ) {
+      setIsOutOfStock(true);
+      return;
+    }
+    if (isOutOfStock) {
+      return;
+    }
+
+    if (productInCart) {
+      if (quantity + 1 - productInCart.quantity > data.stockQuantity) {
+        setIsReachmax(true);
+        setTimeout(() => {
+          setIsReachmax(false);
+        }, 2000);
+        return;
+      }
+    } else {
+      if (quantity + 1 > data.stockQuantity) {
+        setIsReachmax(true);
+        setTimeout(() => {
+          setIsReachmax(false);
+        }, 2000);
+        return;
+      }
+    }
     if (productInCart && quantity + 1 !== productInCart.quantity) {
       setaddToCartBtnText("Update Quantity");
     } else if (productInCart) {
@@ -89,8 +140,11 @@ function Right({ data }) {
             setproductInCart(data.existingCartItem);
             setQuantity(data.existingCartItem.quantity);
             setaddToCartBtnText("Added To Cart");
-          } else {
-            alert("not in cart");
+            console.log(data.existingCartItem.productId.stockQuantity);
+            // setIsOutOfStock(
+            //   data.existingCartItem.productId.stockQuantity ? false : true
+            // );
+            setIsOutOfStock(false);
           }
         });
     } catch (error) {
@@ -100,8 +154,16 @@ function Right({ data }) {
 
   useEffect(() => {
     const isAddedInCartApi = `${process.env.REACT_APP_BASE_URL}/cart/check-in-cart/${prId}`;
-    if (isLogin) checkIsCartAdded(isAddedInCartApi);
-
+    if (isLogin) {
+      checkIsCartAdded(isAddedInCartApi);
+    }
+    if (!isLogin) {
+      setaddToCartBtnText("Add To Cart");
+      setQuantity(1);
+      setproductInCart(null);
+    }
+  }, [prId, prUpdated, isLogin]);
+  useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [prId]);
 
@@ -146,47 +208,60 @@ function Right({ data }) {
       </div>
       <p className="price_discount">{productDetails.discountMessage}</p>
 
-      <div className="button_box">
-        {/* ... Quantity section ... */}
-        <div className="quantity">
-          <div id="quantity">{quantity}</div>
+      {(isLogin || productInCart || !isOutOfStock) && (
+        <div className="button_box">
+          {/* ... Quantity section ... */}
+          {(productInCart || !isOutOfStock) && (
+            <div className="quantity">
+              <div id="quantity">{quantity}</div>
+              <div>
+                <i
+                  id="increment"
+                  className="fa-solid fa-caret-up"
+                  onClick={handleIncrement}
+                ></i>
+                <i
+                  id="decrement"
+                  className="fa-solid fa-caret-down"
+                  onClick={handleDecrement}
+                ></i>
+              </div>
+            </div>
+          )}
+          {(!isOutOfStock || productInCart) && (
+            <div
+              onClick={() => {
+                if (isLogin) {
+                  return handleAddToCart();
+                }
+                handleLoginClick();
+              }}
+              id="addtocart"
+            >
+              <span>{addToCartBtnText}</span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {isReachmax && (
+        <p className="maxavailable">No more quanitity available in Stock</p>
+      )}
+      {isOutOfStock ? (
+        <div className="messageBox">Out of Stock</div>
+      ) : (
+        <div className="stock_des">
           <div>
-            <i
-              id="increment"
-              className="fa-solid fa-caret-up"
-              onClick={handleIncrement}
-            ></i>
-            <i
-              id="decrement"
-              className="fa-solid fa-caret-down"
-              onClick={handleDecrement}
-            ></i>
+            <i className="fa-solid fa-square-check"></i>
+            <span>In Stock & Ready to Ship</span>
+          </div>
+
+          <div>
+            <i className="fa-solid fa-truck"></i>
+            <Link to="">Calculate Shipping See all shipping options</Link>
           </div>
         </div>
-        <div
-          onClick={() => {
-            if (isLogin) {
-              return handleAddToCart();
-            }
-            handleLoginClick();
-          }}
-          id="addtocart"
-        >
-          <span>{addToCartBtnText}</span>
-        </div>
-      </div>
-
-      <div className="stock_des">
-        <div>
-          <i className="fa-solid fa-square-check"></i>
-          <span>In Stock & Ready to Ship</span>
-        </div>
-
-        <div>
-          <i className="fa-solid fa-truck"></i>
-          <Link to="">Calculate Shipping See all shipping options</Link>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

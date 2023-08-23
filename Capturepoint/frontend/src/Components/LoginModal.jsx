@@ -2,8 +2,10 @@ import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../Context/LoginSignupContext"; // Replace with actual path
 import { useRef } from "react";
+import { useAlertContext } from "../Context/AlertContext";
 
 function LoginModal() {
+  const { showAlert } = useAlertContext();
   const loginForm = useRef();
 
   const { showLogin, handleCloseLogin, setLoginTrue, setUsername } =
@@ -33,12 +35,11 @@ function LoginModal() {
             setLoginTrue();
             setUsername(data.user.username);
             handleCloseLogin();
+            showAlert(data.message, "success");
+            return;
           }
-          // closeing the login modal
 
-          // showing message
-
-          alert(data.message);
+          showAlert(data.message + " !", "danger");
         });
     } catch (error) {
       console.log(" error from signup ************\n", error);

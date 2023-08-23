@@ -58,6 +58,7 @@
   font-weight: 600;
 }
 .product {
+  position: relative;
   width: 100%;
   background: #fff;
   margin: 0;
@@ -267,4 +268,13 @@
   width: fit-content;
   padding: 10px 50px;
   margin: 100px auto;
+}
+.maxlimitmsg {
+  text-align: right;
+  /* border: 2px solid red; */
+  width: 90%;
+  position: absolute;
+  bottom: 50%;
+  color: red;
+  text-transform: capitalize;
 }

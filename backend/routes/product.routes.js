@@ -136,9 +136,14 @@ productRouter.get("/search", async (req, res) => {
 productRouter.get("/byid/:id", async (req, res) => {
   try {
     const products = await ProductModel.findById(req.params.id);
-    res.json(products);
+    return res.status(200).json({ status: true, products });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log("error from get product /byid/:id ");
+    console.log(error);
+    res.status(500).json({
+      status: false,
+      message: "Something went wrong ! Try again later .",
+    });
   }
 });
 

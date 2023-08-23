@@ -9,9 +9,11 @@ body {
   background-color: white;
 }
 .details_main {
+  width: 90%;
+  margin: auto;
   display: grid;
   grid-template-columns: 40% 60%;
-  width: 100%;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.247);
 }
 .left {
 }
@@ -40,7 +42,9 @@ body {
   margin: auto;
 }
 .main_pic img {
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .sub_pics {
@@ -139,8 +143,7 @@ body {
 .price_discount {
   font-size: 12px;
   color: grey;
-  margin-top: 4px;
-
+  margin-top: 14px;
   font-weight: 200;
 }
 .quantity {
@@ -179,8 +182,6 @@ body {
 .quantity i:hover {
   cursor: pointer;
   color: rgb(0, 66, 133);
-
-  border: 1px solid rgb(0, 66, 133);
 }
 .button_box > :last-child {
   display: flex;
@@ -189,12 +190,12 @@ body {
   width: 40%;
   font-size: 20px;
   font-weight: 600;
-
   background: linear-gradient(180deg, #fc5d37 0%, #ed5132 49%, #e64525 100%);
   color: white;
   height: 45px;
   margin-left: 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .stock_des {
   border-top: 1px solid grey;
@@ -240,4 +241,22 @@ body {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.messageBox,
+.maxavailable {
+  width: 50%;
+  /* margin: auto; */
+  text-align: center;
+  color: red;
+  border-top: 1px solid rgb(218, 164, 164);
+  border-bottom: 1px solid rgb(181, 116, 116);
+  padding: 5px;
+  margin-top: 20px;
+  background-color: aliceblue;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.messageBox {
+  margin-top: 50px;
 }

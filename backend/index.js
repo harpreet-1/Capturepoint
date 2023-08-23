@@ -14,6 +14,7 @@ const googleRouter = require("./googleAuth.js/google.routes");
 const checkLogin = require("./middleware/checkLogin");
 const cartRouter = require("./routes/cart.routes");
 const orderRouter = require("./routes/order.routes");
+const runCartCleanupCron = require("./middleware/deleteExpireCart");
 
 app.get("/", (req, res) => {
   res.json({ message: "hello from new server" });
@@ -33,7 +34,7 @@ app.use("/category", categoryRouter);
 app.use("/cart", cartRouter);
 app.use("/order", orderRouter);
 app.use("/auth/google", googleRouter);
-
+runCartCleanupCron();
 app.listen(8080, () => {
   connection();
   console.log("server st at 8080");

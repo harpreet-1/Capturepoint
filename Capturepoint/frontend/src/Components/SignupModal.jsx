@@ -2,8 +2,10 @@ import Modal from "react-bootstrap/Modal";
 import { useRef } from "react";
 import { useAuthContext } from "../Context/LoginSignupContext"; // Replace with actual path
 import { Link } from "react-router-dom";
+import { useAlertContext } from "../Context/AlertContext";
 
 function SignUpModal() {
+  const { showAlert } = useAlertContext();
   const loginForm = useRef();
   const {
     showSignup,
@@ -40,14 +42,13 @@ function SignUpModal() {
               localStorage.setItem("token", data.token);
               setLoginTrue();
               setUsername(data.user.username);
+              showAlert(data.message, "success");
             }
             // closeing the signup modal
             handleCloseSignup();
-            // showing message
-            alert(data.message);
-            if (data.message === "user alredy exists please login") {
-              // opening login form
 
+            if (data.message === "user alredy exists please login") {
+              showAlert(data.message, "info");
               handleLoginClick();
             }
           });

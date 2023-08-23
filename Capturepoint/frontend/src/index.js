@@ -7,15 +7,18 @@ import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./Context/LoginSignupContext";
 import { CartProvider } from "./Context/CartContext";
+import { AlertProvider } from "./Context/AlertContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <AuthProvider>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </AuthProvider>
+  <AlertProvider>
+    <AuthProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </AuthProvider>
+  </AlertProvider>
   // </React.StrictMode>
 );
 

@@ -1,10 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
+
 function CartProductCard({ product }) {
-  console.log("cart product");
   const { setMyCartTotal, setCartUpdated } = useCartContext();
+  // const [product, SetProduct] = useState(productdata);
+  console.log("cart product", product);
   const token = localStorage.getItem("token");
+  const [showMaxlimit, setShowMaxlimit] = useState(false);
+
   const [quantity, setQuantity] = useState(product.quantity);
   const updateQuantityTimeout = useRef(null);
   const updateQuantity = useRef(quantity);
@@ -43,10 +47,19 @@ function CartProductCard({ product }) {
     }
   };
   const updateCart = () => {
+    console.log(
+      "product.quantity",
+      product.quantity,
+      "stock quanity",
+      product.stockQuantity,
+      "updateQuantity",
+      updateQuantity.current
+    );
     if (updateQuantity.current === product.quantity) {
       console.log("same");
       return;
     }
+
     try {
       fetch(
         `${process.env.REACT_APP_BASE_URL}/cart/update-cart-quantity/${product._id}`,
@@ -57,7 +70,9 @@ function CartProductCard({ product }) {
             "auth-token": token,
           },
           body: JSON.stringify({
+            productId: product.productId,
             quantity: updateQuantity.current,
+            oldQuantity: product.quantity,
           }),
         }
       )
@@ -65,12 +80,19 @@ function CartProductCard({ product }) {
         .then((data) => {
           console.log(data);
           alert(data.message);
+          if (data.newQuantity) {
+            setCartUpdated((prev) => !prev);
+          }
         });
     } catch (error) {
       console.log(error);
     }
   };
   const handleDecrement = () => {
+    if (showMaxlimit) {
+      setShowMaxlimit(false);
+    }
+
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
       setMyCartTotal((prev) => prev - Math.floor(product.price));
@@ -80,6 +102,14 @@ function CartProductCard({ product }) {
   };
 
   const handleIncrement = () => {
+    if (quantity + 1 - product.quantity > product.stockQuantity) {
+      setShowMaxlimit(true);
+      setTimeout(() => {
+        setShowMaxlimit(false);
+      }, 1000);
+      return;
+    }
+
     setQuantity((prevQuantity) => prevQuantity + 1);
     setMyCartTotal((prev) => prev + Math.floor(product.price));
     updateQuantity.current = quantity + 1;
@@ -109,6 +139,7 @@ function CartProductCard({ product }) {
             <i onClick={handleDecrement} className="fa-solid fa-caret-down"></i>
           </div>
         </div>
+
         <div className="item_price">
           <p>
             <span>$</span>
@@ -116,6 +147,7 @@ function CartProductCard({ product }) {
           </p>
         </div>
       </div>
+      {showMaxlimit && <p className="maxlimitmsg">max avalaible item</p>}
       <div className="buttons_item">
         <div className="savefor_later">
           <div>

@@ -11,6 +11,7 @@ import Islogin from "./helper/Islogin";
 import LoginModal from "./Components/LoginModal";
 import SignUpModal from "./Components/SignupModal";
 import Orders from "./Pages/Orders";
+import AlertModel from "./Components/modals/AlertModal";
 
 function App() {
   Islogin();
@@ -19,7 +20,7 @@ function App() {
     <>
       <div className="App">
         {/* <h1>Waheguru Ji</h1> */}
-
+        {/* <Alert variant={"primary"}>This is a alert—check it out!</Alert> */}
         <BrowserRouter>
           <Navbar />
           <LoginModal />
@@ -33,6 +34,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="*" element={<Home />} />
           </Routes>
+          <AlertModel />
         </BrowserRouter>
       </div>
     </>

@@ -26,3 +26,17 @@ img {
 h3 {
   line-height: 0.8;
 }
+.modal-content {
+  border: none;
+}
+.modal-backdrop.show {
+  opacity: 0;
+}
+.alertmodel .p-3 {
+  padding: 0rem !important;
+}
+.alertmodel.modal-dialog {
+  margin-top: 0;
+  margin-right: 0;
+  color: white;
+}
