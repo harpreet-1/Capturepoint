@@ -100,24 +100,18 @@ function Right({ data, prUpdated, setPrUpdated }) {
     if (isOutOfStock) {
       return;
     }
-
-    if (productInCart) {
-      if (quantity + 1 - productInCart.quantity > data.stockQuantity) {
-        setIsReachmax(true);
-        setTimeout(() => {
-          setIsReachmax(false);
-        }, 2000);
-        return;
-      }
-    } else {
-      if (quantity + 1 > data.stockQuantity) {
-        setIsReachmax(true);
-        setTimeout(() => {
-          setIsReachmax(false);
-        }, 2000);
-        return;
-      }
+    if (
+      (productInCart &&
+        quantity + 1 - productInCart.quantity > data.stockQuantity) ||
+      quantity + 1 > data.stockQuantity
+    ) {
+      setIsReachmax(true);
+      setTimeout(() => {
+        setIsReachmax(false);
+      }, 2000);
+      return;
     }
+
     if (productInCart && quantity + 1 !== productInCart.quantity) {
       setaddToCartBtnText("Update Quantity");
     } else if (productInCart) {

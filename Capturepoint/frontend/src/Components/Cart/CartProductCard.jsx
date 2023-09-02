@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
+import { useAlertContext } from "../../Context/AlertContext";
+import { useProgressBarContext } from "../../Context/ProgressBarContext";
 
 function CartProductCard({ product }) {
+  const { showAlert } = useAlertContext();
   const { setMyCartTotal, setCartUpdated } = useCartContext();
-  // const [product, SetProduct] = useState(productdata);
-  console.log("cart product", product);
+  const { setProgress } = useProgressBarContext();
+
   const token = localStorage.getItem("token");
   const [showMaxlimit, setShowMaxlimit] = useState(false);
 
@@ -25,8 +28,9 @@ function CartProductCard({ product }) {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+
           if (data.message == "Product  deleted.") {
-            alert(data.message);
+            showAlert(data.message, "success", 1500);
             setCartUpdated((prev) => !prev);
           }
         });
@@ -36,16 +40,17 @@ function CartProductCard({ product }) {
   };
 
   const handleUpdateClick = () => {
-    if (!updateQuantityTimeout.current) {
-      console.log("timeout set");
-
-      updateQuantityTimeout.current = setTimeout(() => {
-        console.log("update triggered");
-        updateCart();
-        updateQuantityTimeout.current = null;
-      }, 4000);
+    if (updateQuantityTimeout.current) {
+      clearTimeout(updateQuantityTimeout.current);
     }
+
+    updateQuantityTimeout.current = setTimeout(() => {
+      console.log("update triggered");
+      updateCart();
+      updateQuantityTimeout.current = null;
+    }, 4000);
   };
+
   const updateCart = () => {
     console.log(
       "product.quantity",
@@ -79,7 +84,6 @@ function CartProductCard({ product }) {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          alert(data.message);
           if (data.newQuantity) {
             setCartUpdated((prev) => !prev);
           }

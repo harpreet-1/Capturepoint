@@ -15,6 +15,7 @@ const checkLogin = require("./middleware/checkLogin");
 const cartRouter = require("./routes/cart.routes");
 const orderRouter = require("./routes/order.routes");
 const runCartCleanupCron = require("./middleware/deleteExpireCart");
+const adminRouter = require("./routes/admin.routes");
 
 app.get("/", (req, res) => {
   res.json({ message: "hello from new server" });
@@ -33,6 +34,7 @@ app.use("/products", productRouter);
 app.use("/category", categoryRouter);
 app.use("/cart", cartRouter);
 app.use("/order", orderRouter);
+app.use("/admin", adminRouter);
 app.use("/auth/google", googleRouter);
 runCartCleanupCron();
 app.listen(8080, () => {

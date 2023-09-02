@@ -7,7 +7,9 @@ import Footer from "../Components/home/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../Context/LoginSignupContext";
 import { useAlertContext } from "../Context/AlertContext";
+import { useProgressBarContext } from "../Context/ProgressBarContext";
 function PrDeatail() {
+  const { setProgress } = useProgressBarContext();
   const navigate = useNavigate();
   const { showAlert } = useAlertContext();
   const { isLogin } = useAuthContext();
@@ -30,6 +32,7 @@ function PrDeatail() {
             return;
           }
           setPrDetail(data.products);
+          setProgress((prev) => Math.max(prev, 50));
         });
     } catch (error) {
       console.log(error);
@@ -41,6 +44,10 @@ function PrDeatail() {
         .then((res) => res.json())
         .then((data) => {
           setNrData(data.products);
+          setProgress(80);
+          setTimeout(() => {
+            setProgress(100);
+          }, 2000);
         });
     } catch (error) {
       console.log(error);
@@ -52,6 +59,7 @@ function PrDeatail() {
     fetchNewReleaseData(apiUrl);
 
     window.scrollTo({ top: 0 });
+    setProgress(20);
   }, [prId]);
 
   useEffect(() => {

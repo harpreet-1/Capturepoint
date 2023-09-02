@@ -3,14 +3,23 @@ import "../CSS/Orders/order.css";
 
 import OrderPrCard from "../Components/Order/OrderPrCard";
 import { useAuthContext } from "../Context/LoginSignupContext";
+import { useProgressBarContext } from "../Context/ProgressBarContext";
+import OrderCancleConfirmModal from "../Components/modals/OrderCancleConfirmModal";
+
 function Orders() {
-  const { handleLoginClick, handleSignupClick, isLogin } = useAuthContext();
+  const { setProgress } = useProgressBarContext();
+  const { handleLoginClick, isLogin } = useAuthContext();
   const [orderData, setOrderData] = useState([]);
   const [orderDataLoading, setOrderDataLoading] = useState(true);
   const token = localStorage.getItem("token") || null;
+  const [showOrderCancleConfirm, setShowOrderCancleConfirm] = useState(false);
+  function hidemodal() {
+    setShowOrderCancleConfirm(false);
+  }
 
   function fetchOrderData() {
     try {
+      setProgress(20);
       fetch(`${process.env.REACT_APP_BASE_URL}/order/my`, {
         method: "GET",
         headers: {
@@ -27,6 +36,10 @@ function Orders() {
           if (data.success) {
             setOrderData(data.orders);
           }
+          setProgress(80);
+          setTimeout(() => {
+            setProgress(100);
+          }, 1000);
         });
     } catch (error) {
       console.log(error);
@@ -50,6 +63,10 @@ function Orders() {
 
   return (
     <div>
+      <OrderCancleConfirmModal
+        hidemodal={hidemodal}
+        showOrderCancleConfirm={showOrderCancleConfirm}
+      />
       <div className="ordersHeading">
         <h1>My Orders</h1>
       </div>

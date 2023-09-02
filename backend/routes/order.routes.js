@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const orderRouter = express.Router();
-
+const moment = require("moment-timezone");
 const checkLogin = require("../middleware/checkLogin");
 const OrderModel = require("../Models/OrderModel");
 const CartModel = require("../Models/CartModel");
@@ -17,12 +17,19 @@ orderRouter.post("/confirm/", checkLogin, async (req, res) => {
     const userId = req.user.id;
 
     const { products, orderTotal, shippingAddress } = req.body;
-
+    let orderDate = moment(new Date())
+      .tz("Asia/Kolkata")
+      .format("dddd, YYYY-MM-DD HH:mm");
+    const deliveryDate = moment(orderDate, "dddd, YYYY-MM-DD HH:mm")
+      .add(4, "days")
+      .format("dddd, YYYY-MM-DD HH:mm");
     const newOrderItem = await OrderModel.create({
       user: userId,
       products,
       orderTotal,
       shippingAddress,
+      orderDate,
+      deliveryDate,
     });
     if (newOrderItem) {
       let deleted = await CartModel.deleteMany({ userId });
@@ -79,12 +86,16 @@ orderRouter.get("/my", checkLogin, async (req, res) => {
     const userId = req.user.id;
 
     // Fetch orders for the specific user from the database
-    const orders = await OrderModel.find({ user: userId })
+    const orders = await OrderModel.find({
+      user: userId,
+      "products.cancelled": false,
+    })
       .populate({
         path: "products.product",
         model: ProductModel,
         select: "name price images description category brand stockQuantity",
       })
+      .sort("-createdAt")
       .exec();
 
     if (!orders || orders.length === 0) {
@@ -97,74 +108,41 @@ orderRouter.get("/my", checkLogin, async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
 // Route to add a product to the order
-orderRouter.get("/check-in-order/:productId", checkLogin, async (req, res) => {
+
+orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
   try {
-    const userId = req.user.id;
-    const { productId } = req.params;
-
-    // Check if the product is already in the order for the user
-
-    const existingOrderItem = await OrderModel.findOne({
-      userId,
-      productId,
-    });
-
-    if (existingOrderItem) {
-      return res.json({
-        message: "Product is already in the order.",
-        existingOrderItem,
-      });
+    const { orderId, productId } = req.params;
+    const order = await OrderModel.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
     }
-    return res.json({
-      message: "Product is not in the order.",
-      existingOrderItem,
-    });
-  } catch (error) {
-    console.log(
-      "*********error from/check-in-order/:productId************",
-      error
+
+    const product = order.products.find(
+      (prod) => prod._id.toString() === productId
     );
-    res.status(500).json({ error: "internal server error." });
-  }
-});
 
-orderRouter.post("/update-order-quantity/:id", checkLogin, async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { quantity } = req.body;
-    // Check if the product is already in the order for the user
+    if (!product) {
+      return res.status(404).json({ message: "Product not found in order" });
+    }
 
-    const updatedProduct = await OrderModel.findByIdAndUpdate(id, {
-      quantity,
+    // Calculate the quantity to restore
+    const quantityToRestore = product.quantity;
+
+    // Update the cancelled status of the product
+    product.cancelled = true;
+
+    await order.save();
+
+    // Update the product's stock quantity
+    await ProductModel.findByIdAndUpdate(product.product._id, {
+      $inc: { stockQuantity: quantityToRestore },
     });
 
-    return res.json({
-      message: "Product Quantity updated.",
-      updatedProduct,
-    });
+    res.status(200).json({ message: "Product cancelled successfully" });
   } catch (error) {
-    console.log(
-      "*********error from/order/update/:productId************",
-      error
-    );
-    res.status(500).json({ error: "internal server error." });
-  }
-});
-orderRouter.delete("/delete/:id", checkLogin, async (req, res) => {
-  try {
-    const { id } = req.params;
-    // Check if the product is already in the order for the user
-
-    const updatedProduct = await OrderModel.findByIdAndDelete(id);
-
-    return res.json({
-      message: "Product  deleted.",
-    });
-  } catch (error) {
-    console.log("*********error from/order/delete/:id************", error);
-    res.status(500).json({ error: "internal server error." });
+    console.error(error);
+    res.status(500).json({ message: "An error occurred" });
   }
 });
 

@@ -8,6 +8,7 @@ import App from "./App";
 import { AuthProvider } from "./Context/LoginSignupContext";
 import { CartProvider } from "./Context/CartContext";
 import { AlertProvider } from "./Context/AlertContext";
+import { ProgressBarProvider } from "./Context/ProgressBarContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +16,9 @@ root.render(
   <AlertProvider>
     <AuthProvider>
       <CartProvider>
-        <App />
+        <ProgressBarProvider>
+          <App />
+        </ProgressBarProvider>
       </CartProvider>
     </AuthProvider>
   </AlertProvider>

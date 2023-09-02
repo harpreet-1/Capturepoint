@@ -29,9 +29,9 @@ h3 {
 .modal-content {
   border: none;
 }
-.modal-backdrop.show {
+/* .modal-90w {
   opacity: 0;
-}
+} */
 .alertmodel .p-3 {
   padding: 0rem !important;
 }
@@ -39,4 +39,18 @@ h3 {
   margin-top: 0;
   margin-right: 0;
   color: white;
+}
+.alertmodel-backdrop.show {
+  opacity: 0;
+}
+.custom-progress {
+  height: 2.5px; /* Set the desired height here */
+}
+
+.custom-progress .progress-bar {
+  height: 100%;
+}
+.ol,
+ul {
+  padding-left: 0rem;
 }

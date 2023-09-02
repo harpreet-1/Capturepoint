@@ -1,11 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useCartContext } from "../../Context/CartContext";
 import { useNavigate } from "react-router-dom";
+import OrderConfirmModal from "../modals/orderConfirmmodal";
+import { useAlertContext } from "../../Context/AlertContext";
 
 function CheckoutLeft() {
   const navigate = useNavigate();
   const { myCartTotal } = useCartContext();
   const token = localStorage.getItem("token");
+  const { showAlert } = useAlertContext();
+  const [showOrderConfirm, setShowOrderConfirm] = useState(false);
+  function hidemodal() {
+    setShowOrderConfirm(false);
+  }
   const [orderData, setOrderData] = useState({
     shippingAddress: {},
     products: [],
@@ -33,13 +40,17 @@ function CheckoutLeft() {
         .then((response) => response.json())
         .then((data) => {
           if (data.message === "order book successfull.") {
-            alert("order confirmed");
-            navigate("/");
+            setShowOrderConfirm(true);
+
+            setTimeout(() => {
+              hidemodal();
+              navigate("/orders");
+            }, 3000);
           }
           console.log(data);
         });
     } catch (error) {
-      alert("something went wrong! try again later");
+      showAlert("something went wrong! try again later", "danger", 2000);
       console.log(" error from signup ************\n", error);
     }
   };
@@ -79,6 +90,9 @@ function CheckoutLeft() {
         .then((response) => response.json())
         .then((jsondata) => {
           console.log(jsondata);
+          if (jsondata && !jsondata.length) {
+            navigate("/cart");
+          }
           if (jsondata[0]?.product) {
             setOrderData((prevOrderData) => ({
               ...prevOrderData,
@@ -88,7 +102,7 @@ function CheckoutLeft() {
         });
       return data;
     } catch (error) {
-      alert("something went wrong! try again later");
+      showAlert("something went wrong! try again later", "danger", 2000);
       console.log(" error from signup ************\n", error);
     }
   }
@@ -97,6 +111,10 @@ function CheckoutLeft() {
   }, []);
   return (
     <div className="left">
+      <OrderConfirmModal
+        showOrderConfirm={showOrderConfirm}
+        hidemodal={hidemodal}
+      />
       <h3>Shipping Address</h3>
       <form
         ref={checkoutForm}

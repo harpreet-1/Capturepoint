@@ -8,7 +8,12 @@ function AlertModel() {
 
   return (
     <>
-      <Modal show={showA} onHide={toggleShowA} dialogClassName="alertmodel">
+      <Modal
+        backdropClassName="alertmodel-backdrop"
+        show={showA}
+        onHide={toggleShowA}
+        dialogClassName="alertmodel"
+      >
         <Alertbox />
       </Modal>
     </>

@@ -278,3 +278,6 @@
   color: red;
   text-transform: capitalize;
 }
+.LoginBtn {
+  margin-top: 0px;
+}

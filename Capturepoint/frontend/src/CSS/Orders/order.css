@@ -3,25 +3,49 @@
 }
 
 .ordersCards {
-  width: 90%;
+  /* width: 90%; */
   margin: auto;
 }
 .ordercard {
   border-radius: 5px;
   border: 2px solid rgba(128, 128, 128, 0.486);
-  width: 90%;
+  /* width: 90%; */
   margin: auto;
   margin-bottom: 50px;
 }
 .ordercard > div {
   border-bottom: 1px solid rgba(128, 128, 128, 0.217);
 }
+.orderCardHeader {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.orderPrdetails {
+  font-size: 14px;
+  color: grey;
+}
+.orderPrdetails span {
+  font-size: 14px;
+  color: rgb(52, 51, 51);
+}
+.orderCardHeader select {
+  max-width: 140px;
+  font-size: 14px;
+  color: rgb(52, 51, 51);
+}
+.showDetailsbtn {
+  padding: 4px 10px;
+  margin-right: 5px;
+}
 .orderCardHeader h4 {
   width: fit-content;
   padding: 12px 20px;
   background-color: rgb(63, 64, 65);
   border-radius: 5px 0 0 0;
-  font-size: 17px;
+  font-size: 15px;
   color: white;
   margin-bottom: 0;
 }
@@ -88,4 +112,31 @@
 }
 .orderCardFooter span {
   font-size: 16px;
+}
+
+@media screen and (max-width: 576px) {
+  .orderCardHeader {
+    padding-right: 10px;
+  }
+  .orderCardHeader select {
+    max-width: 130px;
+  }
+  .orderCardHeader h4 {
+    padding: 5px 10px;
+    background-color: rgb(63, 64, 65);
+    border-radius: 5px 0 0 0;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 0;
+  }
+  .orderCardHeader {
+    position: relative; /* Set position to relative for the container */
+  }
+
+  .showDetailsbtn {
+    position: absolute; /* Set position to absolute for the button */
+    top: 0; /* Align to the top of the container */
+    right: 0; /* Align to the right of the container */
+    float: none; /* Remove any floating */
+  }
 }

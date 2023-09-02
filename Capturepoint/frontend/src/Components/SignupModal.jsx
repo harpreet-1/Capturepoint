@@ -22,7 +22,7 @@ function SignUpModal() {
     let ConfirmPassword = loginForm.current.ConfirmPassword.value;
     let username = loginForm.current.username.value;
     if (password !== ConfirmPassword) {
-      alert("password not match");
+      showAlert("password not match", "danger", 1500);
     } else {
       try {
         fetch(`${process.env.REACT_APP_BASE_URL}/users/register`, {

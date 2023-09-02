@@ -7,8 +7,10 @@ import Footer from "../Components/home/Footer";
 import LoginModal from "../Components/LoginModal";
 import SignUpModal from "../Components/SignupModal";
 import "../CSS/Login.css";
+import { useProgressBarContext } from "../Context/ProgressBarContext";
 
 function Home() {
+  const { setProgress } = useProgressBarContext();
   const [spData, setSpData] = useState([]);
   const [nrData, setNrData] = useState([]);
 
@@ -30,6 +32,12 @@ function Home() {
         .then((data) => {
           console.log(data);
           setNrData(data.products);
+          setTimeout(() => {
+            setProgress(80);
+          }, 2000);
+          setTimeout(() => {
+            setProgress(100);
+          }, 3000);
         });
     } catch (error) {
       console.log(error);
@@ -39,7 +47,7 @@ function Home() {
   useEffect(() => {
     const apiUrl = `${process.env.REACT_APP_BASE_URL}/products/search?sortField=price`;
     fetchSpData(apiUrl);
-
+    setProgress(40);
     const apiUrl2 = `${process.env.REACT_APP_BASE_URL}/products/search?sortField=createdAt`;
     fetchNewReleaseData(apiUrl2);
   }, []);

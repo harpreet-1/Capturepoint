@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
 import { useAuthContext } from "../../Context/LoginSignupContext";
+
 function CheckoutRight() {
   const { myCartTotal, setMyCartTotal } = useCartContext();
   const { isLogin } = useAuthContext();
