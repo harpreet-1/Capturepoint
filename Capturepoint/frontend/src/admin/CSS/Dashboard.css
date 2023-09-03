@@ -197,6 +197,8 @@ body {
 #content nav .bx.bx-menu {
   cursor: pointer;
   color: var(--dark);
+  font-size: 30px;
+  font-weight: 600;
 }
 #content nav .nav-link {
   font-size: 16px;
@@ -300,45 +302,13 @@ body {
   overflow-y: auto;
 }
 #content main .head-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  grid-gap: 16px;
-  flex-wrap: wrap;
+  padding-left: 10px;
 }
 #content main .head-title .head-title-left h1 {
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 10px;
   color: var(--dark);
-}
-#content main .head-title .head-title-left .breadcrumb {
-  display: flex;
-  align-items: center;
-  grid-gap: 16px;
-}
-#content main .head-title .head-title-left .breadcrumb li {
-  color: var(--dark);
-}
-#content main .head-title .head-title-left .breadcrumb li a {
-  color: var(--dark-grey);
-  pointer-events: none;
-}
-#content main .head-title .head-title-left .breadcrumb li a.active {
-  color: var(--blue);
-  pointer-events: unset;
-}
-#content main .head-title .btn-download {
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 36px;
-  background: var(--blue);
-  color: var(--light);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-gap: 10px;
-  font-weight: 500;
 }
 
 #content main .box-info {
@@ -498,12 +468,12 @@ body {
 
 @media screen and (max-width: 768px) {
   #sidebar {
-    width: 200px;
+    width: 60%;
   }
 
   #content {
     width: calc(100% - 60px);
-    left: 200px;
+    left: 60%;
   }
 
   #content nav .nav-link {
@@ -514,6 +484,9 @@ body {
 @media screen and (max-width: 576px) {
   #content nav form .form-input input {
     display: none;
+  }
+  #content main .table-data > div {
+    padding: 8px;
   }
 
   #content nav form .form-input button {
@@ -540,26 +513,19 @@ body {
   #content nav form.show ~ .profile {
     display: none;
   }
-
+  #content main {
+    padding: 0px;
+  }
   #content main .box-info {
     grid-template-columns: 1fr;
   }
 
-  #content main .table-data .head {
-    min-width: 420px;
-  }
-  #content main .table-data .order table {
-    min-width: 420px;
-  }
-  #content main .table-data .todo .todo-list {
-    min-width: 420px;
-  }
-  /* #sidebar.hide {
-    width: 10px;
+  #sidebar.hide {
+    width: 0px;
   }
   #sidebar.hide ~ #content {
     width: 100%;
     margin: auto;
     left: 0;
-  } */
+  }
 }

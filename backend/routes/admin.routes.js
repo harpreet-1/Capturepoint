@@ -40,7 +40,7 @@ adminRouter.get("/orders", async (req, res) => {
     const limit = req.query.limit || Infinity;
     console.log(limit);
 
-    const orders = await OrderModel.find()
+    const orders = await OrderModel.find({ "products.cancelled": false })
       .populate({
         path: "products.product",
         model: ProductModel,
@@ -66,4 +66,25 @@ adminRouter.get("/orders", async (req, res) => {
   }
 });
 
+adminRouter.patch("/orders/update-status/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.query;
+    console.log(status, id);
+    const order = await OrderModel.findByIdAndUpdate(id, {
+      orderStatus: status,
+    });
+    if (!order) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Order not found" });
+    }
+    return res
+      .status(200)
+      .json({ status: true, message: "Order status updated " });
+  } catch (error) {
+    console.log("error from order status update", error);
+    return res.status(404).json({ status: false, message: "Order not found" });
+  }
+});
 module.exports = adminRouter;

@@ -63,16 +63,12 @@ function Orders() {
 
   return (
     <div>
-      <OrderCancleConfirmModal
-        hidemodal={hidemodal}
-        showOrderCancleConfirm={showOrderCancleConfirm}
-      />
       <div className="ordersHeading">
         <h1>My Orders</h1>
       </div>
       <section className="ordersCards">
         {orderData.map((order, index) => {
-          return <OrderPrCard key={index} order={order} />;
+          return <OrderPrCard key={index} orderData={order} />;
         })}
       </section>
     </div>

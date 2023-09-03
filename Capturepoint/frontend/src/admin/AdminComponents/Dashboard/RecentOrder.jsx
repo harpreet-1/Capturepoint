@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import OrderPrCard from "../../../Components/Order/OrderPrCard";
 
 function RecentOrder({ allData }) {
-  const [recentOrderData, setRecentOrderData] = useState([]);
+  console.log("recent order");
+  const [adminOrderData, setAdminOrderData] = useState([]);
   const token = localStorage.getItem("token");
-  function fetchRecentOrder() {
+  function fetchAdminOrder() {
     try {
       fetch(
         `${process.env.REACT_APP_BASE_URL}/admin/orders${
@@ -25,7 +26,7 @@ function RecentOrder({ allData }) {
             // return handleLoginClick();
           }
           if (data.success) {
-            setRecentOrderData(data.orders);
+            setAdminOrderData(data.orders);
           }
         });
     } catch (error) {
@@ -33,36 +34,15 @@ function RecentOrder({ allData }) {
     }
   }
   useEffect(() => {
-    fetchRecentOrder();
+    fetchAdminOrder();
   }, []);
   return (
     <div className="table-data">
       <div className="order">
-        <div className="head">
-          <h3>Recent Orders</h3>
-          <i className="bx bx-search"></i>
-          <i className="bx bx-filter"></i>
-        </div>
-        {/* <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Date Order</th>
-              <th>Adress</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody> */}
-        {recentOrderData.map((order, index) => {
-          const { orderDate, orderStatus, orderTotal, shippingAddress } = order;
-          const { streetAddress, floor, city, state, pincode } =
-            shippingAddress;
-          const address = ` ${city} ,  ${state} , ${pincode}`;
-          return <OrderPrCard order={order} key={Math.random()} />;
+        <div className="head">{!allData && <h3>Recent Orders</h3>}</div>
+        {adminOrderData.map((order) => {
+          return <OrderPrCard orderData={order} key={Math.random()} />;
         })}
-        {/* </tbody>
-        </table> */}
       </div>
     </div>
   );

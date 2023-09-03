@@ -3,7 +3,7 @@
 }
 
 .ordersCards {
-  /* width: 90%; */
+  width: 80%;
   margin: auto;
 }
 .ordercard {
@@ -22,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  background-color: rgb(205, 212, 219);
 }
 .orderPrdetails {
   font-size: 14px;
@@ -39,6 +40,7 @@
 .showDetailsbtn {
   padding: 4px 10px;
   margin-right: 5px;
+  min-width: 115px;
 }
 .orderCardHeader h4 {
   width: fit-content;
@@ -50,13 +52,20 @@
   margin-bottom: 0;
 }
 .orderCardBody,
-.orderPrCardRight,
 .orderPrCardLeft,
 .orderCardFooter {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   align-items: center;
+}
+.orderPrCardLeft {
+  width: 90%;
+}
+.orderPrCardLeft > :nth-child(2) {
+  display: flex;
+  min-width: 200px;
+  justify-content: space-between;
 }
 .orderPrCardimg img {
   width: 120px;
@@ -100,7 +109,7 @@
 
 .orderTotalamount {
   color: grey;
-  text-align: right;
+  text-align: center;
 }
 .orderTotalamount span {
   color: rgb(70, 66, 66);
@@ -113,13 +122,26 @@
 .orderCardFooter span {
   font-size: 16px;
 }
+.orderCancleConfirmModal {
+  padding: 20px;
+  text-align: center;
 
+  border-radius: 8px;
+}
+.orderCancleConfirmModal button {
+  margin: 10px;
+}
+.orderCancleConfirmModal h3 {
+  line-height: 40px;
+  font-size: 18px;
+}
 @media screen and (max-width: 576px) {
-  .orderCardHeader {
-    padding-right: 10px;
+  .ordersCards {
+    width: 96%;
   }
   .orderCardHeader select {
-    max-width: 130px;
+    max-width: 120px;
+    padding: 4px;
   }
   .orderCardHeader h4 {
     padding: 5px 10px;
@@ -132,11 +154,47 @@
   .orderCardHeader {
     position: relative; /* Set position to relative for the container */
   }
+  .orderCardHeader > :nth-child(3) {
+    padding-right: 6px;
+  }
+  .cancleOrderbtn {
+    margin-left: 28px;
+  }
 
   .showDetailsbtn {
-    position: absolute; /* Set position to absolute for the button */
-    top: 0; /* Align to the top of the container */
-    right: 0; /* Align to the right of the container */
-    float: none; /* Remove any floating */
+    /* position: absolute; 
+    top: 0; 
+    right: 0; 
+    float: none;
+    min-width: 120px;
+    padding: 2px;
+    margin-right: 0; */
+  }
+  .orderCardBody {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+  }
+  .orderPrCardLeft {
+    position: relative;
+    margin-bottom: 15px;
+
+    flex-direction: column;
+  }
+  .orderPrCardLeft > :last-child {
+    margin-top: 20px;
+  }
+  .orderPrCardLeft > :nth-child(2) {
+    margin-top: 20px;
+  }
+  .orderPrCardLeft img {
+    width: 100px;
+  }
+  .orderPrCardRight {
+    border: none;
+  }
+
+  .orderCancleConfirmModal {
+    padding: 0px;
+    text-align: center;
   }
 }

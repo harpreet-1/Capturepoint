@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useProgressBarContext } from "../../../Context/ProgressBarContext";
 
 function Highliigths() {
+  const { setProgress } = useProgressBarContext();
   const [highlihtsData, setHighlihtsData] = useState({
     userCount: 1100,
     totalCount: 562,
@@ -9,6 +11,7 @@ function Highliigths() {
   const token = localStorage.getItem("token");
   function fetchtHighlihtsData() {
     try {
+      setProgress(20);
       fetch(`${process.env.REACT_APP_BASE_URL}/admin/highlights`, {
         method: "GET",
         headers: {
@@ -25,6 +28,7 @@ function Highliigths() {
           if (data.status) {
             setHighlihtsData(data);
           }
+          setProgress(70);
         });
     } catch (error) {
       console.log(error);

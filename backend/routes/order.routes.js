@@ -85,30 +85,59 @@ orderRouter.get("/my", checkLogin, async (req, res) => {
   try {
     const userId = req.user.id;
 
-    // Fetch orders for the specific user from the database
     const orders = await OrderModel.find({
+      products: {
+        $elemMatch: {
+          cancelled: false,
+        },
+      },
       user: userId,
-      "products.cancelled": false,
     })
       .populate({
         path: "products.product",
         model: ProductModel,
-        select: "name price images description category brand stockQuantity",
+        select: "name price images",
       })
       .sort("-createdAt")
       .exec();
 
     if (!orders || orders.length === 0) {
-      return res.status(404).json({ message: "No Orders Yet.", orders });
+      return res.status(200).json({ message: "No Orders Yet.", orders });
     }
+    return res.status(200).json({ success: true, orders });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+// Route to get order details for a specific user with id
+orderRouter.get("/single/:id", checkLogin, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const orders = await OrderModel.findOne({
+      _id: req.params.id,
+      products: {
+        $elemMatch: {
+          cancelled: false,
+        },
+      },
+      user: userId,
+    })
+      .populate({
+        path: "products.product",
+        model: ProductModel,
+        select: "name price images",
+      })
+      .sort("-createdAt")
+      .exec();
 
     return res.status(200).json({ success: true, orders });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-// Route to add a product to the order
 
 orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
   try {

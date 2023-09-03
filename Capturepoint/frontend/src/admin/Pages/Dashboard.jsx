@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../CSS/Dashboard.css";
 import DashboardContent from "../AdminComponents/Dashboard/DashboardContent";

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAdminSidebarCotext } from "../../Context/AdminSidebarCotext";
 
 function AdminNavbar() {
+  console.log("admin navbar");
   const { setSidebarVisible } = useAdminSidebarCotext();
   const handleMenuBarClick = () => {
     setSidebarVisible((prev) => !prev);
@@ -21,14 +22,13 @@ function AdminNavbar() {
           </button>
         </div>
       </form>
-      <input type="checkbox" id="switch-mode" hidden />
-      <label htmlFor="switch-mode" className="switch-mode"></label>
+
       <Link to="/" className="notification">
         <i className="bx bxs-bell"></i>
         <span className="num">8</span>
       </Link>
       <Link to="/" className="profile">
-        <img src="img/people.png" />
+        <img src="img/people.png" alt="" />
       </Link>
     </nav>
   );

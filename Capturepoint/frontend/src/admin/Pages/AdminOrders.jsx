@@ -4,12 +4,13 @@ import AdminNavbar from "../AdminComponents/AdminNavbar";
 import HeadTitle from "../AdminComponents/HeadTitle";
 
 function AdminOrders() {
+  console.log("admin order");
   return (
     <section id="content">
       <AdminNavbar />
 
       <main>
-        <HeadTitle />
+        <HeadTitle title="Orders" />
 
         <RecentOrder allData={true} />
         {/* <RecentUser /> */}

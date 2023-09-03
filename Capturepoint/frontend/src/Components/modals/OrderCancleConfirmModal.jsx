@@ -1,20 +1,32 @@
 import Modal from "react-bootstrap/Modal";
 
-function OrderCancleConfirmModal({ showOrderCancleConfirm, hidemodal }) {
+function OrderCancleConfirmModal({
+  showOrderCancleConfirm,
+  handleCancleOrder,
+  hidemodal,
+}) {
   return (
     <>
       <Modal
         show={showOrderCancleConfirm}
         onHide={hidemodal}
         dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
+        // aria-labelledby="example-custom-modal-styling-title"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
       >
         <Modal.Body>
           <div className="orderCancleConfirmModal">
-            <h3>Are You Sure You want to Cancle This Order</h3>
+            <h3>
+              Are you sure you want to <span>Cancle</span> This Order.
+            </h3>
             <div>
-              <button className="btn btn-primary"></button>
-              <button className="btn btn-danger"></button>
+              <button onClick={handleCancleOrder} className="btn btn-danger">
+                Yes
+              </button>
+              <button onClick={hidemodal} className="btn btn-primary">
+                No
+              </button>
             </div>
           </div>
         </Modal.Body>
