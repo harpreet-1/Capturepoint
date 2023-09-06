@@ -14,7 +14,6 @@ function OrderPrFooter({ order }) {
 
   deleverydate = deleverydate.toLocaleDateString("en-US", options);
 
-  console.log("OrderPrFooter");
   const { streetAddress, floor, city, state, pincode } = order.shippingAddress;
   const address = `${streetAddress} ,floor: ${floor} , ${city} ,  ${state} , ${pincode}`;
   return (

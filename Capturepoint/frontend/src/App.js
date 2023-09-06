@@ -13,28 +13,18 @@ import SignUpModal from "./Components/SignupModal";
 import Orders from "./Pages/Orders";
 import AlertModel from "./Components/modals/AlertModal";
 import OrderConfirm from "./Pages/OrderConfirm";
-
-import ProgressBarComp from "./helper/ProgressBar";
-import { useProgressBarContext } from "./Context/ProgressBarContext";
-import Dashboard from "./admin/Pages/Dashboard";
-import SideBar from "./admin/AdminComponents/SideBar";
 import AdminRoutes from "./admin/AdminRoutes";
+import ProgressBarComp from "./helper/ProgressBar";
 
 function App() {
-  const { progress } = useProgressBarContext();
   Islogin();
   console.log("appp render*************");
 
-  // Determine whether to show Navbar and modals
-  let WithoutNavbarRoute = ["/orderConfirm", "/admin"];
   const showNavbarAndModals = !window.location.pathname.startsWith("/admin");
   return (
     <>
       <div className="App">
-        {/* <h1>Waheguru Ji</h1> */}
-
         <BrowserRouter>
-          {progress > 10 && progress < 90 && <ProgressBarComp />}
           {showNavbarAndModals && <Navbar />}
           {showNavbarAndModals && <LoginModal />}
           {showNavbarAndModals && <SignUpModal />}
@@ -46,13 +36,13 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/orders" element={<Orders />} />
-
             <Route path="/orderConfirm" element={<OrderConfirm />} />
 
             <Route path="/admin/*" element={<AdminRoutes />} />
             {/* <Route path="*" element={<Home />} /> */}
           </Routes>
           <AlertModel />
+          <ProgressBarComp />
         </BrowserRouter>
       </div>
     </>

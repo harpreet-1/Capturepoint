@@ -10,7 +10,7 @@ function OrderSinglePr({ productDetail, fetchOrderbyId, order }) {
   const isAdminPage = window.location.pathname.startsWith("/admin");
   const { showAlert } = useAlertContext();
 
-  const [showOrderCancleConfirm, SetShowOrderCancleConfirm] = useState();
+  const [showOrderCancleConfirm, SetShowOrderCancleConfirm] = useState(false);
   const token = localStorage.getItem("token");
   let originalDate = new Date(order.createdAt);
   let deleverydate = new Date(originalDate);
@@ -30,7 +30,7 @@ function OrderSinglePr({ productDetail, fetchOrderbyId, order }) {
   function handleCancleProduct() {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/order/cancel-product/${order._id}/${productDetail._id}`;
-      console.log(url);
+
       fetch(url, {
         method: "PATCH",
         headers: {
@@ -54,9 +54,10 @@ function OrderSinglePr({ productDetail, fetchOrderbyId, order }) {
     <>
       {showOrderCancleConfirm && (
         <OrderCancleConfirmModal
-          showOrderCancleConfirm={showOrderCancleConfirm}
-          handleCancleOrder={handleCancleProduct}
+          showConfirmModal={showOrderCancleConfirm}
+          handleConfirmYes={handleCancleProduct}
           hidemodal={hidemodal}
+          message="Are you sure you want to Cancle This Order."
         />
       )}
       <div className={`orderCardBody`}>

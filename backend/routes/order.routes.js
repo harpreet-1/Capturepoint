@@ -91,6 +91,7 @@ orderRouter.get("/my", checkLogin, async (req, res) => {
           cancelled: false,
         },
       },
+      "products.cancelled": false,
       user: userId,
     })
       .populate({
@@ -160,6 +161,7 @@ orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
 
     // Update the cancelled status of the product
     product.cancelled = true;
+    order.orderTotal -= Math.round(product.price * quantityToRestore);
 
     await order.save();
 

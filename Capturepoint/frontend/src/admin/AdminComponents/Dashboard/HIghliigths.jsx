@@ -20,15 +20,16 @@ function Highliigths() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data from recent******************");
-          console.log(data);
           if (data.message === "Invalid token.") {
             // return handleLoginClick();
           }
           if (data.status) {
             setHighlihtsData(data);
           }
-          setProgress(70);
+          setProgress(88);
+          setTimeout(() => {
+            setProgress(100);
+          }, 2000);
         });
     } catch (error) {
       console.log(error);

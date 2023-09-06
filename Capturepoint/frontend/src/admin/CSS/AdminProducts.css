@@ -1,0 +1,119 @@
+.AdminPrImg {
+  max-height: 200px;
+  display: flex;
+  align-items: center;
+}
+.AdminPrImg img {
+  max-width: 200px;
+  transition: 0.3s ease-in;
+}
+.AdminPrImg img:hover {
+  max-width: 220px;
+}
+
+.AdminPrCard {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 30% 50% 20%;
+}
+.AdminPrCard > :last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.AdminPrCard > :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.AdminPrCard .AdminPrDetails p {
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: 90px 75%;
+}
+.AdminPrCard .AdminPrDetails p > :last-child {
+  font-size: 15px;
+  padding: 0 10px;
+  color: rgb(106, 103, 103);
+  margin-left: 10px;
+  border-bottom: 2px solid transparent;
+}
+.AdminPrCard .adminPrEditActive p > :last-child {
+  outline: none;
+  border-bottom: 2px solid #3c91e6;
+
+  padding-right: 20px;
+
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.AdminPrCard .AdminPrDetails p > :first-child {
+  font-size: 15px;
+  color: rgb(69, 68, 68);
+}
+
+.AdminPrCard .adminPrBtn .btn {
+  width: 100px;
+  margin: 10px;
+  font-size: 15px;
+}
+.AdminPrCard .adminPrBtn .btn i {
+  font-size: 15px;
+}
+.adminPrCardInput {
+  /* width: 50%; */
+  outline: none;
+  border: none;
+}
+.inputActive {
+  border-bottom: 1px solid black;
+}
+.imageLinkBox {
+  max-width: 80%;
+  padding-left: 15px;
+}
+.imageLinkBox > p {
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: rgb(69, 68, 68);
+}
+.imageLinkSpan {
+  padding: 0 10px;
+  min-width: 150px;
+  display: block;
+  color: grey;
+  outline: none;
+  border-bottom: 2px solid #3c91e6;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.AdminPrDetails {
+  width: 100%;
+}
+@media screen and (max-width: 576px) {
+  .AdminPrCard {
+    grid-template-columns: 100%;
+  }
+  .AdminPrCard > :last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .AdminPrCard .adminPrBtn {
+    margin-top: 20px;
+  }
+  .imageLinkBox {
+    display: grid;
+    grid-template-columns: 90px 75%;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 8px;
+  }
+  .imageLinkSpan {
+    margin-left: 10px;
+  }
+}

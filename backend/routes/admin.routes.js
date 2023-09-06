@@ -37,22 +37,23 @@ adminRouter.get("/highlights", async (req, res) => {
 
 adminRouter.get("/orders", async (req, res) => {
   try {
-    const limit = req.query.limit || Infinity;
+    const limit = req.query.limit || 1000;
     console.log(limit);
 
-    const orders = await OrderModel.find({ "products.cancelled": false })
+    const orders = await OrderModel.find({
+      products: {
+        $elemMatch: {
+          cancelled: false,
+        },
+      },
+      "products.cancelled": false,
+    })
       .populate({
         path: "products.product",
         model: ProductModel,
-        select: "name price images description category brand stockQuantity",
-      })
-      .populate({
-        path: "user",
-        model: UserModel,
-        select: "username address",
+        select: "name price images",
       })
       .sort("-createdAt")
-      .limit(limit)
       .exec();
 
     if (!orders || orders.length === 0) {
@@ -84,6 +85,37 @@ adminRouter.patch("/orders/update-status/:id", async (req, res) => {
       .json({ status: true, message: "Order status updated " });
   } catch (error) {
     console.log("error from order status update", error);
+    return res.status(404).json({ status: false, message: "Order not found" });
+  }
+});
+
+adminRouter.get("/products", async (req, res) => {
+  try {
+    const products = await ProductModel.find().sort("-createdAt");
+    return res.status(200).json({ success: true, products });
+  } catch (error) {
+    console.error("error from /admin/products", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+adminRouter.patch("/product/update/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await ProductModel.findByIdAndUpdate(id, {
+      ...req.body,
+      images: [req.body.image],
+    });
+    if (!product) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Product not found." });
+    }
+    return res
+      .status(200)
+      .json({ status: true, message: "Product updated  successfully." });
+  } catch (error) {
+    console.log("error from admin/product/update", error);
     return res.status(404).json({ status: false, message: "Order not found" });
   }
 });

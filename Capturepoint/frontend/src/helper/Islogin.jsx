@@ -15,7 +15,6 @@ const Islogin = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("data from is login ", data);
           if (data.username) {
             setUsername(data.username);
             setLoginTrue();
@@ -24,7 +23,7 @@ const Islogin = () => {
           }
         })
         .catch((err) => {
-          console.log("not login", err);
+          console.log("eror from login", err);
         });
     } else {
       setLoginFalse();

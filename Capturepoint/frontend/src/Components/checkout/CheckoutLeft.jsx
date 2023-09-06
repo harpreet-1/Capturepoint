@@ -3,8 +3,10 @@ import { useCartContext } from "../../Context/CartContext";
 import { useNavigate } from "react-router-dom";
 import OrderConfirmModal from "../modals/orderConfirmmodal";
 import { useAlertContext } from "../../Context/AlertContext";
+import { useProgressBarContext } from "../../Context/ProgressBarContext";
 
 function CheckoutLeft() {
+  const { setProgress } = useProgressBarContext();
   const navigate = useNavigate();
   const { myCartTotal } = useCartContext();
   const token = localStorage.getItem("token");
@@ -79,7 +81,7 @@ function CheckoutLeft() {
 
   async function getProductsData() {
     try {
-      let data;
+      setProgress(20);
       fetch(`${process.env.REACT_APP_BASE_URL}/order/my-products`, {
         method: "GET",
         headers: {
@@ -89,7 +91,10 @@ function CheckoutLeft() {
       })
         .then((response) => response.json())
         .then((jsondata) => {
-          console.log(jsondata);
+          setProgress(88);
+          setTimeout(() => {
+            setProgress(0);
+          }, 1000);
           if (jsondata && !jsondata.length) {
             navigate("/cart");
           }
@@ -100,7 +105,6 @@ function CheckoutLeft() {
             }));
           }
         });
-      return data;
     } catch (error) {
       showAlert("something went wrong! try again later", "danger", 2000);
       console.log(" error from signup ************\n", error);

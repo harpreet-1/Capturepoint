@@ -4,8 +4,7 @@ import AlertModel from "../modals/AlertModal";
 
 function OrderPrHeader({ order, setShowDetails, showDetails, setOrder }) {
   const { showAlert } = useAlertContext();
-  console.log("OrderPrHeader");
-  console.log(order);
+
   const isAdminPage = window.location.pathname.startsWith("/admin");
   const token = localStorage.getItem("token");
   let originalDate = new Date(order.createdAt);
@@ -30,7 +29,6 @@ function OrderPrHeader({ order, setShowDetails, showDetails, setOrder }) {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.status) {
             showAlert(`Order Status Updated to ${status}`, "success");
             return setOrder({ ...order, orderStatus: status });
@@ -42,7 +40,6 @@ function OrderPrHeader({ order, setShowDetails, showDetails, setOrder }) {
     }
   }
 
-  let statusValue = ["Processing", "Shipped", "Delivered"];
   return (
     <div>
       <div className="orderCardHeader">

@@ -5,6 +5,7 @@ import logo from "../../images/logo.png";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import { useAuthContext } from "../../Context/LoginSignupContext"; // Replace with actual path
+import ProgressBarComp from "../../helper/ProgressBar";
 
 function Navbar() {
   const {

@@ -9,6 +9,9 @@ import { AuthProvider } from "./Context/LoginSignupContext";
 import { CartProvider } from "./Context/CartContext";
 import { AlertProvider } from "./Context/AlertContext";
 import { ProgressBarProvider } from "./Context/ProgressBarContext";
+{
+  /* <h1>Waheguru Ji</h1> */
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

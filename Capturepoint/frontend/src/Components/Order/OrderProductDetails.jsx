@@ -24,9 +24,9 @@ function OrderProductDetails({ order, fetchOrderbyId }) {
       <>
         {!productDetail.cancelled && (
           <OrderSinglePr
+            key={Math.random()}
             fetchOrderbyId={fetchOrderbyId}
             order={order}
-            key={index}
             productDetail={productDetail}
           />
         )}

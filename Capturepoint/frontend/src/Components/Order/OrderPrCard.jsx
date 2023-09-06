@@ -6,7 +6,6 @@ import OrderPrFooter from "./OrderPrFooter";
 const token = localStorage.getItem("token") || null;
 
 function OrderPrCard({ orderData }) {
-  console.log("OrderPrCard");
   const [showDetails, setShowDetails] = useState(false);
   const [order, setOrder] = useState(orderData);
   function fetchOrderbyId() {
@@ -19,7 +18,6 @@ function OrderPrCard({ orderData }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("from single producr************", data);
           if (data.message === "Invalid token.") {
             // return handleLoginClick();
           }
