@@ -20,7 +20,13 @@ function OrderCancleConfirmModal({
           <div className="orderCancleConfirmModal">
             <h3>{message}</h3>
             <div>
-              <button onClick={handleConfirmYes} className="btn btn-danger">
+              <button
+                onClick={() => {
+                  hidemodal();
+                  handleConfirmYes();
+                }}
+                className="btn btn-danger"
+              >
                 Yes
               </button>
               <button onClick={hidemodal} className="btn btn-primary">

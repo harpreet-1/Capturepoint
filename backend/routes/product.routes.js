@@ -3,18 +3,6 @@ const validateProduct = require("../middleware/productDetailsValidation");
 const ProductModel = require("../Models/ProductsModel");
 const productRouter = express.Router();
 
-//(^_^)=======================    Add new  Product       =========================
-
-productRouter.post("/add", validateProduct, async (req, res) => {
-  try {
-    const product = await ProductModel.create(req.body);
-    res.json({ message: "product added successfully" });
-  } catch (error) {
-    console.log("error from adding new product ********************\n", error);
-    res.status(500).json({ message: "error in adding new product" });
-  }
-});
-
 //(^_^)=======================  get products with filter    =========================
 productRouter.get("/all", async (req, res) => {
   try {

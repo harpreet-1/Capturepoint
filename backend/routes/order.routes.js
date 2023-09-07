@@ -145,15 +145,24 @@ orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
     const { orderId, productId } = req.params;
     const order = await OrderModel.findById(orderId);
     if (!order) {
-      return res.status(404).json({ message: "Order not found" });
+      return res
+        .status(404)
+        .json({ status: false, message: "Order not found" });
+    }
+    if (order.status != "Pending" || order.status != "Processing") {
+      return res
+        .status(404)
+        .json({ status: false, message: "Order can not be canceled !" });
     }
 
     const product = order.products.find(
       (prod) => prod._id.toString() === productId
     );
 
-    if (!product) {
-      return res.status(404).json({ message: "Product not found in order" });
+    if (!product || product.cancelled) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Product not found in order" });
     }
 
     // Calculate the quantity to restore
@@ -170,10 +179,12 @@ orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
       $inc: { stockQuantity: quantityToRestore },
     });
 
-    res.status(200).json({ message: "Product cancelled successfully" });
+    res
+      .status(200)
+      .json({ status: true, message: "Product cancelled successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred" });
+    res.status(500).json({ status: false, message: "An error occurred" });
   }
 });
 

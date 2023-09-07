@@ -12,6 +12,7 @@
   /* width: 90%; */
   margin: auto;
   margin-bottom: 50px;
+  background: white;
 }
 .ordercard > div {
   border-bottom: 1px solid rgba(128, 128, 128, 0.217);

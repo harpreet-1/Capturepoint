@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useAlertContext } from "../../Context/AlertContext";
-import OrderCancleConfirmModal from "../modals/OrderCancleConfirmModal";
+
 import OrderSinglePr from "./OrderSinglePr";
 
 function OrderProductDetails({ order, fetchOrderbyId }) {
@@ -9,9 +7,7 @@ function OrderProductDetails({ order, fetchOrderbyId }) {
   let deleverydate = new Date(originalDate);
   deleverydate.setDate(originalDate.getDate() + 4);
 
-  // Formatting the dates
   const options = {
-    // weekday: "short",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -22,9 +18,9 @@ function OrderProductDetails({ order, fetchOrderbyId }) {
   return order.products.map((productDetail, index) => {
     return (
       <>
-        {!productDetail.cancelled && (
+        {!productDetail.cancelled && productDetail.product && (
           <OrderSinglePr
-            key={Math.random()}
+            key={productDetail._id}
             fetchOrderbyId={fetchOrderbyId}
             order={order}
             productDetail={productDetail}

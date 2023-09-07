@@ -2,13 +2,15 @@ const express = require("express");
 const OrderModel = require("../Models/OrderModel");
 const UserModel = require("../Models/userModel");
 const ProductModel = require("../Models/ProductsModel");
+const validateProduct = require("../middleware/productDetailsValidation");
+const ProductFilterQuery = require("../middleware/ProductFilterQuery");
 const adminRouter = express.Router();
 
 adminRouter.get("/highlights", async (req, res) => {
   try {
     // Use Promise.all to execute both queries concurrently
 
-    const [orderStats, userCount] = await Promise.all([
+    const [orderStats, userCount, productCount] = await Promise.all([
       OrderModel.aggregate([
         {
           $group: {
@@ -19,15 +21,22 @@ adminRouter.get("/highlights", async (req, res) => {
         },
       ]),
       UserModel.countDocuments(),
+      ProductModel.countDocuments(),
     ]);
 
     // Check if there are results
     if (orderStats.length > 0) {
       // Return the order statistics and user count
-      res.json({ ...orderStats[0], userCount, status: true });
+      res.json({ ...orderStats[0], userCount, productCount, status: true });
     } else {
       // Default values when there are no orders
-      res.json({ totalAmount: 0, totalCount: 0, userCount, status: true });
+      res.json({
+        totalAmount: 0,
+        totalCount: 0,
+        userCount,
+        productCount,
+        status: true,
+      });
     }
   } catch (error) {
     console.error("error from /admin/hignlihts", error);
@@ -89,9 +98,9 @@ adminRouter.patch("/orders/update-status/:id", async (req, res) => {
   }
 });
 
-adminRouter.get("/products", async (req, res) => {
+adminRouter.get("/products", ProductFilterQuery, async (req, res) => {
   try {
-    const products = await ProductModel.find().sort("-createdAt");
+    const products = await ProductModel.find(req.query).sort("-createdAt");
     return res.status(200).json({ success: true, products });
   } catch (error) {
     console.error("error from /admin/products", error);
@@ -119,4 +128,42 @@ adminRouter.patch("/product/update/:id", async (req, res) => {
     return res.status(404).json({ status: false, message: "Order not found" });
   }
 });
+adminRouter.delete("/product/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await ProductModel.findByIdAndRemove(id);
+    if (!product) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Product not found." });
+    }
+    return res
+      .status(200)
+      .json({ status: true, message: "Product deleted successfully." });
+  } catch (error) {
+    console.log("error from admin/product/delete", error);
+    return res
+      .status(500)
+      .json({ status: false, message: "Internal server error" });
+  }
+});
+
+//(^_^)=======================    Add new  Product       =========================
+
+adminRouter.post("/product/add", validateProduct, async (req, res) => {
+  try {
+    const product = await ProductModel.create(req.body);
+    res
+      .status(200)
+      .json({ status: true, message: "product added successfully" });
+  } catch (error) {
+    console.log("error from admin/product/add \n", error);
+    res.status(500).json({
+      status: false,
+      message: "something went wrong , Please try again later",
+    });
+  }
+});
+
 module.exports = adminRouter;

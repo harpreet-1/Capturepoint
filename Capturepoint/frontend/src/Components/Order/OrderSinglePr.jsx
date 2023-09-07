@@ -4,21 +4,16 @@ import { useAlertContext } from "../../Context/AlertContext";
 import OrderCancleConfirmModal from "../modals/OrderCancleConfirmModal";
 
 function OrderSinglePr({ productDetail, fetchOrderbyId, order }) {
-  // ["Pending", "Processing", "Shipped", "Delivered", "Cancelled"],
   const canCancle = ["Pending", "Processing"].includes(order.orderStatus);
-
   const isAdminPage = window.location.pathname.startsWith("/admin");
   const { showAlert } = useAlertContext();
-
   const [showOrderCancleConfirm, SetShowOrderCancleConfirm] = useState(false);
   const token = localStorage.getItem("token");
   let originalDate = new Date(order.createdAt);
   let deleverydate = new Date(originalDate);
   deleverydate.setDate(originalDate.getDate() + 4);
 
-  // Formatting the dates
   const options = {
-    // weekday: "short",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -26,7 +21,7 @@ function OrderSinglePr({ productDetail, fetchOrderbyId, order }) {
   originalDate = originalDate.toLocaleDateString("en-US", options);
   deleverydate = deleverydate.toLocaleDateString("en-US", options);
 
-  const { product, cancelled, price, quantity } = productDetail;
+  const { product, price, quantity } = productDetail;
   function handleCancleProduct() {
     try {
       const url = `${process.env.REACT_APP_BASE_URL}/order/cancel-product/${order._id}/${productDetail._id}`;

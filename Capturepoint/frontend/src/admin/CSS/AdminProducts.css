@@ -92,6 +92,29 @@
 .AdminPrDetails {
   width: 100%;
 }
+.addProductBtn {
+  border: transparent;
+  margin-left: 80%;
+  margin-bottom: 20px;
+  width: 140px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #fc5d37 0%, #ed5132 49%, #e64525 100%);
+}
+.addProductBtn:hover {
+  background: linear-gradient(180deg, #f0461c 0%, #ea4423 49%, #e13412 100%);
+}
+.addProductBtn i {
+  font-weight: 600;
+}
+
+.resetpricefilterbtn {
+  width: 100%;
+  border: none;
+  margin-top: 10px;
+}
 @media screen and (max-width: 576px) {
   .AdminPrCard {
     grid-template-columns: 100%;
@@ -115,5 +138,8 @@
   }
   .imageLinkSpan {
     margin-left: 10px;
+  }
+  .addProductBtn {
+    margin-left: 58%;
   }
 }

@@ -11,11 +11,10 @@ const validateProduct = (req, res, next) => {
 
   for (const field of requiredFields) {
     if (!req.body[field]) {
-      return res.status(400).json({ error: `Missing ${field} field.` });
+      return res.status(400).json({ message: `Missing ${field} value.` });
     }
   }
-
-  next(); // Proceed to the next middleware or route handler
+  next(); // Proceeding to the next route handler
 };
 
 module.exports = validateProduct;

@@ -2,6 +2,7 @@ import React from "react";
 import AdminNavbar from "../AdminComponents/AdminNavbar";
 import HeadTitle from "../AdminComponents/HeadTitle";
 import AdminPrCards from "../AdminComponents/AdminProduts/AdminPrCards";
+import AddProduct from "../AdminComponents/AdminProduts/Addproduct";
 
 function AdminProducts() {
   return (
@@ -10,7 +11,6 @@ function AdminProducts() {
 
       <main>
         <HeadTitle title="Products" />
-
         <AdminPrCards />
       </main>
     </section>

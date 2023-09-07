@@ -8,18 +8,13 @@ import OrderCancleConfirmModal from "../Components/modals/OrderCancleConfirmModa
 import ProgressBarComp from "../helper/ProgressBar";
 
 function Orders() {
-  // const { setProgress } = useProgressBarContext();
+  const { setProgress } = useProgressBarContext();
 
   const { handleLoginClick, isLogin } = useAuthContext();
 
   const [orderData, setOrderData] = useState([]);
-  const [progress, setProgress] = useState(0);
   const [orderDataLoading, setOrderDataLoading] = useState(true);
   const token = localStorage.getItem("token") || null;
-  const [showOrderCancleConfirm, setShowOrderCancleConfirm] = useState(false);
-  function hidemodal() {
-    setShowOrderCancleConfirm(false);
-  }
 
   function fetchOrderData() {
     try {
@@ -38,7 +33,7 @@ function Orders() {
           if (data.success) {
             setOrderData(data.orders);
           }
-          setProgress(99);
+          setProgress(88);
           setTimeout(() => {
             setProgress(0);
             setOrderDataLoading(false);
@@ -57,16 +52,13 @@ function Orders() {
   if (!isLogin) {
     return <h1 className="messagetouser">Please Login To See Orders</h1>;
   }
-  // if (orderDataLoading) {
-  //   return <h1 className="messagetouser">Loading....</h1>;
-  // }
+
   if (!orderDataLoading && !orderData.length) {
     return <h1 className="messagetouser">No Orders Yet</h1>;
   }
 
   return (
     <>
-      <ProgressBarComp progress={progress} />
       {!orderDataLoading ? (
         <div>
           <div className="ordersHeading">
@@ -74,7 +66,7 @@ function Orders() {
           </div>
           <section className="ordersCards">
             {orderData.map((order, index) => {
-              return <OrderPrCard key={index} orderData={order} />;
+              return <OrderPrCard key={order._id} orderData={order} />;
             })}
           </section>
         </div>

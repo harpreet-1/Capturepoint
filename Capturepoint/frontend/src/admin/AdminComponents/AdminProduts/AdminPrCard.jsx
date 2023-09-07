@@ -216,8 +216,9 @@ async function deletefrombackend(productId, showAlert) {
       }
     );
     res = await res.json();
-
+    console.log(res);
     if (res.status) {
+      document.getElementById(`adminPr${productId}`).remove();
       showAlert(`Product Deleted successfully`, "success", 2000);
     } else {
       showAlert(res.message, "danger");

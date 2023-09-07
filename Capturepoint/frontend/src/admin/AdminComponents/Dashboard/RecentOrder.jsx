@@ -33,7 +33,7 @@ function RecentOrder({ allData }) {
           }
           setProgress((prev) => Math.max(prev, 88));
           setTimeout(() => {
-            setProgress(100);
+            setProgress(0);
           }, 1000);
           setIsLoading(false);
         });
