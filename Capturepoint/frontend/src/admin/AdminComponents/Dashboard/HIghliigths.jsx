@@ -49,7 +49,7 @@ function Highliigths() {
         </span>
       </li>
       <li>
-        <i class="bx bxs-shopping-bag-alt"></i>
+        <i className="bx bxs-shopping-bag-alt"></i>
         <span className="text">
           <h3>{highlihtsData?.productCount || loading}</h3>
           <p>Products</p>

@@ -4,9 +4,9 @@ import "../CSS/Login.css";
 function Login() {
   return (
     <div id="login_body">
-      <div class="login_main">
+      <div className="login_main">
         <div id="big_box">
-          <div class="left_box">
+          <div className="left_box">
             <img
               src="https://capturepoint.netlify.app/images/logo.png"
               alt=""
@@ -16,8 +16,8 @@ function Login() {
               <a href="signup.html">CREATE AN ACCOUNT </a>
             </div>
           </div>
-          <div class="right_box">
-            <div class="form_box">
+          <div className="right_box">
+            <div className="form_box">
               <h1>Sign In</h1>
               <form action="signin">
                 <label>

@@ -51,9 +51,9 @@ function ProductFilters({ setFilters, filters, sortState, setSortState }) {
     setShowOffcanvas(false);
   };
 
-  const handleSortClick = () => {
+  const handleSortClick = (value) => {
     if (sortState === null) {
-      setSortState("price");
+      setSortState(value);
     } else if (sortState === "price") {
       setSortState("-price");
     } else if (sortState === "-price") {

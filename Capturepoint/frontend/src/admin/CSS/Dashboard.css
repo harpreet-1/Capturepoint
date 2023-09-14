@@ -148,7 +148,7 @@ body {
   color: var(--blue);
 }
 #sidebar .side-menu li a .bx {
-  min-width: calc(60px - ((4px + 6px) * 2));
+  min-width: calc(60px - ((1px + 6px) * 2));
   display: flex;
   justify-content: center;
 }
@@ -399,6 +399,7 @@ body {
   width: 100%;
   border-collapse: collapse;
 }
+/* 
 #content main .table-data .order table th {
   padding-bottom: 12px;
   font-size: 15px;
@@ -468,7 +469,7 @@ body {
 }
 #content main .table-data .todo .todo-list li:last-child {
   margin-bottom: 0;
-}
+} */
 /* MAIN */
 /* CONTENT */
 

@@ -48,11 +48,11 @@ const data = [
 const SearchedPr = () => {
   return (
     <>
-      <section class="searched_main">
-        <h1 class="search_heading">Shop HP Products</h1>
+      <section className="searched_main">
+        <h1 className="search_heading">Shop HP Products</h1>
 
-        <div class="sort_box">
-          <div class="sort_by_price">
+        <div className="sort_box">
+          <div className="sort_by_price">
             <select name="" id="sort_by_price_el">
               <option value="">Sort by Price</option>
               <option value="asc">Ascending</option>
