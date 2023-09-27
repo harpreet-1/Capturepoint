@@ -117,3 +117,30 @@
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 700px) {
+  .checkout_main {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 95%;
+  }
+  .checkout_main input::placeholder {
+    font-size: 14px;
+    color: grey;
+  }
+  .checkout_main input {
+    padding-left: 10px;
+  }
+  .checkout_main .right {
+    padding: 0px;
+  }
+  .total_details {
+    margin-right: 0;
+  }
+  .checkout_main h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .checkout_main .right h2 {
+    font-size: 25px;
+  }
+}

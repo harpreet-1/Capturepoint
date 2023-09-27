@@ -7,7 +7,7 @@ export const useCartContext = () => useContext(CartContext);
 export function CartProvider({ children }) {
   const [myCartTotal, setMyCartTotal] = useState(0);
   const [cartUpdated, setCartUpdated] = useState(false);
-  const [myCartData, setMyCartData] = useState([]);
+  const [myCartData, setMyCartData] = useState(null);
 
   const contextValue = {
     myCartTotal,

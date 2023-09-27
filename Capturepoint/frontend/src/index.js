@@ -9,6 +9,7 @@ import { AuthProvider } from "./Context/LoginSignupContext";
 import { CartProvider } from "./Context/CartContext";
 import { AlertProvider } from "./Context/AlertContext";
 import { ProgressBarProvider } from "./Context/ProgressBarContext";
+import { BrowserRouter } from "react-router-dom";
 {
   /* <h1>Waheguru Ji</h1> */
 }
@@ -16,15 +17,17 @@ import { ProgressBarProvider } from "./Context/ProgressBarContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <AlertProvider>
-    <AuthProvider>
-      <CartProvider>
-        <ProgressBarProvider>
-          <App />
-        </ProgressBarProvider>
-      </CartProvider>
-    </AuthProvider>
-  </AlertProvider>
+  <BrowserRouter>
+    <AlertProvider>
+      <AuthProvider>
+        <CartProvider>
+          <ProgressBarProvider>
+            <App />
+          </ProgressBarProvider>
+        </CartProvider>
+      </AuthProvider>
+    </AlertProvider>
+  </BrowserRouter>
   // </React.StrictMode>
 );
 

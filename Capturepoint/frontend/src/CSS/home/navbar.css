@@ -1,7 +1,4 @@
 #header {
-  /* background-color: aqua; */
-
-  /* display: flex; */
   justify-content: center;
 }
 .daily_discount b {
@@ -65,10 +62,12 @@
   padding: 0 15px;
 }
 .serchbar {
+  outline: none;
   padding: 8px;
   border-radius: 7px 0 0 7px;
 
-  border: 1px solid rgb(255, 255, 255);
+  /* border: 1px solid rgb(255, 255, 255); */
+  border: none;
 
   width: 300px;
 }
@@ -92,48 +91,57 @@
 }
 
 #signin_text {
-  color: white;
   display: flex;
+  color: white;
   cursor: pointer;
 
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#signin_text a > :nth-child(1) {
-  font-size: 11px;
-  font-weight: 400;
-  color: white;
-}
-#signin_text a > :nth-child(2) {
-  font-size: 12px;
-  font-weight: bold;
 
-  color: white;
-}
 #cart_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 20px;
-
+  margin-top: 2px;
   color: white;
 }
+#cart_icon i {
+  font-size: 30px;
+}
+#cart_icon span {
+  position: absolute;
+  top: 8px;
+  left: 10.5px;
+  font-weight: 900;
+  color: #001e42;
+}
 #nav_main {
+  align-items: center;
   justify-content: space-between;
   display: flex;
   border-top: 0.005px solid #6590bb;
   background: #004387;
-  padding: 8px;
+  padding-top: 0px;
+  padding-bottom: 4px;
 }
 #nav_main a {
   padding: 5px 15px;
-  color: white;
+
   text-decoration: none;
 }
-#nav_main .nav_main_left a:hover {
-  color: #004387;
-  padding: 10px 15px;
-  border-radius: 5px 5px 0 0;
-
-  background-color: white;
+.nav_main_left {
+  display: flex;
+  align-items: center;
+}
+.nav_main_left a {
+  color: black;
+}
+.nav_main_right a {
+  color: white;
 }
 .nav_main_right a:hover {
   border-top: 3px solid white;
@@ -143,9 +151,53 @@
   color: white;
   font-size: 17px;
 }
+.mobileSearchBar {
+  display: none;
+  background: #004387;
+  margin-top: -1px;
+  padding-top: 5px;
+  width: 100%;
+  justify-content: center;
+}
+.userIcon {
+  margin-right: 5px;
+}
+#dropdown-basic.btn {
+  border: none;
+}
+.unusedLinks {
+  color: white;
+}
+.homePageSlideshowimg {
+  height: 350px;
+}
+@media screen and (max-width: 780px) {
+  .mobileSearchBar {
+    display: flex;
+  }
+  #primary_content_right .pcsearch {
+    display: none;
+  }
+  .nav_main_right {
+    display: none;
+  }
+  .homePageSlideshowimg {
+    height: 170px;
+  }
+}
 @media screen and (max-width: 480px) {
   .daily_discount,
   #nav__business {
     display: none;
+  }
+
+  #logo img {
+    width: 175px;
+  }
+  #primary_content {
+    padding: 4px 10px;
+  }
+  #cart_icon {
+    margin-right: 0;
   }
 }

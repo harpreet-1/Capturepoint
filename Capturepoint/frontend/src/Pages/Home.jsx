@@ -11,33 +11,19 @@ import { useProgressBarContext } from "../Context/ProgressBarContext";
 
 function Home() {
   const { setProgress } = useProgressBarContext();
-  const [spData, setSpData] = useState([]);
-  const [nrData, setNrData] = useState([]);
+  const [spData, setSpData] = useState(null);
 
   function fetchSpData(apiUrl) {
     try {
+      setProgress(20);
       fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
           setSpData(data.products);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  function fetchNewReleaseData(apiUrl) {
-    try {
-      fetch(apiUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setNrData(data.products);
+          setProgress(100);
           setTimeout(() => {
-            setProgress(80);
-          }, 2000);
-          setTimeout(() => {
-            setProgress(100);
-          }, 3000);
+            setProgress(0);
+          }, 1000);
         });
     } catch (error) {
       console.log(error);
@@ -45,22 +31,17 @@ function Home() {
   }
 
   useEffect(() => {
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}/products/search?sortField=price`;
+    const apiUrl = `${process.env.REACT_APP_BASE_URL}/products/search?sort=-price&page=1`;
     fetchSpData(apiUrl);
-    setProgress(40);
-    const apiUrl2 = `${process.env.REACT_APP_BASE_URL}/products/search?sortField=createdAt`;
-    fetchNewReleaseData(apiUrl2);
   }, []);
-
-  console.log("home");
 
   return (
     <div>
       <LoginModal />
       <SignUpModal />
       <Slideshow />
-      <SpeacialProduct data={spData} />
-      <NewReleased data={nrData} />
+      {spData && <SpeacialProduct data={spData} />}
+      <NewReleased />
       <Promo />
       <Footer />
     </div>

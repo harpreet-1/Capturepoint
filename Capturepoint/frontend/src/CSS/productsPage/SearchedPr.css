@@ -65,7 +65,7 @@ input[type="submit"] {
   grid-template-columns: repeat(3, 1fr);
   margin: auto;
   width: 75%;
-  /* height: 300px; */
+  margin-bottom: 150px;
   background-color: #f2f2f2;
 }
 .card_box > div {
@@ -82,14 +82,15 @@ input[type="submit"] {
   font-style: normal;
   cursor: text;
   margin-top: 10px;
-  font-size: 11px;
+  font-size: 15px;
   margin-right: 6px;
-  color: #707070;
 }
 
-.card_box > div > :nth-child(5) {
+/* .card_box > div > :nth-child(5) {
   margin-top: 10px;
-}
+  font-size: 12.5px;
+  color: grey;
+} */
 .card_box > div h4 {
   margin-top: 5px;
   font-size: 30px;
@@ -97,12 +98,12 @@ input[type="submit"] {
 
   margin-bottom: 6px;
 }
-.card_box > div > :nth-child(6) > :first-child {
+.card_box > div > :nth-child(5) > :first-child {
   color: #108a00;
   font-weight: bold;
   font-size: 13px;
 }
-.card_box > div > :nth-child(6) {
+.card_box > div > :nth-child(5) {
   font-size: 12px;
   font-weight: 400;
   color: #222;
@@ -110,38 +111,27 @@ input[type="submit"] {
   margin-top: 4px;
   line-height: 1.4;
 }
-/* .card_box>div>:nth-child(7){
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-    padding: 0 18px;
-    
-    
-    border: 1px solid transparent;
-    margin-bottom: 8px;
-    height: 40px;
-    color: white
-    ;
-    font-weight: 600;
 
-   
-    border-radius: 4px;
-    background: linear-gradient(180deg,#fc5d37 0%,#ed5132 49%,#e64525 100%);
-  } */
-/* .card_box>div>:nth-child(7):hover{
-    border: 1px solid #f1310a;
-    cursor: pointer;
-    font-size: 18px;
-
-  } */
-.card_box > div > :nth-child(7) {
+.card_box > div > :nth-child(6) {
   font-size: 12px;
   color: #094801;
 }
-/* body section #new_release_cards {
-  background-color: #f2f2f2;
-} */
+
 #popular {
   font-size: 30px;
+}
+@media screen and (max-width: 900px) {
+  .card_box {
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .card_box {
+    width: 90%;
+    grid-template-columns: 100%;
+    padding: 5px;
+  }
 }

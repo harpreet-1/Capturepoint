@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/LoginSignupContext";
 
 const Islogin = () => {
+  const navigate = useNavigate();
   const { setLoginTrue, setLoginFalse, setUsername } = useAuthContext();
   try {
     let params = window.location.search.split("token=")[1];
-    let token = params || localStorage.getItem("token") || null;
 
+    if (params) {
+      localStorage.setItem("token", params);
+      navigate("/");
+    }
+    let token = params || localStorage.getItem("token") || null;
     if (token) {
       fetch("http://localhost:8080/islogin", {
         method: "GET",
@@ -16,20 +22,17 @@ const Islogin = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.username) {
-            setUsername(data.username);
+            setUsername(data.username.split(" ")[0]);
+
             setLoginTrue();
           } else {
-            setLoginFalse();
+            setTimeout(() => {
+              setLoginFalse();
+            }, 0);
           }
-        })
-        .catch((err) => {
-          console.log("eror from login", err);
         });
     } else {
       setLoginFalse();
-    }
-    if (params) {
-      localStorage.setItem("token", params);
     }
   } catch (error) {
     console.log("error from checking is login", error);

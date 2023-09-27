@@ -24,26 +24,22 @@ function App() {
   return (
     <>
       <div className="App">
-        <BrowserRouter>
-          {showNavbarAndModals && <Navbar />}
-          {showNavbarAndModals && <LoginModal />}
-          {showNavbarAndModals && <SignUpModal />}
+        {showNavbarAndModals && <Navbar />}
+        {showNavbarAndModals && <LoginModal />}
+        {showNavbarAndModals && <SignUpModal />}
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<SearchedPr />} />
-            <Route path="/details/:prId" element={<PrDeatail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/orderConfirm" element={<OrderConfirm />} />
-
-            <Route path="/admin/*" element={<AdminRoutes />} />
-            {/* <Route path="*" element={<Home />} /> */}
-          </Routes>
-          <AlertModel />
-          <ProgressBarComp />
-        </BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Home />} />
+          <Route path="/search" element={<SearchedPr />} />
+          <Route path="/details/:prId" element={<PrDeatail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orderConfirm" element={<OrderConfirm />} />
+          <Route path="/admin/*" element={<AdminRoutes />} />
+        </Routes>
+        <AlertModel />
+        <ProgressBarComp />
       </div>
     </>
   );

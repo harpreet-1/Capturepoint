@@ -15,6 +15,8 @@
   font-size: 24px;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 #footer_help nav p:hover {
   cursor: pointer;
@@ -87,7 +89,6 @@
   padding: 50px 0;
   display: flex;
   background-color: #f2f2f2;
-  /* justify-content: space-around; */
 }
 #footer_links {
   /* text-align: center; */
@@ -128,4 +129,27 @@
 .footer_copyright a {
   color: white;
   text-decoration: underline;
+}
+@media screen and (max-width: 720px) {
+  #footer_help,
+  #connect {
+    display: none;
+  }
+  #footer_visit {
+    display: flex;
+    flex-direction: column;
+  }
+  #footer_links {
+    padding: 10px;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  #location {
+    text-align: center;
+
+    width: 90%;
+    margin: auto;
+  }
 }

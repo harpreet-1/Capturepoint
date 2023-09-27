@@ -1,6 +1,7 @@
 const express = require("express");
 const validateProduct = require("../middleware/productDetailsValidation");
 const ProductModel = require("../Models/ProductsModel");
+const ProductFilterQuery = require("../middleware/ProductFilterQuery");
 const productRouter = express.Router();
 
 //(^_^)=======================  get products with filter    =========================
@@ -14,108 +15,24 @@ productRouter.get("/all", async (req, res) => {
   }
 });
 
-productRouter.get("/search", async (req, res) => {
-  const searchText = req.query.search;
-  const minPrice = parseFloat(req.query.minPrice);
-  const maxPrice = parseFloat(req.query.maxPrice);
-  const minRating = parseFloat(req.query.minRating);
-  const category = req.query.category;
+productRouter.get("/search", ProductFilterQuery, async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
-  const sortField = req.query.sortField; // Added sort field
-  const sortOrder = req.query.sortOrder || "asc"; // Added sort order, default to "asc"
+  const sort = req.query.sort || "-createdAt"; // Added sort order, default to "asc"
 
+  // Calculate total count of products
+
+  // Execute pipeline to get products
+  console.log(req.searchQuery?.$or);
   try {
-    let pipeline = [
-      {
-        $project: {
-          _id: 1,
-          name: 1,
-          description: 1,
-          price: 1,
-          images: 1,
-          category: 1,
-          brand: 1,
-          stockQuantity: 1,
-          createdAt: 1,
-          avgRating: { $avg: "$ratings.value" },
-        },
-      },
-    ];
-
-    if (searchText) {
-      const regexSearch = new RegExp(searchText, "i");
-      pipeline.unshift({
-        $match: {
-          $or: [
-            { name: regexSearch },
-            { description: regexSearch },
-            { brand: regexSearch },
-          ],
-        },
-      });
-    }
-
-    if (!isNaN(minPrice) || !isNaN(maxPrice)) {
-      const priceFilter = {};
-      if (!isNaN(minPrice)) {
-        priceFilter.$gte = minPrice;
-      }
-      if (!isNaN(maxPrice)) {
-        priceFilter.$lte = maxPrice;
-      }
-      pipeline.push({
-        $match: { price: priceFilter },
-      });
-    }
-
-    if (!isNaN(minRating)) {
-      pipeline.push({
-        $match: { avgRating: { $gte: minRating } },
-      });
-    }
-
-    if (category) {
-      pipeline.push({
-        $match: { category: category },
-      });
-    }
-
-    // Sort the results
-    if (sortField) {
-      const sortOrderValue = sortOrder === "desc" ? -1 : 1;
-      const sortStage = {
-        $sort: {
-          [sortField]: sortOrderValue,
-        },
-      };
-      pipeline.push(sortStage);
-    }
-
-    // Calculate total count of products
-    const totalCountPipeline = [...pipeline];
-    totalCountPipeline.push({
-      $group: {
-        _id: null,
-        totalCount: { $sum: 1 },
-      },
-    });
-
-    // Execute pipeline to get products
-    const productsWithAvgRating = await ProductModel.aggregate(pipeline)
+    const products = await ProductModel.find(req.searchQuery)
       .skip((page - 1) * limit)
-      .limit(limit);
-
-    // Execute pipeline to get total count
-    const totalCount = await ProductModel.aggregate(totalCountPipeline);
-
-    res.json({
-      products: productsWithAvgRating,
-      totalCount: totalCount.length > 0 ? totalCount[0].totalCount : 0,
-    });
+      .limit(limit)
+      .sort(sort);
+    return res.status(200).json({ success: true, products });
   } catch (error) {
-    console.error("Error fetching product data:", error);
-    res.status(500).json({ message: "Error fetching product data" });
+    console.error("error from /products/search", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

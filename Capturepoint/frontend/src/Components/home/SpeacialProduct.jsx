@@ -3,6 +3,7 @@ import "../../CSS/home/SpeacialProduct.css";
 import React, { useRef } from "react";
 
 function SpeacialProduct({ data }) {
+  console.log(data);
   const sliderRef = useRef(null);
 
   const handleSlideRight = () => {
@@ -29,27 +30,36 @@ function SpeacialProduct({ data }) {
             <i className="fa-solid fa-arrow-right"></i>
           </div>
           <section id="top_deal_cards" ref={sliderRef}>
-            {data.map((deal, index) => (
-              <div className="top_deal_card" key={index}>
-                <img
-                  src={"https://www.adorama.com/images/product/ifjxt4s.jpg"}
-                  alt={deal.name}
-                />
-                <h2>
-                  <Link to={`/details/${deal._id}`} className="Pr_title">
-                    {deal.name}
-                  </Link>
-                </h2>
-                <div className="rating">
-                  {Array.from({ length: deal.rating || 5 }, (_, idx) => (
-                    <i key={idx} className="fa-solid fa-star"></i>
-                  ))}
+            {data.map((deal, index) => {
+              const originalPrice = deal.price;
+
+              const discountPercentage = Math.random() * (50 - 10) + 10;
+
+              const discountAmount = Math.floor(
+                (discountPercentage / 100) * originalPrice
+              );
+
+              return (
+                <div className="top_deal_card" key={index}>
+                  <img src={deal.images[0]} alt={deal.name} />
+                  <h2>
+                    <Link to={`/details/${deal._id}`} className="Pr_title">
+                      {deal.name}
+                    </Link>
+                  </h2>
+                  <div className="rating">
+                    {Array.from({ length: deal.rating || 5 }, (_, idx) => (
+                      <i key={idx} className="fa-solid fa-star"></i>
+                    ))}
+                  </div>
+                  <p className="market_price">{`$${
+                    deal.price + discountAmount
+                  }`}</p>
+                  <p className="discount">{`Instant Rebate: ${discountAmount}`}</p>
+                  <p className="now_price">{`Price : $${deal.price}`}</p>
                 </div>
-                <p className="market_price">{`$${deal.price}`}</p>
-                <p className="discount">{`Instant Rebate: $150.00`}</p>
-                <p className="now_price">{`Price : $${deal.price}`}</p>
-              </div>
-            ))}
+              );
+            })}
           </section>
         </section>
       </section>

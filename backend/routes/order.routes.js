@@ -149,10 +149,11 @@ orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
         .status(404)
         .json({ status: false, message: "Order not found" });
     }
-    if (order.status != "Pending" || order.status != "Processing") {
+
+    if (order.orderStatus == "Shipped" || order.orderStatus == "Delivered") {
       return res
         .status(404)
-        .json({ status: false, message: "Order can not be canceled !" });
+        .json({ status: false, message: order.orderStatus });
     }
 
     const product = order.products.find(
@@ -169,9 +170,17 @@ orderRouter.patch("/cancel-product/:orderId/:productId", async (req, res) => {
     const quantityToRestore = product.quantity;
 
     // Update the cancelled status of the product
+
     product.cancelled = true;
     order.orderTotal -= Math.round(product.price * quantityToRestore);
 
+    const isAllPrCancelled = order.products.every(
+      (prod) => prod.cancelled === true
+    );
+    if (isAllPrCancelled) {
+      order.orderStatus = "Cancelled";
+      order.orderTotal = 0;
+    }
     await order.save();
 
     // Update the product's stock quantity

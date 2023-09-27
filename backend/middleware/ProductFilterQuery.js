@@ -1,7 +1,13 @@
 const ProductFilterQuery = (req, res, next) => {
   try {
-    const filters = JSON.parse(req.headers["pr-filters"]);
+    const filters = req.headers["pr-filters"]
+      ? JSON.parse(req.headers["pr-filters"])
+      : null;
 
+    if (!filters) {
+      req.searchQuery = {};
+      return next();
+    }
     const query = {};
 
     const orConditions = [];
@@ -17,6 +23,7 @@ const ProductFilterQuery = (req, res, next) => {
           const searchRegex = { $regex: filter, $options: "i" };
           orConditions.push({ name: searchRegex });
           orConditions.push({ description: searchRegex });
+          orConditions.push({ category: searchRegex });
         } else if (key === "category" || key === "brand") {
           filterQuery[key] = { $in: filter };
         } else if (key === "minprice") {
@@ -39,7 +46,7 @@ const ProductFilterQuery = (req, res, next) => {
       query.$or = orConditions;
     }
 
-    req.query = query; // Attach the query to the request object
+    req.searchQuery = query; // Attach the query to the request object
 
     next();
   } catch (error) {

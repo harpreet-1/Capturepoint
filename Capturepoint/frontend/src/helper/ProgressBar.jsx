@@ -4,7 +4,7 @@ import { useProgressBarContext } from "../Context/ProgressBarContext";
 function ProgressBarComp() {
   const { progress } = useProgressBarContext();
 
-  return progress > 0 && progress < 90 ? (
+  return (
     <div>
       <ProgressBar
         variant={"danger"}
@@ -12,8 +12,6 @@ function ProgressBarComp() {
         now={progress}
       />
     </div>
-  ) : (
-    <div></div>
   );
 }
 

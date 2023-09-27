@@ -27,6 +27,7 @@ function Orders() {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           if (data.message === "Invalid token.") {
             return handleLoginClick();
           }
@@ -44,10 +45,11 @@ function Orders() {
     }
   }
   useEffect(() => {
-    fetchOrderData();
     if (!isLogin) {
-      handleLoginClick();
+      return handleLoginClick();
     }
+
+    fetchOrderData();
   }, [isLogin]);
   if (!isLogin) {
     return <h1 className="messagetouser">Please Login To See Orders</h1>;

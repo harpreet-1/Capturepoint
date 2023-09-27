@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/cart/cart.css";
 import CartProducts from "../Components/Cart/CartProducts";
 import CartTotal from "../Components/Cart/CartTotal";
@@ -9,14 +9,14 @@ import { useAuthContext } from "../Context/LoginSignupContext";
 import { useCartContext } from "../Context/CartContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useProgressBarContext } from "../Context/ProgressBarContext";
-import ProgressBarComp from "../helper/ProgressBar";
-
+import ReactLoading from "react-loading";
 function Cart() {
   console.log("carrttt");
   const navigate = useNavigate();
   const location = useLocation();
   const { setProgress } = useProgressBarContext();
   const { isLogin, handleLoginClick } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(true);
 
   const { setMyCartTotal, myCartData, setMyCartData, cartUpdated } =
     useCartContext();
@@ -38,12 +38,12 @@ function Cart() {
           } else {
             setMyCartData(data[0]?.cartItems || []);
             setMyCartTotal(Math.floor(data[0]?.totalAmount) || 0);
-            setProgress(80);
-          }
-
-          setTimeout(() => {
             setProgress(100);
-          }, 2000);
+          }
+          setTimeout(() => {
+            setProgress(0);
+          }, 1000);
+          setIsLoading(false);
         });
     } catch (error) {
       console.log(error);
@@ -59,6 +59,18 @@ function Cart() {
     fetchCartData();
   }, [cartUpdated, isLogin]);
 
+  if (isLoading) {
+    return (
+      <div className="react-loading">
+        <ReactLoading
+          type={"spokes"}
+          color={"Black"}
+          height={"100vh"}
+          width={50}
+        />
+      </div>
+    );
+  }
   if (!isLogin) {
     return (
       <div>
@@ -74,11 +86,10 @@ function Cart() {
       </div>
     );
   }
-
   return (
     <>
       <CartHead />
-      {myCartData.length ? (
+      {myCartData && myCartData.length ? (
         <section className="main">
           <CartProducts data={myCartData} />
           <CartTotal />

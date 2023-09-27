@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../CSS/home/navbar.css";
 import logo from "../../images/logo.png";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -8,6 +8,14 @@ import { useAuthContext } from "../../Context/LoginSignupContext"; // Replace wi
 import ProgressBarComp from "../../helper/ProgressBar";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const searchElement1 = useRef();
+  const searchElement2 = useRef();
+
+  useEffect(() => {
+    searchElement1.current.value = "";
+    searchElement2.current.value = "";
+  }, []);
   const {
     setLoginFalse,
     handleLoginClick,
@@ -16,7 +24,9 @@ function Navbar() {
     loginUsername,
     setUsername,
   } = useAuthContext();
-
+  const handleSearch = (value) => {
+    if (value.trim()) navigate(`/search?q=${value}`);
+  };
   return (
     <div>
       <section id="header">
@@ -31,25 +41,29 @@ function Navbar() {
 
         <div id="primary_content">
           <div id="logo">
-            <img src={logo} alt="CapturePoint" />
+            <Link to={"/"}>
+              <img src={logo} alt="CapturePoint" />
+            </Link>
           </div>
           <div id="primary_content_right">
-            <input className="serchbar" type="text" placeholder="Search" />
-            <div id="searchbar">
+            <input
+              ref={searchElement1}
+              className="pcsearch serchbar"
+              type="search"
+              placeholder="Search"
+            />
+            <div
+              onClick={() => handleSearch(searchElement1.current.value)}
+              className="pcsearch"
+              id="searchbar"
+            >
               <i id="search_icon" className="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div id="user_icon">
-              <i className="fa-solid fa-user"></i>
             </div>
 
             <div id="signin_text">
-              {/* <span id="status">Sign in</span>
-              <span id="username">
-                MY Account <i className="fa-sharp fa-solid fa-angle-down"></i>
-              </span> */}
-
               <Dropdown>
                 <Dropdown.Toggle variant="" id="dropdown-basic">
+                  <i className="fa-solid userIcon fa-user"></i>
                   {loginUsername}
                 </Dropdown.Toggle>
 
@@ -83,27 +97,91 @@ function Navbar() {
               </Dropdown>
             </div>
 
-            <Link to="/cart.html">
+            <Link to="/cart">
               <div id="cart_icon">
-                <span id="cart_quantity">0</span>
-                <i className="fa-solid fa-cart-shopping"></i>
+                <span id="cart_quantity">5</span>
+                <i className="bx bxs-shopping-bag"></i>
               </div>
             </Link>
           </div>
         </div>
+        <div className="mobileSearchBar">
+          {" "}
+          <input
+            ref={searchElement2}
+            className="serchbar"
+            type="search"
+            placeholder="Search"
+          />
+          <div
+            onClick={() => handleSearch(searchElement2.current.value)}
+            id="searchbar"
+          >
+            <i id="search_icon" className="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
         <div id="nav_main">
           <div className="nav_main_left">
+            <Dropdown>
+              <Dropdown.Toggle variant="" id="dropdown-basic">
+                Product
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => {}}>
+                  <Link to="/search?c=Camera">Camera </Link>
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => {}}>
+                  <Link to="/search?c=Laptop">Laptop </Link>
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => {}}>
+                  <Link to="/search?c=Headphones">Headphone </Link>
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => {}}>
+                  <Link to="/search?c=Cases">Cpu Cases </Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown>
+              <Dropdown.Toggle variant="" id="dropdown-basic">
+                Brands
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <Link to="/search?b=Lenovo">Lenovo</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=Sony">Sony</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=Asus">Asus</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=Acer">Acer</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=Bose">Bose</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=NZXT">NZXT</Link>{" "}
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  {" "}
+                  <Link to="/search?b=Audio-Technica">Audio-Technica</Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <Link to="/">
-              Product<i className="fa-sharp fa-solid fa-angle-down"></i>
+              <span className="unusedLinks">Used</span>
             </Link>
             <Link to="/">
-              Brands<i className="fa-sharp fa-solid fa-angle-down"></i>
-            </Link>
-            <Link to="/">
-              Used<i className="fa-sharp fa-solid fa-angle-down"></i>
-            </Link>
-            <Link to="/">
-              deals<i className="fa-sharp fa-solid fa-angle-down"></i>
+              <span className="unusedLinks">Deals</span>
             </Link>
           </div>
           <div className="nav_main_right">

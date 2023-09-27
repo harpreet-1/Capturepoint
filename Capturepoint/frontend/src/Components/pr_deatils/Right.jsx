@@ -16,6 +16,11 @@ function Right({ data, prUpdated, setPrUpdated }) {
   const [isOutOfStock, setIsOutOfStock] = useState(
     data.stockQuantity ? false : true
   );
+  const originalPrice = data.price;
+
+  const discountPercentage = Math.random() * (50 - 10) + 10;
+
+  const discountAmount = Math.floor((discountPercentage / 100) * originalPrice);
 
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
@@ -135,9 +140,7 @@ function Right({ data, prUpdated, setPrUpdated }) {
             setQuantity(data.existingCartItem.quantity);
             setaddToCartBtnText("Added To Cart");
             console.log(data.existingCartItem.productId.stockQuantity);
-            // setIsOutOfStock(
-            //   data.existingCartItem.productId.stockQuantity ? false : true
-            // );
+
             setIsOutOfStock(false);
           }
         });
@@ -200,7 +203,9 @@ function Right({ data, prUpdated, setPrUpdated }) {
           </p>
         </div>
       </div>
-      <p className="price_discount">{productDetails.discountMessage}</p>
+      <p className="mobilehidden price_discount">
+        {productDetails.discountMessage}
+      </p>
 
       {(isLogin || productInCart || !isOutOfStock) && (
         <div className="button_box">
@@ -238,9 +243,7 @@ function Right({ data, prUpdated, setPrUpdated }) {
         </div>
       )}
 
-      {isReachmax && (
-        <p className="maxavailable">No more quanitity available in Stock</p>
-      )}
+      {isReachmax && <p className="maxavailable">Reach maxmimum limit</p>}
       {isOutOfStock ? (
         <div className="messageBox">Out of Stock</div>
       ) : (

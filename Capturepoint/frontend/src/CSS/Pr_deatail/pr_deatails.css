@@ -220,7 +220,8 @@ body {
 .stock_des > :nth-child(1) {
   border-right: 1px solid grey;
 }
-
+.stock_des > div {
+}
 .reveal {
   position: relative;
   opacity: 0;
@@ -259,4 +260,38 @@ body {
 }
 .messageBox {
   margin-top: 50px;
+}
+@media screen and (max-width: 720px) {
+  .details_main {
+    width: 95%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 100%;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.247);
+  }
+  .details_main .left {
+    margin-bottom: 10px;
+  }
+  .left_inner {
+    width: 100%;
+    margin: auto;
+  }
+  .pr_details_title {
+    font-size: 1.1em;
+  }
+  .mobilehidden {
+    display: none;
+  }
+  .messageBox,
+  .maxavailable {
+    width: 98%;
+  }
+  .stock_des {
+    grid-template-columns: 40% 60%;
+  }
+  .sub_pics {
+    width: 95%;
+    gap: 12px;
+    margin: auto;
+  }
 }

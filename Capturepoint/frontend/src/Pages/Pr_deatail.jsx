@@ -8,13 +8,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../Context/LoginSignupContext";
 import { useAlertContext } from "../Context/AlertContext";
 import { useProgressBarContext } from "../Context/ProgressBarContext";
+import LoginModal from "../Components/LoginModal";
 function PrDeatail() {
   const { setProgress } = useProgressBarContext();
   const navigate = useNavigate();
   const { showAlert } = useAlertContext();
   const { isLogin } = useAuthContext();
 
-  const [nrData, setNrData] = useState([]);
   const [prUpdated, setPrUpdated] = useState(false);
   const [prDetail, setPrDetail] = useState(null);
   let { prId } = useParams();
@@ -32,22 +32,10 @@ function PrDeatail() {
             return;
           }
           setPrDetail(data.products);
-          setProgress((prev) => Math.max(prev, 50));
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  function fetchNewReleaseData(apiUrl) {
-    try {
-      fetch(apiUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          setNrData(data.products);
-          setProgress(80);
+          setProgress((prev) => Math.max(prev, 100));
           setTimeout(() => {
-            setProgress(100);
-          }, 2000);
+            setProgress(0);
+          }, 1000);
         });
     } catch (error) {
       console.log(error);
@@ -55,9 +43,6 @@ function PrDeatail() {
   }
 
   useEffect(() => {
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}/products/search?sortField=createdAt`;
-    fetchNewReleaseData(apiUrl);
-
     window.scrollTo({ top: 0 });
     setProgress(20);
   }, [prId]);
@@ -65,7 +50,7 @@ function PrDeatail() {
   useEffect(() => {
     const PrDeatailApi = `${process.env.REACT_APP_BASE_URL}/products/byid/${prId}`;
     fetchPrDetails(PrDeatailApi);
-  }, [prUpdated, isLogin]);
+  }, [prUpdated, isLogin, prId]);
   return (
     prDetail && (
       <>
@@ -80,7 +65,7 @@ function PrDeatail() {
             />
           </section>
         }
-        <NewReleased data={nrData} />
+        <NewReleased />
         <Footer />
       </>
     )

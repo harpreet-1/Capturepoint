@@ -13,10 +13,15 @@ adminRouter.get("/highlights", async (req, res) => {
     const [orderStats, userCount, productCount] = await Promise.all([
       OrderModel.aggregate([
         {
+          $match: {
+            orderStatus: { $ne: "Cancelled" }, // Exclude canceled orders
+          },
+        },
+        {
           $group: {
             _id: null,
             totalAmount: { $sum: "$orderTotal" },
-            totalCount: { $sum: 1 }, // Counting the number of orders
+            totalCount: { $sum: 1 },
           },
         },
       ]),
@@ -100,7 +105,9 @@ adminRouter.patch("/orders/update-status/:id", async (req, res) => {
 
 adminRouter.get("/products", ProductFilterQuery, async (req, res) => {
   try {
-    const products = await ProductModel.find(req.query).sort("-createdAt");
+    const products = await ProductModel.find(req.searchQuery).sort(
+      "-createdAt"
+    );
     return res.status(200).json({ success: true, products });
   } catch (error) {
     console.error("error from /admin/products", error);

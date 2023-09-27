@@ -29,7 +29,7 @@ function Slideshow() {
       {imageUrls.map((imageUrl, index) => (
         <Carousel.Item key={index} interval={1000}>
           <img
-            className="d-block w-100"
+            className="d-block homePageSlideshowimg w-100"
             src={imageUrl}
             alt={`Slide ${index + 1}`}
           />
