@@ -18,9 +18,10 @@ const isValidEmail = (email) => {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);
 };
+
 const registerUser = async (req, res) => {
   try {
-    let { username, email, password } = req.body;
+    let { username, email, password, isAdmin } = req.body;
     if (!email || !password || !username) {
       return res.status(400).json({
         status: "error",
@@ -49,6 +50,7 @@ const registerUser = async (req, res) => {
       email,
       username,
       password: hashedPassword,
+      isAdmin: isAdmin ? isAdmin : false,
     });
     const token = jwt.sign(
       { user: { id: newUser._id, username, email } },
@@ -96,7 +98,12 @@ const loginUser = async (req, res) => {
       return res.status(200).json({
         status: "success",
         message: "Login Successful",
-        user: { username: user.username, email, userId: user._id },
+        user: {
+          username: user.username,
+          email,
+          userId: user._id,
+          isAdmin: user.isAdmin,
+        },
         token: token,
       });
     }
@@ -133,9 +140,5 @@ const deleteUser = async (req, res) => {
 usersRouter.post("/login", loginUser);
 usersRouter.post("/register", registerUser);
 usersRouter.get("/", getUsers);
-// usersRouter.use(authorization);
 
-// usersRouter.patch("/update/:id", updateUser);
-// usersRouter.delete("/delete/:id", deleteUser);
-
-module.exports = { usersRouter };
+module.exports = { usersRouter, registerUser };

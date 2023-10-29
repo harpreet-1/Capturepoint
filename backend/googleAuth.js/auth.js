@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:8080/auth/google/callback",
+      callbackURL: `${process.env.BASE_API}/auth/google/callback`,
       // "https://projectbackend-na1u.onrender.com/auth/google/callback",
     },
 

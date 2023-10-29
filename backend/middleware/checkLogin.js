@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const UserModel = require("../Models/userModel");
 
 const checkLogin = async (req, res, next) => {
   const authToken = req.headers["auth-token"];
@@ -12,6 +13,15 @@ const checkLogin = async (req, res, next) => {
     if (decoded) {
       req.user = decoded.user;
       console.log("*******************", decoded);
+
+      if (req.path === "/admin-register") {
+        const user = await UserModel.findById(decoded.user.id);
+
+        if (!user || !user.isAdmin) {
+          console.log("Someone trying to access admin routes", user);
+          return res.status(404).json({ message: "Access denied" });
+        }
+      }
       next();
     } else {
       return res.status(403).json({ message: "Invalid token." });

@@ -4,7 +4,11 @@ const UserModel = require("../Models/userModel");
 const ProductModel = require("../Models/ProductsModel");
 const validateProduct = require("../middleware/productDetailsValidation");
 const ProductFilterQuery = require("../middleware/ProductFilterQuery");
+const { registerUser } = require("./user.routes");
+const checkLogin = require("../middleware/checkLogin");
 const adminRouter = express.Router();
+
+adminRouter.post("/admin-register", checkLogin, registerUser);
 
 adminRouter.get("/highlights", async (req, res) => {
   try {
