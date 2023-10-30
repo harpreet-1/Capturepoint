@@ -9,7 +9,7 @@ This is the website which we created with HTML,CSS,JAVASCRIPT.
 
 
 
-Netlify Link- https://capturepoint.netlify.app/index.html
+Deployed Link- https://capturepoint-hp.netlify.app/index.html
 
 This is ecommerce brand specially for women where you can find products related to 
 "digital",
@@ -88,9 +88,4 @@ You can edit , ADD and Delete items from here from API.
 ![Screenshot (407)](https://user-images.githubusercontent.com/114987574/221481729-a7ff4651-605a-4f13-9d9e-0a9c8fc3a43c.png)
 
 .
-That's all about our Project.
-Collaborator's
-1) Harpreet Singh
-2) Suraj Rathod
-3) Bhabani Sankar Behera
-4) Yash Jain.
+That's all about my project ,thanks for visiting 
