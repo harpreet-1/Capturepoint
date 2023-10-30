@@ -5,7 +5,7 @@ WELCOME in our Brand CapturePoint
 ![logo (1)](https://user-images.githubusercontent.com/119473352/232507589-2eb09168-8fb8-4aba-b65b-78761750de83.png)
 
 
-This is the website which we created with HTML,CSS,JAVASCRIPT.
+This is the website which we created with react , bootstrap, node.js , express , mongodb,Oauth 
 
 
 
@@ -33,8 +33,6 @@ If you are register already you can directly signin whith your ID and PASSWORD.
 
 
 
-IF you are a new user you can register youself aswell.
-![Screenshot (1253)](https://user-images.githubusercontent.com/119473352/232508433-89ddede5-654b-48c2-a973-fa1dc8ae6425.png)
 
 
 
@@ -46,46 +44,49 @@ AND lastly on landing page a little a beautiful footer where all the details abo
 
 ON top if you click any category or you search anything you will redirect to products page.
 
-![Screenshot (1254)](https://user-images.githubusercontent.com/119473352/232509736-acc6f277-8b8e-4d1c-8bc4-b1cf48b13b20.png)
+![Screenshot (155)](https://github.com/harpreet-1/Capturepoint/assets/119473352/293065ee-8684-42d2-a579-18970edc5486)
 
  
 
 IF you want to know about product more particularly press on that product you redirect to the product detail page.
-![Screenshot (1250)](https://user-images.githubusercontent.com/119473352/232509919-2553d1c0-56a5-47bc-8150-946688bcfd4c.png)
-
+![Screenshot (156)](https://github.com/harpreet-1/Capturepoint/assets/119473352/d2df35ce-fdc5-4933-88e7-c15db2e5caca)
 
 
 After click on the ADD TO CART button the product will added to your CART page.
 And click on cART BUTTOON ON TOP OF nAV baR YOU WILL redirect to cart page.
+![Screenshot (157)](https://github.com/harpreet-1/Capturepoint/assets/119473352/c40f257c-0726-4da8-91be-74a490cc6e79)
 
-![Screenshot (398)](https://user-images.githubusercontent.com/114987574/221475059-b036f94c-1353-48c2-ba87-7fdf631ec850.png)
 
 After click on Proceed to pay the page redirect you to address filling page you have to fill your address and place your order.
 and the cart will gone empty soon.
-
-![Screenshot (400)](https://user-images.githubusercontent.com/114987574/221475634-3e3abfd6-c570-4d10-88f2-557bc148d98d.png)
+![Screenshot (158)](https://github.com/harpreet-1/Capturepoint/assets/119473352/097027a4-c476-4f4e-90d1-cdc1eb07b711)
 
 
 ADMIN SIDE.
 
-IF Admin want to access the admin side simply he/she can click LOGIN ADMIN HERE on Login Page.......
-And redirect to Login Admin Page.
-
-![Screenshot (391)](https://user-images.githubusercontent.com/114987574/221415209-f999968f-8623-4d3b-a7e3-0bcd6f956215.png)
+IF Admin want to access the admin side  login  with these credentials
+email -->  c@gmail.com
+password --> 1234
 
 And after enter right E-mail and Password Admin can access the admin data.
+And redirect to Login Admin Page.
+
+
 You can see the dashboard of ADMIN side.
 
-![Screenshot (402)](https://user-images.githubusercontent.com/114987574/221478843-1740b7e1-d673-43b1-8333-54d4dc920006.png)
+![Screenshot (160)](https://github.com/harpreet-1/Capturepoint/assets/119473352/beb08981-c719-42bc-8372-8cc2dbde06a4)
 
-After click on Costumer on Side bar you see all the user register in our website.
 
-![Screenshot (406)](https://user-images.githubusercontent.com/114987574/221481382-5db755f9-b435-41d3-b7bb-db93f26cafd2.png)
+After click on products on Side bar you see all the products  in our stock with their deatils.
+![Screenshot (161)](https://github.com/harpreet-1/Capturepoint/assets/119473352/28d85e80-5029-4628-9cc6-609d29564df4)
 
-after click on the products you see all products in API.
 You can edit , ADD and Delete items from here from API.
+![Screenshot (164)](https://github.com/harpreet-1/Capturepoint/assets/119473352/a139aff0-d946-4325-abf7-36a02564f608)
+![Screenshot (163)](https://github.com/harpreet-1/Capturepoint/assets/119473352/72f56729-551b-4091-963e-4505d602d586)
 
-![Screenshot (407)](https://user-images.githubusercontent.com/114987574/221481729-a7ff4651-605a-4f13-9d9e-0a9c8fc3a43c.png)
+order deatils-->
+by click on orders on Side bar you see all the orders  with their deatils.
+. and  you can edit there status from here like shipped or delivered!
 
-.
+ 
 That's all about my project ,thanks for visiting 
