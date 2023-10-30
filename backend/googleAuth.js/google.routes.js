@@ -52,7 +52,7 @@ googleRouter.get(
     });
 
     // Redirect the user to your frontend URL
-    res.redirect(`http://localhost:3000?token=${token}`);
+    res.redirect(`https://capturepoint-hp.netlify.app?token=${token}`);
   }
 );
 
